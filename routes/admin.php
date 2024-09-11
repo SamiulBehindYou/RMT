@@ -11,10 +11,10 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     //Profile
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update'); //imp
+    Route::post('/profile/image', [ProfileController::class, 'image_update'])->name('profile.update.image'); //imp
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/register/new/admin', [ProfileController::class, 'admin_register'])->name('admin.register');
 
     //Category
     Route::get('category_add', [CategoryController::class, 'add_categroy'])->name('add.categroy');

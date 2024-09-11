@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Index page 
+Route::get('/', [FrontendController::class, 'index'])->name('index');
 
 
 require __DIR__.'/auth.php';

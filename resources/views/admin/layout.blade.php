@@ -27,7 +27,7 @@
 		<!-- partial:partials/_sidebar.html -->
 		<nav class="sidebar">
       <div class="sidebar-header">
-        <a href="#" class="sidebar-brand">
+        <a href="{{ route('dashboard') }}" class="sidebar-brand">
           RMT<span>.com</span>
         </a>
         <div class="sidebar-toggler not-active">
@@ -40,7 +40,7 @@
         <ul class="nav">
           <li class="nav-item nav-category">Main</li>
           <li class="nav-item">
-            <a href="dashboard-one.html" class="nav-link">
+            <a href="{{ route('dashboard') }}" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
               <span class="link-title">Dashboard</span>
             </a>
@@ -576,36 +576,32 @@
 						</li>
 						<li class="nav-item dropdown nav-profile">
 							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="https://via.placeholder.com/30x30" alt="profile">
+								@if(Auth::user()->image == null)
+                                <img src="{{ asset('uploads/profile.jpg') }}" alt="profile">
+                                @else
+                                <img src="{{ asset('uploads/users/'.Auth::user()->image) }}" alt="profile">
+                                @endif
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
 								<div class="dropdown-header d-flex flex-column align-items-center">
 									<div class="figure mb-3">
-										<img src="https://via.placeholder.com/80x80" alt="">
+										@if(Auth::user()->image == null)
+                                        <img src="{{ asset('uploads/profile.jpg') }}" alt="profile">
+                                        @else
+                                        <img src="{{ asset('uploads/users/'.Auth::user()->image) }}" alt="profile">
+                                        @endif
 									</div>
 									<div class="info text-center">
-										<p class="name font-weight-bold mb-0">Amiah Burton</p>
-										<p class="email text-muted mb-3">amiahburton@gmail.com</p>
+										<p class="name font-weight-bold mb-0">{{ Auth::user()->name }}</p>
+										<p class="email text-muted mb-3">{{ Auth::user()->email }}</p>
 									</div>
 								</div>
 								<div class="dropdown-body">
 									<ul class="profile-nav p-0 pt-3">
 										<li class="nav-item">
-											<a href="pages/general/profile.html" class="nav-link">
-												<i data-feather="user"></i>
-												<span>Profile</span>
-											</a>
-										</li>
-										<li class="nav-item">
-											<a href="javascript:;" class="nav-link">
+											<a href="{{ route('profile.edit') }}" class="nav-link">
 												<i data-feather="edit"></i>
 												<span>Edit Profile</span>
-											</a>
-										</li>
-										<li class="nav-item">
-											<a href="javascript:;" class="nav-link">
-												<i data-feather="repeat"></i>
-												<span>Switch User</span>
 											</a>
 										</li>
 										<li class="nav-item">
