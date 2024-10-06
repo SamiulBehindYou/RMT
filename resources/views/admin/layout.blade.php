@@ -47,6 +47,23 @@
           </li>
           <li class="nav-item nav-category">web controls</li>
           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#brand" role="button" aria-expanded="false" aria-controls="brand">
+              <i class="link-icon" data-feather="bold"></i>
+              <span class="link-title">Brand</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="brand">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <a href="{{ route('brand.add') }}" class="nav-link">Add & View</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('categroy.trashed') }}" class="nav-link">Trash</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#category" role="button" aria-expanded="false" aria-controls="category">
               <i class="link-icon" data-feather="list"></i>
               <span class="link-title">Category</span>

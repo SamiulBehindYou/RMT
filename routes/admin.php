@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/image', [ProfileController::class, 'image_update'])->name('profile.update.image'); //imp
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Brand
+    Route::get('brand', [BrandController::class, 'add_brand'])->name('brand.add');
+    Route::post('brand', [BrandController::class, 'store_brand'])->name('brand.store');
+
 
     //Category
     Route::get('category_add', [CategoryController::class, 'add_categroy'])->name('add.categroy');
