@@ -15,6 +15,7 @@
                             <th>SL</th>
                             <th>Brand Name</th>
                             <th>Created at</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,9 @@
                             <td>{{ $sl+1 }}</td>
                             <td>{{ $brand->brand }}</td>
                             <td>{{ $brand->created_at->diffForHumans() }}</td>
+                            <td>
+                                <a href="#" class="btn btn-danger btn-sm">Remove</a>
+                            </td>
                         </tr>
 
                         @empty

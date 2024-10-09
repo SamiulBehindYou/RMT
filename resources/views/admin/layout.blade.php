@@ -45,6 +45,18 @@
               <span class="link-title">Dashboard</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="pages/apps/calendar.html" class="nav-link">
+              <i class="link-icon" data-feather="users"></i>
+              <span class="link-title">Salers</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="pages/apps/calendar.html" class="nav-link">
+              <i class="link-icon" data-feather="users"></i>
+              <span class="link-title">Users</span>
+            </a>
+          </li>
           <li class="nav-item nav-category">web controls</li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#brand" role="button" aria-expanded="false" aria-controls="brand">
@@ -85,7 +97,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#subcategory" role="button" aria-expanded="false" aria-controls="subcategory">
-              <i class="link-icon" data-feather="pocket"></i>
+              <i class="link-icon" data-feather="git-pull-request"></i>
               <span class="link-title">Sub Categories</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
@@ -101,11 +113,35 @@
             </div>
           </li>
           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#product" role="button" aria-expanded="false" aria-controls="product">
+              <i class="link-icon" data-feather="shopping-bag"></i>
+              <span class="link-title">Product</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="product">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Add & View product</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Trash</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
             <a href="pages/apps/calendar.html" class="nav-link">
-              <i class="link-icon" data-feather="calendar"></i>
-              <span class="link-title">Calendar</span>
+              <i class="link-icon" data-feather="shopping-cart"></i>
+              <span class="link-title">Online Sales</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="pages/apps/calendar.html" class="nav-link">
+              <i class="link-icon" data-feather="shopping-cart"></i>
+              <span class="link-title">Offline Sales</span>
+            </a>
+          </li>
+
           <li class="nav-item nav-category">Components</li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">

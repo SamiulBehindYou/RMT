@@ -12,6 +12,7 @@ use Illuminate\View\View;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
+
 class ProfileController extends Controller
 {
     /**
