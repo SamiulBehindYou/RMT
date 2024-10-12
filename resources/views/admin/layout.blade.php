@@ -19,7 +19,16 @@
   <!-- Layout styles -->
 	<link rel="stylesheet" href="{{ asset('admin') }}/css/demo_1/style.css">
   <!-- End layout styles -->
-  <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
+    <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
+
+    {{-- Summernote --}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    {{-- Selectize --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"/>
+
+    {{-- DataTable --}}
+    <link rel="stylesheet" href="cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+
 </head>
 <body>
 	<div class="main-wrapper">
@@ -70,7 +79,7 @@
                   <a href="{{ route('brand.add') }}" class="nav-link">Add & View</a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('categroy.trashed') }}" class="nav-link">Trash</a>
+                  <a href="{{ route('brand.trash') }}" class="nav-link">Trash</a>
                 </li>
               </ul>
             </div>
@@ -121,7 +130,7 @@
             <div class="collapse" id="product">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Add & View product</a>
+                  <a href="{{ route('product.index') }}" class="nav-link">Add & View product</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Trash</a>
@@ -139,6 +148,12 @@
             <a href="pages/apps/calendar.html" class="nav-link">
               <i class="link-icon" data-feather="shopping-cart"></i>
               <span class="link-title">Offline Sales</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('tag.index') }}" class="nav-link">
+              <i class="link-icon" data-feather="hash"></i>
+              <span class="link-title">Tags</span>
             </a>
           </li>
 
@@ -712,6 +727,28 @@
   <script src="{{ asset('admin') }}/js/dashboard.js"></script>
   <script src="{{ asset('admin') }}/js/datepicker.js"></script>
 	<!-- end custom js for this page -->
+
+    {{-- Summernote --}}
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Write your top blogs here!',
+            tabsize: 2,
+            height: 300
+        });
+    </script>
+
+    {{-- Selectize --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
+    <script>
+        $('#select-tag').selectize({ sortField: 'text' })
+    </script>
+
+    {{-- DataTable --}}
+    <script src="cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#dataTable');
+    </script>
 
         {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

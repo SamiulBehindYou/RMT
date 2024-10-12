@@ -19,13 +19,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($brands as $sl=>$brand)
+                        @forelse ($tags as $sl=>$tag)
                         <tr>
                             <td>{{ $sl+1 }}</td>
-                            <td>{{ $brand->brand }}</td>
-                            <td>{{ $brand->created_at->diffForHumans() }}</td>
+                            <td>{{ $tag->name }}</td>
+                            <td>{{ $tag->created_at->diffForHumans() }}</td>
                             <td>
-                                <a href="{{ route('brand.remove', $brand->id) }}" class="btn btn-danger btn-sm">Remove</a>
+                                <a href="{{ route('brand.remove', $tag->id) }}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
 
@@ -43,15 +43,15 @@
     <div class="col-md-5">
         <div class="card">
             <div class="card-header bg-primary">
-                <h3 class="text-center text-white">Add Brand</h3>
+                <h3 class="text-center text-white">Add Tag</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('tag.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Brand name</label>
-                        <input type="text" name="brand" class="form-control">
-                        @error('brand')
+                        <label class="form-label">Tag name</label>
+                        <input type="text" name="name" class="form-control">
+                        @error('name')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>

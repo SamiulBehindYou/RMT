@@ -28,19 +28,22 @@ class BrandController extends Controller
         ]);
         return back()->withSuccess('Brand added Successfully!');
     }
-    // public function delete_category($id){
-    //     Category::find($id)->delete();
-    //     return back()->withSuccess('Category successfully move to trush!');
-    // }
-    // public function restore_categroy($id){
-    //     Category::onlyTrashed()->find($id)->restore();
-    //     return back()->withSuccess('Category successfully restored!');
-    // }
-    // public function delete_trashed_categroy($id){
-    //     $category = Category::onlyTrashed()->find($id);
-    //     unlink(public_path('uploads/categories/'.$category->category_image));
+    public function remove_brand($id){
+        Brand::find($id)->delete();
+        return back()->withSuccess('Brand successfully move to trush!');
+    }
 
-    //     Category::onlyTrashed()->find($id)->forceDelete();
-    //     return back()->withSuccess('Category permanently deleted!');
-    // }
+    public function trashed(){
+        $brands = Brand::onlyTrashed()->get();
+        return view('admin.brand.trashed_brand', compact('brands'));
+    }
+
+    public function restore_brand($id){
+        Brand::onlyTrashed()->find($id)->restore();
+        return back()->withSuccess('Brand successfully restored!');
+    }
+    public function delete_trashed_brand($id){
+        Brand::onlyTrashed()->find($id)->forceDelete();
+        return back()->withSuccess('Brand permanently deleted!');
+    }
 }
