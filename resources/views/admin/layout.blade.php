@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"/>
 
     {{-- DataTable --}}
-    <link rel="stylesheet" href="cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 
 </head>
 <body>
@@ -118,6 +118,9 @@
                 <li class="nav-item">
                   <a href="{{ route('subcategroy') }}" class="nav-link">SubCategories</a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('subcategroy.trash') }}" class="nav-link">Trash</a>
+                </li>
               </ul>
             </div>
           </li>
@@ -133,7 +136,7 @@
                   <a href="{{ route('product.index') }}" class="nav-link">Add & View product</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Trash</a>
+                  <a href="{{ route('product.trash') }}" class="nav-link">Trash</a>
                 </li>
               </ul>
             </div>
@@ -694,8 +697,6 @@
 
 @yield('main')
 
-
-
 			</div>
 
 			<!-- partial:partials/_footer.html -->
@@ -745,9 +746,9 @@
     </script>
 
     {{-- DataTable --}}
-    <script src="cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script>
-        let table = new DataTable('#dataTable');
+        let table = new DataTable('#datatable');
     </script>
 
         {{-- sweetalert --}}
@@ -763,6 +764,19 @@
         });
     </script>
     @endif
+
+    @if (session('info'))
+    <script>
+        Swal.fire({
+        position: "center",
+        icon: "info",
+        title: "{{ session('info') }}",
+        showConfirmButton: false,
+        timer: 1500
+        });
+    </script>
+    @endif
+
     @if (session('status'))
     <script>
         Swal.fire({

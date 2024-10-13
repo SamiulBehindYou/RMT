@@ -17,15 +17,15 @@
                         <th>Deleted on</th>
                         <th>Action</th>
                     </tr>
-                    @forelse ($categories as $sl=>$category)
+                    @forelse ($subcategories as $sl=>$subcategory)
                     <tr>
                         <td>{{ $sl+1 }}</td>
-                        <td>{{ $category->category_name }}</td>
-                        <td><img src="{{ asset('uploads/categories').'/'.$category->category_image }}" alt=""></td>
-                        <td>{{ $category->deleted_at }}</td>
+                        <td>{{ $subcategory->rel_to_category->category_name }}</td>
+                        <td>{{ $subcategory->subcategory_name }}</td>
+                        <td>{{ $subcategory->deleted_at->diffForHumans() }}</td>
                         <td>
-                            <a href="{{ route('category.trash.restore', $category->id) }}" class="btn btn-success btn-sm">Restore</a>
-                            <a href="{{ route('categroy.trash.delete', $category->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ route('subcategory.trash.restore', $subcategory->id) }}" class="btn btn-success btn-sm">Restore</a>
+                            <a href="{{ route('subcategroy.trash.delete', $subcategory->id) }}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                     @empty

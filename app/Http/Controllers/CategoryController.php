@@ -57,6 +57,7 @@ class CategoryController extends Controller
         Category::find($id)->delete();
         return back()->withSuccess('Category successfully move to trush!');
     }
+
     public function restore_categroy($id){
         Category::onlyTrashed()->find($id)->restore();
         return back()->withSuccess('Category successfully restored!');
@@ -92,6 +93,25 @@ class CategoryController extends Controller
             'created_at' =>Carbon::now(),
         ]);
         return back()->withSuccess('SubCategory added successfully!');
+    }
+
+    public function delete_subcategory($id){
+        SubCategory::find($id)->delete();
+        return back()->withSuccess('SubCategory successfully move to trush!');
+    }
+
+    public function subcategroy_trash(){
+        $subcategories = SubCategory::onlyTrashed()->get();
+        return view('admin.category.subcategories.trashed_subcategory', compact('subcategories'));
+    }
+
+    public function restore_subcategroy($id){
+        SubCategory::onlyTrashed()->find($id)->restore();
+        return back()->withSuccess('SubCategory successfully restored!');
+    }
+    public function delete_trashed_subcategroy($id){
+        SubCategory::onlyTrashed()->find($id)->forceDelete();
+        return back()->withSuccess('SubCategory permanently deleted!');
     }
 
 }

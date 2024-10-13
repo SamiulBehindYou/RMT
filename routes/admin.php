@@ -41,9 +41,19 @@ Route::middleware('auth')->group(function () {
     Route::get('add_subcategroy', [CategoryController::class, 'add_subcategroy'])->name('add_subcategroy');
     Route::post('subcategroy/store', [CategoryController::class, 'subcategroy_store'])->name('subcategory.store');
     Route::get('sub_categroy', [CategoryController::class, 'subcategroy'])->name('subcategroy');
+    Route::get('subcategroy/delete/{id}', [CategoryController::class, 'delete_subcategory'])->name('subcategory.delete');
+    Route::get('sub_categroy/subtrash', [CategoryController::class, 'subcategroy_trash'])->name('subcategroy.trash');
+    Route::get('subcategroy/restore/{id}', [CategoryController::class, 'restore_subcategroy'])->name('subcategory.trash.restore');
+    Route::get('subcategroy/subtrashed/{id}', [CategoryController::class, 'delete_trashed_subcategroy'])->name('subcategroy.trash.delete');
 
     // Product
     Route::resource('product', ProductController::class);
+    Route::get('product/delete/{id}', [ProductController::class, 'delete_product'])->name('product.delete');
+    Route::get('ptrashed', [ProductController::class, 'view_trash'])->name('product.trash');
+    Route::get('permanant/product/restore/{id}', [ProductController::class, 'restore_product'])->name('restore.product');
+    Route::get('permanant/product/delete/{id}', [ProductController::class, 'per_delete_product'])->name('product.per.delete');
+
+    // Tag
     Route::resource('tag', TagController::class);
 
 

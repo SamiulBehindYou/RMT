@@ -20,7 +20,7 @@ class ProductController extends Controller
         $tags = Tag::all();
         $brands = Brand::all();
         $subcategories = SubCategory::all();
-        $products = Product::orderBy('id', 'DESC')->paginate(20);
+        $products = Product::orderBy('id', 'DESC')->get();
 
         return view('admin.product.product_index', [
             'tags' => $tags,
@@ -118,5 +118,35 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function delete_product($id){
+        Product::find($id)->delete();
+        return back()->withInfo('Product move to trash!');
+    }
+
+    public function view_trash(){
+        $brands = Brand::all();
+        $subcategories = SubCategory::all();
+        $products = Product::onlyTrashed()->orderBy('id', 'DESC')->get();
+
+        return view('admin.product.trashed', [
+            'products' => $products,
+            'brands' => $brands,
+            'subcategories' => $subcategories,
+        ]);
+    }
+
+    public function restore_product($id){
+        Product::onlyTrashed()->find($id)->restore();
+        return back()->withSuccess('Product restored successfully!');
+    }
+
+    public function per_delete_product($id){
+        $product = Product::onlyTrashed()->find($id);
+        unlink(public_path('uploads/products/tumbnail/'.$product->image));
+        unlink(public_path('uploads/products/original/'.$product->image));
+        Product::onlyTrashed()->find($id)->forceDelete();
+        return back()->withInfo('Product permanantly deleted!');
     }
 }

@@ -132,7 +132,7 @@
                 <h3 class="text-white text-center">Products</h3>
             </div>
             <div class="card-body">
-                <table id="dataTable" class="table table-bordered text-center">
+                <table id="datatable" style="width:100%" class="display table table-bordered text-center">
                     <thead>
                         <tr>
                             <th>SL</th>
@@ -154,16 +154,16 @@
                             <td>{{ $index+1 }}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->product_id }}</td>
-                            <td>{{ $product->rel_to_brand->brand }}</td>
-                            <td>{{ $product->rel_to_subcategory->rel_to_category->category_name }}</td>
-                            <td>{{ $product->rel_to_subcategory->subcategory_name }}</td>
+                            <td>{{ $product->rel_to_brand != null ? $product->rel_to_brand->brand:'Brand Deleted!' }}</td>
+                            <td>{{ $product->rel_to_subcategory != null ? ($product->rel_to_subcategory->rel_to_category != null ? $product->rel_to_subcategory->rel_to_category->category_name:'Category deleted!'):'Category Not Available' }}</td>
+                            <td>{{ $product->rel_to_subcategory != null ? $product->rel_to_subcategory->subcategory_name:'SubCategory deleted!' }}</td>
                             <td>{{ $product->made_in }}</td>
                             <td><img src="{{ asset('uploads/products/tumbnail/'.$product->image) }}"></td>
                             <td>{{ $product->tax != null ? $product->tax:'' }}<span class="text-danger">{{ $product->tax != null ? '':'Not Difined!' }}</span></td>
                             <td>{{ $product->created_at->diffForHumans() }}</td>
                             <td>
                                 <a href="#" class="btn btn-facebook">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('product.delete', $product->id) }}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                         @empty
@@ -173,7 +173,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                {{ $products->links() }}
+
             </div>
         </div>
     </div>

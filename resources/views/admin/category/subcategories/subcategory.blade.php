@@ -34,7 +34,7 @@
                         <td>{{ $subcategory->products == null ? 'No Products':$subcategory->products }}</td>
                         <td>{{ $subcategory->created_at }}</td>
                         <td>
-                            <a href="{{ route('category.delete', $subcategory->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ route('subcategory.delete', $subcategory->id) }}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                     @empty
