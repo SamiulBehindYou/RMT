@@ -47,17 +47,19 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 # E-Commerce Website (RMT)
 
 About Website:
-1. Authentication system  <p style="color:green">-->Ready</p>
+1. Authentication system                                -->Ready👍!
+
 2. Admin Panel
-->Admin profile Edit
-->Admin profile delete(require password)
-->Brand Add/View/Delete/Trash
-->Category Add/View/Delete/Trash
-->Sub category Add/View/Delete/Trash
-->Product Add/View/Delete/Trash
-->Online Sales
-->Offline Sales
-->
+<br>->Admin profile Edit                                -->Ready👍!
+<br>->Admin profile delete(require password)            -->Ready👍!
+<br>->Brand Add/View/Delete/Trash                       -->Ready👍!
+<br>->Category Add/View/Delete/Trash                    -->Ready👍!
+<br>->Sub category Add/View/Delete/Trash                -->Ready👍!
+<br>->Product Add/View/Delete/Trash                     -->Ready👍!
+<br>->Product dataTable                                 -->Ready👍!
+<br>->Online Sales                                      
+<br>->Offline Sales
+<br>->
  
 
 Working On:
