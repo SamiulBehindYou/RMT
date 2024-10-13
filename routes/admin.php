@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::post('add/categroy/store', [CategoryController::class, 'store_categroy'])->name('categroy.store');
     Route::get('categroys', [CategoryController::class, 'categroy'])->name('categroy');
     Route::get('categroy/delete/{id}', [CategoryController::class, 'delete_category'])->name('category.delete');
-    Route::get('categroy/trashed', [CategoryController::class, 'trashed_categroy'])->name('categroy.trashed');
+    Route::get('categroy/ctrashed', [CategoryController::class, 'trashed_categroy'])->name('categroy.trashed');
     Route::get('categroy/restore/{id}', [CategoryController::class, 'restore_categroy'])->name('category.trash.restore');
     Route::get('categroy/ctrashed/{id}', [CategoryController::class, 'delete_trashed_categroy'])->name('categroy.trash.delete');
 

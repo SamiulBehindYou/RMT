@@ -741,7 +741,7 @@
     {{-- Selectize --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
     <script>
-        $('#select-tag').selectize({ sortField: 'text' })
+        $('#select').selectize({ sortField: 'text' })
     </script>
 
     {{-- DataTable --}}

@@ -11,7 +11,7 @@
                 <h3 class="text-white text-center">Add Product</h3>
             </div>
             <div class="card-body">
-                <form action="#" method="POST">
+                <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                       <div class="form-group col-md-8">
@@ -33,29 +33,41 @@
                     <div class="form-row">
                       <div class="form-group col-md-3">
                         <label for="inputPassword4">Brand</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="brand" name="brand">
+                        <select name="brand" class="form-control">
+                            <option value="">Select Brand</option>
+                            @foreach ($brands as $brand)
+                                <option value="{{ $brand->id }}">{{ $brand->brand }}</option>
+                            @endforeach
+                        </select>
                         @error('brand')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
-                      </div>
-                      <div class="form-group col-md-3">
+                    </div>
+
+                    <div class="form-group col-md-3">
                         <label for="inputPassword4">Sub Category</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="subcategory" name="subcategory">
+                        <select name="subcategory" class="form-control">
+                            <option value="">Select subcategory</option>
+                            @foreach ($subcategories as $subcategory)
+                                <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                            @endforeach
+                        </select>
                         @error('subcategory')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
-                      </div>
-                      <div class="form-group col-md-3">
+                    </div>
+
+                    <div class="form-group col-md-3">
                         <label for="inputPassword4">Made in</label>
                         <input type="text" class="form-control" id="inputPassword4" placeholder="made_in" name="made_in">
+
                         @error('made_in')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
                       <div class="form-group col-md-3">
                         <label class="form-label">Tags</label>
-                            <select id="select-tag" name="tag_id[]" class="demo-default" multiple placeholder="Select Tag">
-                                <option value="">Select Tag</option>
+                            <select id="select" name="tag_id[]" class="demo-default" multiple placeholder="Select Tag">
                                 <option value="">Select Tag</option>
                                 <optgroup label="Tags">
                                     @foreach ($tags as $tag)
@@ -76,15 +88,16 @@
                         @error('short_description')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
-                      </div>
-                      <div class="form-group col-md-4">
+                    </div>
+
+                    <div class="form-group col-md-4">
                         <label for="inputCity">Product Image</label>
                         <input type="file" class="form-control" id="inputCity" name="image" onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
-                        <img class="mt-2" id="img" width="142" height="142" />
                         @error('image')
-                            <strong class="text-danger">{{ $message }}</strong>
+                        <strong class="text-danger">{{ $message }}</strong>
                         @enderror
-                      </div>
+                        <div><img class="mt-2" id="img" width="142" height="142"/></div>
+                    </div>
 
                     </div>
 
@@ -98,8 +111,8 @@
                     <div class="form-group">
                       <div class="form-check">
                         <label class="form-check-label" for="gridCheck">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            Filled the form properly!
+                            <input class="form-check-input" required type="checkbox" id="gridCheck">
+                            I filled the form properly!
                         </label>
                       </div>
                     </div>
@@ -119,26 +132,48 @@
                 <h3 class="text-white text-center">Products</h3>
             </div>
             <div class="card-body">
-                <table id="dataTable" class="table table-bordered">
+                <table id="dataTable" class="table table-bordered text-center">
                     <thead>
                         <tr>
                             <th>SL</th>
                             <th>Name</th>
                             <th>Product_id</th>
                             <th>Brand</th>
+                            <th>Category</th>
                             <th>SubCategory</th>
-                            <th>MadeIn</th>
+                            <th>Made In</th>
                             <th>Image</th>
                             <th>Tax</th>
                             <th>Created_at</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($products as $index=>$product)
                         <tr>
-                            <td></td>
+                            <td>{{ $index+1 }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->product_id }}</td>
+                            <td>{{ $product->rel_to_brand->brand }}</td>
+                            <td>{{ $product->rel_to_subcategory->rel_to_category->category_name }}</td>
+                            <td>{{ $product->rel_to_subcategory->subcategory_name }}</td>
+                            <td>{{ $product->made_in }}</td>
+                            <td><img src="{{ asset('uploads/products/tumbnail/'.$product->image) }}"></td>
+                            <td>{{ $product->tax != null ? $product->tax:'' }}<span class="text-danger">{{ $product->tax != null ? '':'Not Difined!' }}</span></td>
+                            <td>{{ $product->created_at->diffForHumans() }}</td>
+                            <td>
+                                <a href="#" class="btn btn-facebook">Edit</a>
+                                <a href="#" class="btn btn-danger">Delete</a>
+                            </td>
                         </tr>
+                        @empty
+                        <tr>
+                            <td colspan="9"><h3>No Products</h3></td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
+                {{ $products->links() }}
             </div>
         </div>
     </div>
