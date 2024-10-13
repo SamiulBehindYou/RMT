@@ -1,3 +1,30 @@
+# E-Commerce Website (RMT)
+
+About Website:
+1. Authentication system                                -->Ready👍!
+
+2. Admin Panel
+<br>->Admin profile Edit                                -->Ready👍!
+<br>->Admin profile delete(require password)            -->Ready👍!
+<br>->Brand Add/View/Delete/Trash                       -->Ready👍!
+<br>->Category Add/View/Delete/Trash                    -->Ready👍!
+<br>->Sub category Add/View/Delete/Trash                -->Ready👍!
+<br>->Product Add/View/Delete/Trash                     -->Ready👍!
+<br>->Product dataTable                                 -->Ready👍!
+<br>->Online Sales                                      
+<br>->Offline Sales
+<br>->
+ 
+
+Working On:
+
+
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
@@ -44,23 +71,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 
-# E-Commerce Website (RMT)
-
-About Website:
-1. Authentication system                                -->Ready👍!
-
-2. Admin Panel
-<br>->Admin profile Edit                                -->Ready👍!
-<br>->Admin profile delete(require password)            -->Ready👍!
-<br>->Brand Add/View/Delete/Trash                       -->Ready👍!
-<br>->Category Add/View/Delete/Trash                    -->Ready👍!
-<br>->Sub category Add/View/Delete/Trash                -->Ready👍!
-<br>->Product Add/View/Delete/Trash                     -->Ready👍!
-<br>->Product dataTable                                 -->Ready👍!
-<br>->Online Sales                                      
-<br>->Offline Sales
-<br>->
- 
-
-Working On:
 
