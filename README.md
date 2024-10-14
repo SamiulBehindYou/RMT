@@ -11,14 +11,13 @@ About Website:
 <br>->Sub category Add/View/Delete/Trash                -->Ready👍!
 <br>->Product Add/View/Delete/Trash                     -->Ready👍!
 <br>->Product dataTable                                 -->Ready👍!
+<br>->Color & Size                                      -->Ready👍!
 <br>->Online Sales                                      
 <br>->Offline Sales
 <br>->
  
 
-Working On:
-
-
+Working On: Inventory
 
 
 

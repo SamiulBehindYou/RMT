@@ -159,6 +159,12 @@
               <span class="link-title">Tags</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('color.size') }}" class="nav-link">
+              <i class="link-icon" data-feather="feather"></i>
+              <span class="link-title">Color & Size</span>
+            </a>
+          </li>
 
           <li class="nav-item nav-category">Components</li>
           <li class="nav-item">
@@ -749,6 +755,9 @@
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script>
         let table = new DataTable('#datatable');
+    </script>
+    <script>
+        let table = new DataTable('#datatable2');
     </script>
 
         {{-- sweetalert --}}

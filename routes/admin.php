@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
+use App\Livewire\ColorSize;
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,6 +56,12 @@ Route::middleware('auth')->group(function () {
 
     // Tag
     Route::resource('tag', TagController::class);
+
+    // LiveWire
+        // Color&Size
+        Route::get('color_size', function(){
+            return view('admin.color&size.color&size');
+        })->name('color.size');
 
 
 });

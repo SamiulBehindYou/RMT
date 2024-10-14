@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->integer('brand');
             $table->integer('subcategory');
+            $table->integer('price');
+            $table->integer('discount');
+            $table->integer('after_discount');
             $table->string('made_in');
             $table->string('tags');
             $table->string('image');
