@@ -1,7 +1,6 @@
 @extends('admin.layout')
-
 @section('main')
 
-@livewire('tag')
+@livewire('inventory');
 
 @endsection

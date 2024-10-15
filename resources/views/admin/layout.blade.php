@@ -125,6 +125,20 @@
             </div>
           </li>
           <li class="nav-item">
+            <a href="{{ route('tag.index') }}" class="nav-link">
+              <i class="link-icon" data-feather="hash"></i>
+              <span class="link-title">Tags</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('color.size') }}" class="nav-link">
+              <i class="link-icon" data-feather="feather"></i>
+              <span class="link-title">Color & Size</span>
+            </a>
+          </li>
+
+          <li class="nav-item nav-category">Products and Sales</li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#product" role="button" aria-expanded="false" aria-controls="product">
               <i class="link-icon" data-feather="shopping-bag"></i>
               <span class="link-title">Product</span>
@@ -142,29 +156,24 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="pages/apps/calendar.html" class="nav-link">
+            <a href="{{ route('inventory') }}" class="nav-link">
+              <i class="link-icon" data-feather="archive"></i>
+              <span class="link-title">Inventory</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="link-icon" data-feather="shopping-cart"></i>
               <span class="link-title">Online Sales</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/apps/calendar.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="link-icon" data-feather="shopping-cart"></i>
               <span class="link-title">Offline Sales</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('tag.index') }}" class="nav-link">
-              <i class="link-icon" data-feather="hash"></i>
-              <span class="link-title">Tags</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('color.size') }}" class="nav-link">
-              <i class="link-icon" data-feather="feather"></i>
-              <span class="link-title">Color & Size</span>
-            </a>
-          </li>
+
 
           <li class="nav-item nav-category">Components</li>
           <li class="nav-item">
@@ -178,66 +187,7 @@
                 <li class="nav-item">
                   <a href="pages/ui-components/alerts.html" class="nav-link">Alerts</a>
                 </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/badges.html" class="nav-link">Badges</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/breadcrumbs.html" class="nav-link">Breadcrumbs</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/buttons.html" class="nav-link">Buttons</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/button-group.html" class="nav-link">Button group</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/cards.html" class="nav-link">Cards</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/carousel.html" class="nav-link">Carousel</a>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/ui-components/collapse.html" class="nav-link">Collapse</a>
-                  </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/dropdowns.html" class="nav-link">Dropdowns</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/list-group.html" class="nav-link">List group</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/media-object.html" class="nav-link">Media object</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/modal.html" class="nav-link">Modal</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/navs.html" class="nav-link">Navs</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/navbar.html" class="nav-link">Navbar</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/pagination.html" class="nav-link">Pagination</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/popover.html" class="nav-link">Popovers</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/progress.html" class="nav-link">Progress</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/scrollbar.html" class="nav-link">Scrollbar</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/scrollspy.html" class="nav-link">Scrollspy</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/spinners.html" class="nav-link">Spinners</a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/ui-components/tooltips.html" class="nav-link">Tooltips</a>
-                </li>
+
               </ul>
             </div>
           </li>
@@ -753,12 +703,7 @@
 
     {{-- DataTable --}}
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
-    <script>
-        let table = new DataTable('#datatable');
-    </script>
-    <script>
-        let table = new DataTable('#datatable2');
-    </script>
+
 
         {{-- sweetalert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -798,6 +743,7 @@
     </script>
     @endif
 
+    @yield('footer')
 
 </body>
 </html>

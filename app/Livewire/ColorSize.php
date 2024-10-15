@@ -56,13 +56,14 @@ class ColorSize extends Component
         return back();
     }
 
+
+
     public function render()
     {;
-        $colors = color::orderBy('id', 'DESC')->get();
-        $sizes = size::orderBy('id', 'DESC')->get();
+
         return view('livewire.color-size', [
-            'colors' => $colors,
-            'sizes' => $sizes,
+            'colors' => color::orderBy('id', 'DESC')->paginate(5,['*'], 'colorsPage'),
+            'sizes' => size::orderBy('id', 'DESC')->paginate(5,['*'], 'sizesPage'),
         ]);
     }
 }

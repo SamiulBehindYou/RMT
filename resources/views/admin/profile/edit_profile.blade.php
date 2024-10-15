@@ -27,35 +27,8 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-primary">
-                    <h3 class="text-white text-center">Edit Image</h3>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('profile.update.image') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label class="form-label">Upload Image</label>
-                            <input type="file" name="image" class="form-control"
-                                onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
-                            <img src="{{ Auth::user()->image != null ? asset('uploads/users/'.Auth::user()->image):'' }}" id="img" width="200" class="rounded mt-2">
-                            @error('image')
-                                <strong class="text-danger">{{ $message }}</strong>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row  mt-3">
-        <div class="col-md-6">
-            <div class="card">
+
+            <div class="card mt-4">
                 <div class="card-header bg-primary">
                     <h3 class="text-center text-white">Account Deletation</h3>
                 </div>
@@ -76,6 +49,33 @@
                     </form>
                 </div>
             </div>
+
+
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    <h3 class="text-white text-center">Edit Image</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('profile.update.image') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Upload Image</label>
+                            <input type="file" name="image" class="form-control"
+                                onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
+                            <img src="{{ Auth::user()->image != null ? asset('uploads/users/'.Auth::user()->image):'' }}" id="img" width="170" class="rounded mt-2">
+                            @error('image')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+
 @endsection

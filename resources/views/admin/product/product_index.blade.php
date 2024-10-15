@@ -16,15 +16,46 @@
                     <div class="form-row">
                       <div class="form-group col-md-8">
                         <label for="inputEmail4">Product Name</label>
-                        <input type="text" class="form-control" id="inputEmail4" placeholder="Product name" name="name">
+                        <input type="text" class="form-control" placeholder="Product name" name="name">
                         @error('name')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputPassword4">Product ID</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="product_id" name="product_id">
+                        <input type="text" class="form-control" placeholder="product_id" name="product_id">
                         @error('product_id')
+                            <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-3">
+                        <label for="inputEmail4">Price</label>
+                        <input type="number" class="form-control"  placeholder="price" id="price" name="price">
+                        @error('price')
+                            <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputPassword4">Discount (%)</label>
+                        <input type="number" class="form-control" placeholder="discount" id="discount" onblur="dis()" name="discount">
+                        @error('discount')
+                            <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputPassword4">After Discount</label>
+                        <input type="number" readonly class="form-control bg-white" placeholder="after_discount" id="after_discount" name="after_discount">
+                        @error('after_discount')
+                            <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputPassword4">Tax <small class="text-info">(If eligible)</small></label>
+                        <input type="number" class="form-control" placeholder="tax" name="tax">
+                        @error('tax')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
@@ -138,6 +169,9 @@
                             <th>SL</th>
                             <th>Name</th>
                             <th>Product_id</th>
+                            <th>Price</th>
+                            <th>Discount %</th>
+                            <th>After Discount</th>
                             <th>Brand</th>
                             <th>Category</th>
                             <th>SubCategory</th>
@@ -154,6 +188,9 @@
                             <td>{{ $index+1 }}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->product_id }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->discount }}</td>
+                            <td>{{ $product->after_discount }}</td>
                             <td>{{ $product->rel_to_brand != null ? $product->rel_to_brand->brand:'Brand Deleted!' }}</td>
                             <td>{{ $product->rel_to_subcategory != null ? ($product->rel_to_subcategory->rel_to_category != null ? $product->rel_to_subcategory->rel_to_category->category_name:'Category deleted!'):'Category Not Available' }}</td>
                             <td>{{ $product->rel_to_subcategory != null ? $product->rel_to_subcategory->subcategory_name:'SubCategory deleted!' }}</td>
@@ -168,7 +205,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="9"><h3>No Products</h3></td>
+                            <td colspan="14"><h3>No Products</h3></td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -178,5 +215,26 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+
+@section('footer')
+
+<script>
+function dis(){
+    let price = document.getElementById("price").value;
+    let discount = document.getElementById("discount").value;
+
+    let total_discount = (discount/100)*price;
+    let after_discount = price - total_discount;
+    document.getElementById("after_discount").value = after_discount;
+};
+</script>
+
+<script>
+    let table = new DataTable('#datatable');
+</script>
+
 
 @endsection

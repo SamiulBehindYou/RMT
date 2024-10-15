@@ -33,7 +33,7 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    {{ $colors->links() }}
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
+                    {{ $sizes->links() }}
                 </div>
             </div>
 

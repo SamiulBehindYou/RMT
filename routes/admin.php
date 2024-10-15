@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LiveWireRoutesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
 use App\Livewire\ColorSize;
@@ -54,14 +55,16 @@ Route::middleware('auth')->group(function () {
     Route::get('permanant/product/restore/{id}', [ProductController::class, 'restore_product'])->name('restore.product');
     Route::get('permanant/product/delete/{id}', [ProductController::class, 'per_delete_product'])->name('product.per.delete');
 
-    // Tag
-    Route::resource('tag', TagController::class);
 
     // LiveWire
+        // Tag
+        Route::get('tag', [LiveWireRoutesController::class, 'tag_index'])->name('tag.index');
+
         // Color&Size
-        Route::get('color_size', function(){
-            return view('admin.color&size.color&size');
-        })->name('color.size');
+        Route::get('color_size', [LiveWireRoutesController::class, 'color_size'])->name('color.size');
+
+        // Inventory
+        Route::get('inventory', [LiveWireRoutesController::class, 'inventory'])->name('inventory');
 
 
 });
