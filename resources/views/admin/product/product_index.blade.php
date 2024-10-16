@@ -119,17 +119,16 @@
                         @error('short_description')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
-                    </div>
+                        </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="inputCity">Product Image</label>
-                        <input type="file" class="form-control" id="inputCity" name="image" onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
-                        @error('image')
-                        <strong class="text-danger">{{ $message }}</strong>
-                        @enderror
-                        <div><img class="mt-2" id="img" width="142" height="142"/></div>
-                    </div>
-
+                        <div class="form-group col-md-4">
+                            <label for="inputCity">Product Image</label>
+                            <input type="file" class="form-control" id="inputCity" name="image" onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])">
+                            @error('image')
+                            <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                            <div><img class="mt-2" id="img" width="142" height="142"/></div>
+                        </div>
                     </div>
 
                     <div class="form-group">
