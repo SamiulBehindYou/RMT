@@ -15,7 +15,10 @@ class Inventory extends Component
     public $color_id;
     public $size_id;
     public $quantity;
+
     public function addQuantity(){
+
+
         if($this->product_name != null){
             $this->validate([
                 'product_name' => 'required',
@@ -30,8 +33,10 @@ class Inventory extends Component
             ]);
         }
 
-        if(ModelsInventory::where('product_id', $this->product_id)->exists()){
-            //
+        $product = ModelsInventory::where('product_id', $this->product_id)->where('color_id', $this->color_id)->where('size_id', $this->size_id);
+
+        if($product->exists()){
+            $product->increment('quantity', $this->quantity);
         }else{
             ModelsInventory::insert([
                 'product_id' => $this->product_id,
@@ -40,10 +45,14 @@ class Inventory extends Component
                 'quantity' => $this->quantity,
             ]);
         }
+        session()->flash('quantity_add', "New Quantity added!");
+        return back();
     }
 
     public function render()
     {
+        $this->reset();
+        
         $inventories = ModelsInventory::all();
         $products = Product::all();
         $colors = color::all();

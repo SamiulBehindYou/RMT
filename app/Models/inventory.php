@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class inventory extends Model
 {
     use HasFactory;
+
+    public function rel_to_product(){
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function rel_to_color(){
+        return $this->belongsTo(color::class, 'color_id');
+    }
+
+    public function rel_to_size(){
+        return $this->belongsTo(size::class, 'size_id');
+    }
 }

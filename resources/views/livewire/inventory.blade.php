@@ -1,6 +1,11 @@
 <div>
     <div class="row">
         <div class="col-md-12">
+            @if (session()->has('quantity_add'))
+                <div class="alert alert-success">
+                    {{ session('quantity_add') }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header bg-primary">
                     <h3 class="text-white text-center">New Quantity</h3>
@@ -83,7 +88,7 @@
                     <h3 class="text-white text-center">Inventory</h3>
                 </div>
                 <div class="card-body">
-                    <table class="table" id="datatableX">
+                    <table class="table text-center" id="datatableX">
                         <thead>
                             <tr>
                                 <th>SL</th>
@@ -100,9 +105,9 @@
                             <tr>
                                 <td>{{ $sl+1 }}</td>
                                 <td>{{ $inventory->product_id }}</td>
-                                <td>{{ $inventory->product_id }}</td>
-                                <td>{{ $inventory->color_id }}</td>
-                                <td>{{ $inventory->size_id }}</td>
+                                <td>{{ $inventory->rel_to_product->name }}</td>
+                                <td><span class="text-{{ $inventory->rel_to_color != null ? 'facebook': 'danger' }}">{{ $inventory->rel_to_color != null ? $inventory->rel_to_color->color_name: 'No color' }}</span></td>
+                                <td><span class="text-{{ $inventory->rel_to_size != null ? 'facebook': 'danger' }}">{{ $inventory->rel_to_size != null ? $inventory->rel_to_size->size: 'No size' }}</span></td>
                                 <td>{{ $inventory->quantity }}</td>
                                 <td>
                                     <a href="#" class="btn btn-primary">Edit</a>
