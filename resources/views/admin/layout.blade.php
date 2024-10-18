@@ -168,15 +168,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('sales.offline') }}" class="nav-link">
+              <i class="link-icon" data-feather="shopping-cart"></i>
+              <span class="link-title">Offline Sales</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('sales.online') }}" class="nav-link">
               <i class="link-icon" data-feather="shopping-cart"></i>
               <span class="link-title">Online Sales</span>
             </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="link-icon" data-feather="shopping-cart"></i>
-              <span class="link-title">Offline Sales</span>
+            <i class="link-icon" data-feather="file-text"></i>
+              <span class="link-title">Invoices</span>
             </a>
           </li>
 
@@ -385,13 +391,16 @@
         <a href="#" class="settings-sidebar-toggler">
           <i data-feather="settings"></i>
         </a>
-        <h6 class="text-muted">Sidebar:</h6>
+        <h6 class="text-muted">Settings</h6>
         <div class="form-group border-bottom">
           <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarLight" value="sidebar-light" checked>
-              Light
-            </label>
+              <a href="#" class="btn btn-primary">Customizable</a>
+          </div>
+          <div class="form-check form-check-inline">
+              <a href="#" class="btn btn-primary">Customizable</a>
+          </div>
+          <div class="form-check form-check-inline">
+              <a href="#" class="btn btn-primary">Customizable</a>
           </div>
           <div class="form-check form-check-inline">
             <label class="form-check-label">

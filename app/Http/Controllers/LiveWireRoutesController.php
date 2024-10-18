@@ -16,4 +16,11 @@ class LiveWireRoutesController extends Controller
     public function inventory(){
         return view('admin.inventory.inventory');
     }
+
+    public function offline_sales(){
+        return view('admin.sales.offline_sales');
+    }
+    public function online_sales(){
+        return view('admin.sales.online_sales');
+    }
 }
