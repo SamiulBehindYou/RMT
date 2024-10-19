@@ -14,10 +14,10 @@ About Website:
 <br>->Color & Size                                      -->Ready👍!
 <br>->Online Sales                                      
 <br>->Offline Sales
-<br>->
+<br>->Sales panel
  
 
-Working On: Inventory
+Working On: Sales panel settingup
 
 
 
