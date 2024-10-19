@@ -722,7 +722,7 @@
     {{-- Selector with Search --}}
     <script>
         $(document).ready(function () {
-            $('select').selectize({
+            $('.select-search').selectize({
                 sortField: 'text'
             });
         });

@@ -64,7 +64,7 @@
                     <div class="form-row">
                       <div class="form-group col-md-3">
                         <label for="inputPassword4">Brand</label>
-                        <select name="brand" class="form-control">
+                        <select name="brand" class="form-control select-search">
                             <option value="">Select Brand</option>
                             @foreach ($brands as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->brand }}</option>
@@ -77,7 +77,7 @@
 
                     <div class="form-group col-md-3">
                         <label for="inputPassword4">Sub Category</label>
-                        <select name="subcategory" class="form-control">
+                        <select name="subcategory" class="form-control select-search">
                             <option value="">Select subcategory</option>
                             @foreach ($subcategories as $subcategory)
                                 <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
