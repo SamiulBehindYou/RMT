@@ -170,7 +170,7 @@
           <li class="nav-item">
             <a href="{{ route('sales.offline') }}" class="nav-link">
               <i class="link-icon" data-feather="shopping-cart"></i>
-              <span class="link-title">Offline Sales</span>
+              <span class="link-title">On Store Sales</span>
             </a>
           </li>
           <li class="nav-item">
@@ -180,7 +180,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('pdf') }}" class="nav-link">
             <i class="link-icon" data-feather="file-text"></i>
               <span class="link-title">Invoices</span>
             </a>

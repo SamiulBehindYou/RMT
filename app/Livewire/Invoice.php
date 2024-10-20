@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\Bill;
 use App\Models\inventory;
 use App\Models\Invoice as ModelsInvoice;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -53,12 +55,38 @@ class Invoice extends Component
         $this->mountInventoryInfo = inventory::where('product_id', $this->selectedproduct)->get();
     }
 
-//product colors
-    public $product_id;
-    public function Color($product_id){
-        echo 'pp';
-        die();
-        $this->product_id = $product_id;
+// Add Bill
+    public $color_id;
+    public $size_id;
+    public $price;
+    public $quantity;
+    public $discount;
+    public $total_price;
+    public function AddBill(){
+        Bill::insert([
+            'invoice_id' => $this->showInvoice,
+            'product_id' => $this->selectedproduct,
+            'color_id' => $this->color_id,
+            'size_id' => $this->size_id,
+            'price' => $this->price,
+            'quantity' => $this->quantity,
+            'discount' => $this->discount,
+            'total_price' => $this->total_price,
+        ]);
+
+        $this->mountProductInfo = null;
+        $this->reset('selectedproduct', 'color_id', 'size_id', 'price', 'quantity', 'discount', 'total_price');
+        return back();
+    }
+
+
+    public function DeleteItem($id){
+        Bill::find($id)->delete();
+        return back();
+    }
+
+    public function CheckOut(){
+        //
     }
 
 
@@ -73,15 +101,19 @@ class Invoice extends Component
 
         $previewName = $this->showCustomer;
 
-        $showColorsSizes = null;
-        if($this->product_id != null){
-            $showColorsSizes = inventory::where('product_id', $this->product_id)->get();
-        }
-
         //Product Info
-        $p_info = $this->mountProductInfo;
         $i_info = $this->mountInventoryInfo;
 
-        return view('livewire.invoice', compact('preview', 'previewName', 'invoices', 'inventories', 'showColorsSizes', 'p_info', 'i_info'));
+        if($this->mountProductInfo != null){
+            $this->price = $this->mountProductInfo->price;
+            $this->quantity = 1;
+            $this->discount = $this->mountProductInfo->discount;
+            $this->total_price = $this->mountProductInfo->after_discount;
+        }
+
+        // Bils show
+        $bills = Bill::where('invoice_id', $this->showInvoice)->get();
+
+        return view('livewire.invoice', compact('preview', 'previewName', 'invoices', 'inventories', 'i_info', 'bills'));
     }
 }

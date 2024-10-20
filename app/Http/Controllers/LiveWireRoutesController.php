@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class LiveWireRoutesController extends Controller
@@ -22,5 +23,11 @@ class LiveWireRoutesController extends Controller
     }
     public function online_sales(){
         return view('admin.sales.online_sales');
+    }
+    public function pdf(){
+        $pdf = Pdf::loadView('admin.PDF.pdf');
+
+        return $pdf->download();
+        // return view('admin.PDF.pdf');
     }
 }

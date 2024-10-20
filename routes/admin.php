@@ -70,5 +70,8 @@ Route::middleware('auth')->group(function () {
         Route::get('sales/offline', [LiveWireRoutesController::class, 'offline_sales'])->name('sales.offline');
         Route::get('sales/online', [LiveWireRoutesController::class, 'online_sales'])->name('sales.online');
 
+        // PDF
+        Route::get('pdf', [LiveWireRoutesController::class, 'pdf'])->name('pdf');
+
 
 });

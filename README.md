@@ -17,7 +17,7 @@ About Website:
 <br>->Sales panel
  
 
-Working On: Sales panel settingup
+Working On: bill checkout
 
 
 

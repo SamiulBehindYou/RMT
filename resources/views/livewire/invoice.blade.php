@@ -43,40 +43,51 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header bg-primary">
-                    <h3 class="text-white text-center">Invoices on: {{ $preview }} <small class="text-white">{{ $previewName != null ? $previewName:'' }}</small></h3>
+                    <h3 class="text-white text-center">Invoices on: {{ $preview }}</h3>
                 </div>
 
 
                 <div class="card-body">
                     <div class="form-row">
-                        <div class="form-group col-md-8">
-                            
+                        <div class="form-group col-md-12">
+
                             <label class="form-label">Select Product</label>
                             <form wire:submit='SelectProduct'>
                             <div class="row">
-                                <div class="col-10">
-                                    <select onchange="ProductSelect()" wire:model="selectedproduct" placeholder="Pick a Product" class="form-control select-search">
+                                <div class="col-9">
+                                    <select wire:model="selectedproduct" placeholder="Pick a Product" class="form-control select-search">
                                         <option value="">Select a product...</option>
                                         @foreach ($inventories as $inventory)
                                             <option value="{{ $inventory->product_id }}">{{ $inventory->rel_to_product->name }} -->Quantity: {{ $inventory->quantity }} </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-2">
-                                    <div class="ml-5">
-                                        <button class="btn btn-primary"  type="submit" wire:loading.remove>Select</button>
+                                <div class="col-3">
+                                    <div class="">
+                                        <button class="btn btn-primary"  type="submit" wire:loading.remove wire:target='SelectProduct()'>Select Product</button>
                                     </div>
                                 </div>
                             </div>
                             </form>
                         </div>
+
+
+                    </div>
+
+
+            {{-- AddBill form  --}}
+                    <form wire:submit='AddBill'>
+                    <div class="form-row">
+                        <div class="form-group col-md-8"></div>
                         <div class="form-group col-md-1 mt-4 text-center">
                             <label class="form-label  mt-2">Price</label>
                         </div>
                         <div class="form-group col-md-3  mt-4">
-                            <input type="text" value="{{ $p_info != null ? $p_info->price:'' }}" class="form-control" name="product">
+                            <input readonly type="text" value="" wire:model='price' class="form-control bg-white" id="price">
                         </div>
                     </div>
+
+
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             @if ($i_info != null)
@@ -89,20 +100,11 @@
                                     <label class="form-label  mt-2">Color</label>
                                 </div>
                                 <div class="col-5">
-                                    <select name="" id="" class="form-control">
-                                        @php
-                                            $noColor = null;
-                                        @endphp
+                                    <select wire:model="color_id" id="" class="form-control">
+                                        <option>Select Color</option>
                                         @foreach ($i_info as $color)
                                             @if ($color->color_id != null)
                                                 <option value="{{ $color->color_id }}">{{ $color->rel_to_color->color_name }}</option>
-                                            @else
-                                                @if($noColor == null)
-                                                <option value="">No Color!</option>
-                                                    @php
-                                                        $noColor = 1;
-                                                    @endphp
-                                                @endif
                                             @endif
                                         @endforeach
                                     </select>
@@ -119,20 +121,11 @@
                                     <label class="form-label  mt-2">Size</label>
                                 </div>
                                 <div class="col-5">
-                                    <select name="" id="" class="form-control">
-                                        @php
-                                            $noSize = null;
-                                        @endphp
+                                    <select wire:model="size_id" id="" class="form-control">
+                                        <option>Select Size</option>
                                         @foreach ($i_info as $size)
                                             @if ($size->size_id != null)
                                                 <option value="{{ $size->size_id }}">{{ $size->rel_to_size->size }}</option>
-                                            @else
-                                                @if($noSize == null)
-                                                <option value="">No Size!</option>
-                                                    @php
-                                                        $noSize = 1;
-                                                    @endphp
-                                                @endif
                                             @endif
                                         @endforeach
                                     </select>
@@ -144,10 +137,10 @@
                             @endif
                         </div>
                         <div class="form-group col-md-1 text-center">
-                            <label class="form-label  mt-2">Quantity</label>
+                            <label class="form-label mt-2">Quantity</label>
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" value="{{ $p_info != null ? 1:'' }}" class="form-control" name="product">
+                            <input type="text" wire:model='quantity' value="" class="form-control" onchange="calculate()" id="quantity">
                         </div>
                     </div>
                     <div class="form-row">
@@ -156,7 +149,7 @@
                             <label class="form-label  mt-2">Discount (%)</label>
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" value="{{ $p_info != null ? $p_info->discount:'' }}" class="form-control" name="product" placeholder="%">
+                            <input type="text" wire:model='discount' value="" class="form-control" onchange="calculate()" id="discount" placeholder="%">
                         </div>
                     </div>
                     <div class="form-row">
@@ -165,15 +158,20 @@
                             <label class="form-label mt-2">Total</label>
                         </div>
                         <div class="form-group col-md-3">
-                            <input type="text" value="{{ $p_info != null ? $p_info->after_discount:'' }}" class="form-control" name="product">
+                            <input type="text" wire:model='total_price' value="" class="form-control" id="total">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-9 "></div>
+                        <div class="form-group col-md-9 ">
+                            <h5 for="">Customer name: <strong class="text-success">{{ $previewName != null ? $previewName:'' }}</strong></h5>
+                        </div>
                         <div class="form-group col-md-3">
-                            <button class="btn btn-primary btn-lg col">Add</button>
+                            <button type="submit" wire:loading.remove wire:target='AddBill()' class="btn btn-primary btn-lg col">Add</button>
                         </div>
                     </div>
+                </form>
+
+
                 </div>
             </div>
 
@@ -187,6 +185,8 @@
                             <tr>
                                 <th>SL</th>
                                 <th>Product</th>
+                                <th>Color</th>
+                                <th>Size</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Discount</th>
@@ -195,24 +195,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($bills as $sl=>$bill)
                             <tr>
-                                <td>1</td>
-                                <td>1gsdfg</td>
-                                <td>1gsdfgafsdf</td>
-                                <td>1gsasf</td>
-                                <td>1gsaasfda</td>
-                                <td>1gsaasfda</td>
+                                <td>{{ $sl+1 }}</td>
+                                <td>{{ $bill->rel_to_product->name }}</td>
+                                <td>{{ $bill->color_id != null ? $bill->rel_to_color->color_name:'No Color!' }}</td>
+                                <td>{{ $bill->size_id != null ? $bill->rel_to_size->size:'No Size!' }}</td>
+                                <td>{{ $bill->price }}</td>
+                                <td>{{ $bill->quantity }}</td>
+                                <td>{{ $bill->discount }}</td>
+                                <td>{{ $bill->total_price }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <a wire:click='DeleteItem({{ $bill->id }})' class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
+                            @empty
+
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="row border-top border-primary">
                         <div class="col-md-9"></div>
                         <div class="col-md-3">
                             <a href="#" class="btn btn-danger btn-lg mt-4">Drop Invoice</a>
-                            <a href="#" class="btn btn-primary btn-lg mt-4">Check out!</a>
+                            <a wire:click='CheckOut()' class="btn btn-primary btn-lg mt-4">Check out!</a>
                         </div>
                     </div>
                 </div>
