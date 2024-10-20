@@ -17,7 +17,7 @@ About Website:
 <br>->Sales panel
  
 
-Working On: bill checkout
+Working On: Fixing invoice Billing bugs!
 
 
 

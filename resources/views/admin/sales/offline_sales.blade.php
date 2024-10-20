@@ -6,8 +6,19 @@
 @endsection
 @section('footer')
 
+@if (session()->has('checkout'))
 <script>
+    Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "{{ session('checkout') }}",
+    showConfirmButton: false,
+    timer: 1500
+    });
+</script>
+@endif
 
+<script>
 
     // Price discount calculation
     function calculate(){

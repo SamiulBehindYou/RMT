@@ -180,6 +180,11 @@
                     <h3 class="text-white text-center">Bills</h3>
                 </div>
                 <div class="card-body">
+                    @if (session()->has('checkout'))
+                    <div class="alert alert-success">
+                        {{ session('checkout') }}
+                    </div>
+                    @endif
                     <table class="table text-center">
                         <thead>
                             <tr>
@@ -218,7 +223,7 @@
                         <div class="col-md-9"></div>
                         <div class="col-md-3">
                             <a href="#" class="btn btn-danger btn-lg mt-4">Drop Invoice</a>
-                            <a wire:click='CheckOut()' class="btn btn-primary btn-lg mt-4">Check out!</a>
+                            <a wire:click='CheckOut({{ $preview }})' class="btn btn-primary btn-lg mt-4">Check out!</a>
                         </div>
                     </div>
                 </div>

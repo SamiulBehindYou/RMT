@@ -5,9 +5,14 @@ namespace App\Livewire;
 use App\Models\Tag as ModelsTag;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Tag extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
+
     public $name;
     public function saveTag(){
         $this->validate([
@@ -32,7 +37,7 @@ class Tag extends Component
 
     public function render()
     {
-        $tags = ModelsTag::orderBy('id', 'DESC')->get();
+        $tags = ModelsTag::orderBy('id', 'DESC')->paginate(20);
         return view('livewire.tag', compact('tags'));
     }
 }

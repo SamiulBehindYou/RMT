@@ -38,6 +38,7 @@
                         @endforelse
                     </tbody>
                 </table>
+                {{ $tags->links() }}
             </div>
         </div>
     </div>

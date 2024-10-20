@@ -6,7 +6,6 @@ use App\Models\Bill;
 use App\Models\inventory;
 use App\Models\Invoice as ModelsInvoice;
 use App\Models\Product;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -81,12 +80,29 @@ class Invoice extends Component
 
 
     public function DeleteItem($id){
-        Bill::find($id)->delete();
+        $bill = Bill::find($id);
+
+        if($bill->status == 1){
+            inventory::where('product_id', $bill->product_id)->where('color_id', $bill->color_id)->where('size_id', $bill->size_id)->increment('quantity', $bill->quantity);
+            $bill->delete();
+        }else{
+            $bill->delete();
+        }
+        session()->flash('checkout', 'Item Deleted!');
         return back();
     }
 
-    public function CheckOut(){
-        //
+    public function CheckOut($invoice_id){
+        $bills = Bill::where('invoice_id', $invoice_id)->get();
+        foreach($bills as $bill){
+            if($bill->status == 0){
+                inventory::where('product_id', $bill->product_id)->where('color_id', $bill->color_id)->where('size_id', $bill->size_id)->decrement('quantity', $bill->quantity);
+                $bill->status = 1;
+                $bill->save();
+            }
+        }
+        session()->flash('checkout', 'Bill checked out successfully, Print invoice!');
+        return back();
     }
 
 
