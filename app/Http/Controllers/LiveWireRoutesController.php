@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -24,10 +25,25 @@ class LiveWireRoutesController extends Controller
     public function online_sales(){
         return view('admin.sales.online_sales');
     }
-    public function pdf(){
-        $pdf = Pdf::loadView('admin.PDF.pdf');
+    public function pdf(Request $request){
 
-        return $pdf->download();
-        // return view('admin.PDF.pdf');
+        $bills = Bill::where('invoice_id', $request->invoice)->where('status', 1)->get();
+        $total = 0;
+        foreach($bills as $bill){
+            $total += $bill->total_price;
+        }
+        $pdf = Pdf::loadView('admin.PDF.pdf', [
+            'bills' => $bills,
+            'invoice' => $request->invoice,
+            'total' => $total,
+        ]);
+
+        return $pdf->download($request->invoice . '.pdf');
+
+        // return view('admin.PDF.pdf', [
+        //     'bills' => $bills,
+        //     'invoice' => $request->invoice,
+        //     'total' => $total,
+        // ]);
     }
 }

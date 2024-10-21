@@ -39,11 +39,11 @@
                 </div>
             </div>
         </div>
-        @if($preview != null)
+        @if($current_invoice != null)
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header bg-primary">
-                    <h3 class="text-white text-center">Invoices on: {{ $preview }}</h3>
+                    <h3 class="text-white text-center">Invoices on: {{ $current_invoice }}</h3>
                 </div>
 
 
@@ -87,24 +87,25 @@
                         </div>
                     </div>
 
-
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             @if ($i_info != null)
                             <div class="row">
 
-             {{-- Hide if Size not available --}}
-                                @foreach ($i_info as $color)
-                                @if ($color->color_id != null)
-                                <div class="col-1">
-                                    <label class="form-label  mt-2">Color</label>
+            {{-- Hide if Color not available --}}
+                                @foreach ($i_info as $inventory)
+                                @if ($inventory->color_id != null)
+                                <div class="col-3">
+                                    <label class="form-label  mt-2 ml-4">Color : Size : Quantity</label>
                                 </div>
-                                <div class="col-5">
-                                    <select wire:model="color_id" id="" class="form-control">
-                                        <option>Select Color</option>
-                                        @foreach ($i_info as $color)
-                                            @if ($color->color_id != null)
-                                                <option value="{{ $color->color_id }}">{{ $color->rel_to_color->color_name }}</option>
+                                <div class="col-7">
+                                    <select wire:model="color_size_id" id="" class="form-control">
+                                        <option>Select Color & Size</option>
+                                        @foreach ($i_info as $inventory)
+                                            @if ($inventory->color_id != null)
+                                                @if ($inventory->quantity > 0)
+                                                    <option value="{{ $inventory->id }}">{{ $inventory->rel_to_color->color_name }} -> {{ $inventory->rel_to_size->size }} -> Q:{{ $inventory->quantity }}</option>
+                                                @endif
                                             @endif
                                         @endforeach
                                     </select>
@@ -113,26 +114,6 @@
                                 @endif
                                 @endforeach
 
-            {{-- Hide if Size not available --}}
-                                @foreach ($i_info as $size)
-                                @if ($size->size_id != null)
-
-                                <div class="col-1">
-                                    <label class="form-label  mt-2">Size</label>
-                                </div>
-                                <div class="col-5">
-                                    <select wire:model="size_id" id="" class="form-control">
-                                        <option>Select Size</option>
-                                        @foreach ($i_info as $size)
-                                            @if ($size->size_id != null)
-                                                <option value="{{ $size->size_id }}">{{ $size->rel_to_size->size }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @break
-                                @endif
-                                @endforeach
                             </div>
                             @endif
                         </div>
@@ -141,6 +122,9 @@
                         </div>
                         <div class="form-group col-md-3">
                             <input type="text" wire:model='quantity' value="" class="form-control" onchange="calculate()" id="quantity">
+                            @if(session()->has('q_error'))
+                            <strong class="text-danger">{{ session('q_error') }}</strong>
+                            @endif
                         </div>
                     </div>
                     <div class="form-row">
@@ -194,7 +178,7 @@
                                 <th>Size</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
-                                <th>Discount</th>
+                                <th>Discount (%)</th>
                                 <th>Total Price</th>
                                 <th>Action</th>
                             </tr>
@@ -208,22 +192,38 @@
                                 <td>{{ $bill->size_id != null ? $bill->rel_to_size->size:'No Size!' }}</td>
                                 <td>{{ $bill->price }}</td>
                                 <td>{{ $bill->quantity }}</td>
-                                <td>{{ $bill->discount }}</td>
+                                <td>{{ $bill->discount }} %</td>
                                 <td>{{ $bill->total_price }}</td>
                                 <td>
                                     <a wire:click='DeleteItem({{ $bill->id }})' class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-                            @empty
 
+                            @empty
+                            <tr>
+                                <td colspan="10">Item not added yet!</td>
+                            </tr>
                             @endforelse
+                            <tr>
+                                <td colspan="4"><strong>Total --></strong></td>
+                                <td>{{ $total['price'] }}</td>
+                                <td>{{ $total['quantity'] }}</td>
+                                <td>{{ $total['discount'] }} %</td>
+                                <td>{{ $total['total_price'] }}</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="row border-top border-primary">
-                        <div class="col-md-9"></div>
-                        <div class="col-md-3">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-5">
+                            <form action="{{ $invoice_status == 1 ? route('pdf'):'' }}" method="post" onsubmit="return confirm('Did you checkout Invoice?');">
+                                @csrf
+                                <input type="hidden" name="invoice" value="{{ $invoice_status == 1 ? $current_invoice:'' }}">
+                                <button  class="btn btn-success btn-lg mt-4" id="btn">Print Invoice</button>
+                            </form>
                             <a href="#" class="btn btn-danger btn-lg mt-4">Drop Invoice</a>
-                            <a wire:click='CheckOut({{ $preview }})' class="btn btn-primary btn-lg mt-4">Check out!</a>
+                            <a wire:click='CheckOut({{ $current_invoice }})' class="btn btn-primary btn-lg mt-4">Check out!</a>
                         </div>
                     </div>
                 </div>

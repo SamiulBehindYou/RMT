@@ -55,27 +55,33 @@ class Invoice extends Component
     }
 
 // Add Bill
-    public $color_id;
-    public $size_id;
+    public $color_size_id;
     public $price;
     public $quantity;
     public $discount;
     public $total_price;
     public function AddBill(){
-        Bill::insert([
-            'invoice_id' => $this->showInvoice,
-            'product_id' => $this->selectedproduct,
-            'color_id' => $this->color_id,
-            'size_id' => $this->size_id,
-            'price' => $this->price,
-            'quantity' => $this->quantity,
-            'discount' => $this->discount,
-            'total_price' => $this->total_price,
-        ]);
+        $inquiry = inventory::find($this->color_size_id);
+        if($inquiry->quantity < $this->quantity){
+            session()->flash('q_error', 'Over Quantity or not available!');
+            return back();
+        }else{
+            Bill::insert([
+                'invoice_id' => $this->showInvoice,
+                'product_id' => $this->selectedproduct,
+                'color_id' => $inquiry->color_id,
+                'size_id' => $inquiry->size_id,
+                'price' => $this->price,
+                'quantity' => $this->quantity,
+                'discount' => $this->discount,
+                'total_price' => $this->total_price,
+            ]);
 
-        $this->mountProductInfo = null;
-        $this->reset('selectedproduct', 'color_id', 'size_id', 'price', 'quantity', 'discount', 'total_price');
-        return back();
+            $this->mountProductInfo = null;
+            $this->reset('selectedproduct', 'color_size_id', 'price', 'quantity', 'discount', 'total_price');
+            return back();
+        }
+
     }
 
 
@@ -101,6 +107,10 @@ class Invoice extends Component
                 $bill->save();
             }
         }
+        ModelsInvoice::where('invoice_id', $invoice_id)->update([
+            'status' => 1,
+        ]);
+
         session()->flash('checkout', 'Bill checked out successfully, Print invoice!');
         return back();
     }
@@ -110,10 +120,16 @@ class Invoice extends Component
     {
 
         $invoices = ModelsInvoice::orderBy('id', 'DESC')->SimplePaginate(10);
-        // $products = Product::all();
+
         $inventories = inventory::groupBy(['product_id'])->selectRaw('sum(quantity) as quantity, product_id')->whereNot('quantity', 0)->get();
 
-        $preview = $this->showInvoice;
+        $current_invoice = $this->showInvoice;
+
+        $invoice_status = 0;
+        if($current_invoice != null){
+            $inv = ModelsInvoice::where('invoice_id', $current_invoice)->first();
+            $invoice_status = $inv->status;
+        }
 
         $previewName = $this->showCustomer;
 
@@ -130,6 +146,22 @@ class Invoice extends Component
         // Bils show
         $bills = Bill::where('invoice_id', $this->showInvoice)->get();
 
-        return view('livewire.invoice', compact('preview', 'previewName', 'invoices', 'inventories', 'i_info', 'bills'));
+        // Bill total
+
+        $total = [
+            'price' => 0,
+            'quantity' => 0,
+            'discount' => 0,
+            'total_price' => 0,
+        ];
+        foreach($bills as $bill){
+            $total['price'] += $bill->price;
+            $total['quantity'] += $bill->quantity;
+            $total['discount'] += $bill->discount;
+            $total['total_price'] += $bill->total_price;
+        }
+
+
+        return view('livewire.invoice', compact('current_invoice', 'previewName', 'invoices', 'invoice_status', 'inventories', 'i_info', 'bills', 'total'));
     }
 }
