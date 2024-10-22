@@ -39,7 +39,7 @@ class LiveWireRoutesController extends Controller
             'total' => $total,
         ]);
 
-        return $pdf->download($request->invoice . '.pdf');
+        return $pdf->stream($request->invoice . '.pdf');
 
         // return view('admin.PDF.pdf', [
         //     'bills' => $bills,

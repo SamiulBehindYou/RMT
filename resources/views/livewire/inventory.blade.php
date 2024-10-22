@@ -88,6 +88,11 @@
                     <h3 class="text-white text-center">Inventory</h3>
                 </div>
                 <div class="card-body">
+                    @if(session()->has('delete_entry'))
+                        <div class="alert alert-info">
+                            {{ session('delete_entry') }}
+                        </div>
+                    @endif
                     <table class="table text-center" id="datatableX">
                         <thead>
                             <tr>
@@ -104,13 +109,14 @@
                             @foreach ($inventories as $sl=>$inventory)
                             <tr>
                                 <td>{{ $sl+1 }}</td>
-                                <td>{{ $inventory->product_id }}</td>
                                 <td>{{ $inventory->rel_to_product->name }}</td>
+                                <td>{{ $inventory->rel_to_product->product_id }}</td>
                                 <td><span class="text-{{ $inventory->rel_to_color != null ? 'facebook': 'danger' }}">{{ $inventory->rel_to_color != null ? $inventory->rel_to_color->color_name: 'No color' }}</span></td>
                                 <td><span class="text-{{ $inventory->rel_to_size != null ? 'facebook': 'danger' }}">{{ $inventory->rel_to_size != null ? $inventory->rel_to_size->size: 'No size' }}</span></td>
                                 <td>{{ $inventory->quantity }}</td>
                                 <td>
                                     <a href="#" class="btn btn-primary">Edit</a>
+                                    <a wire:click='DeleteEntry({{ $inventory->id }})' class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

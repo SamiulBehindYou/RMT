@@ -1,20 +1,20 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LiveWireRoutesController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\TagController;
-use App\Livewire\ColorSize;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    // Admin Dashbaord
+    Route::get('/', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
+
     //Profile
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update'); //imp
     Route::post('/profile/image', [ProfileController::class, 'image_update'])->name('profile.update.image'); //imp

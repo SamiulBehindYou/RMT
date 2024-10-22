@@ -11,6 +11,11 @@
                             {{ session('new_invoice') }}
                         </div>
                     @endif
+                    @if (session()->has('dropinvoice'))
+                    <div class="alert alert-danger">
+                        {{ session('dropinvoice') }}
+                    </div>
+                    @endif
                     <div class="mb-2">
                         <input type="text" wire:model="customer" class="form-control" placeholder="Customer name">
                         <input type="text" wire:model="reference" class="form-control" placeholder="Referance/Mobile">
@@ -169,6 +174,7 @@
                         {{ session('checkout') }}
                     </div>
                     @endif
+
                     <table class="table text-center">
                         <thead>
                             <tr>
@@ -217,13 +223,21 @@
                     <div class="row border-top border-primary">
                         <div class="col-md-7"></div>
                         <div class="col-md-5">
-                            <form action="{{ $invoice_status == 1 ? route('pdf'):'' }}" method="post" onsubmit="return confirm('Did you checkout Invoice?');">
-                                @csrf
-                                <input type="hidden" name="invoice" value="{{ $invoice_status == 1 ? $current_invoice:'' }}">
-                                <button  class="btn btn-success btn-lg mt-4" id="btn">Print Invoice</button>
-                            </form>
-                            <a href="#" class="btn btn-danger btn-lg mt-4">Drop Invoice</a>
-                            <a wire:click='CheckOut({{ $current_invoice }})' class="btn btn-primary btn-lg mt-4">Check out!</a>
+                            <div class="row">
+                                <div class="col">
+                                    <form action="{{ $invoice_status == 1 ? route('pdf'):'' }}" method="post" onsubmit="return confirm('Did you checkout Invoice?');">
+                                        @csrf
+                                        <input type="hidden" name="invoice" value="{{ $invoice_status == 1 ? $current_invoice:'' }}">
+                                        <button  class="btn btn-success btn-lg mt-4" id="btn">Print Invoice</button>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    <a wire:click='dropInvoice({{ $current_invoice }})' class="btn btn-danger btn-lg mt-4">Drop Invoice</a>
+                                </div>
+                                <div class="col">
+                                    <a wire:click='CheckOut({{ $current_invoice }})' class="btn btn-primary btn-lg mt-4">Check out!</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

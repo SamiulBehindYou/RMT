@@ -46,6 +46,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'product_id' => 'required|unique:products|integer',
+            'purchase' => 'required',
             'price' => 'required',
             'discount' => 'required',
             'after_discount' => 'required',
@@ -79,6 +80,7 @@ class ProductController extends Controller
         Product::create([
             'name' => $request->name,
             'product_id' => $request->product_id,
+            'purchase' => $request->purchase,
             'price' => $request->price,
             'discount' => $request->discount,
             'after_discount' => $request->after_discount,

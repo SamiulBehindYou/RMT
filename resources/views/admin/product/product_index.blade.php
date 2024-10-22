@@ -13,6 +13,8 @@
             <div class="card-body">
                 <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
+                {{-- Row --}}
                     <div class="form-row">
                       <div class="form-group col-md-8">
                         <label for="inputEmail4">Product Name</label>
@@ -30,88 +32,103 @@
                       </div>
                     </div>
 
+                {{-- Row --}}
                     <div class="form-row">
-                      <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4">Purchase Price</label>
+                            <input type="number" class="form-control" placeholder="Purchase Price" name="purchase">
+                            @error('purchase')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="form-label">Tags</label>
+                                <select id="select" name="tag_id[]" class="demo-default" multiple placeholder="Select Tag">
+                                    <option value="">Select Tag</option>
+                                    <optgroup label="Tags">
+                                        @foreach ($tags as $tag)
+                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                </select>
+                                @error('tag_id')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Tax <small class="text-info">(If eligible)</small></label>
+                            <input type="number" class="form-control" placeholder="tax" name="tax">
+                            @error('tax')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                          </div>
+                    </div>
+
+            {{-- Row --}}
+                    <div class="form-row">
+                      <div class="form-group col-md-4">
                         <label for="inputEmail4">Price</label>
-                        <input type="number" class="form-control"  placeholder="price" id="price" name="price">
+                        <input type="number" class="form-control"  placeholder="Price" id="price" name="price">
                         @error('price')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
-                      <div class="form-group col-md-3">
+                      <div class="form-group col-md-4">
                         <label for="inputPassword4">Discount (%)</label>
-                        <input type="number" class="form-control" placeholder="discount" id="discount" onblur="dis()" name="discount">
+                        <input type="number" class="form-control" placeholder="Discount" id="discount" onblur="dis()" name="discount">
                         @error('discount')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
-                      <div class="form-group col-md-3">
+                      <div class="form-group col-md-4">
                         <label for="inputPassword4">After Discount</label>
-                        <input type="number" readonly class="form-control bg-white" placeholder="after_discount" id="after_discount" name="after_discount">
+                        <input type="number" readonly class="form-control bg-white" placeholder="After_discount" id="after_discount" name="after_discount">
                         @error('after_discount')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
-                      <div class="form-group col-md-3">
-                        <label for="inputPassword4">Tax <small class="text-info">(If eligible)</small></label>
-                        <input type="number" class="form-control" placeholder="tax" name="tax">
-                        @error('tax')
-                            <strong class="text-danger">{{ $message }}</strong>
-                        @enderror
-                      </div>
                     </div>
+
+            {{-- Row --}}
 
                     <div class="form-row">
-                      <div class="form-group col-md-3">
-                        <label for="inputPassword4">Brand</label>
-                        <select name="brand" class="form-control select-search">
-                            <option value="">Select Brand</option>
-                            @foreach ($brands as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->brand }}</option>
-                            @endforeach
-                        </select>
-                        @error('brand')
-                            <strong class="text-danger">{{ $message }}</strong>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="inputPassword4">Sub Category</label>
-                        <select name="subcategory" class="form-control select-search">
-                            <option value="">Select subcategory</option>
-                            @foreach ($subcategories as $subcategory)
-                                <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
-                            @endforeach
-                        </select>
-                        @error('subcategory')
-                            <strong class="text-danger">{{ $message }}</strong>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="inputPassword4">Made in</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="made_in" name="made_in">
-
-                        @error('made_in')
-                            <strong class="text-danger">{{ $message }}</strong>
-                        @enderror
-                      </div>
-                      <div class="form-group col-md-3">
-                        <label class="form-label">Tags</label>
-                            <select id="select" name="tag_id[]" class="demo-default" multiple placeholder="Select Tag">
-                                <option value="">Select Tag</option>
-                                <optgroup label="Tags">
-                                    @foreach ($tags as $tag)
-                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                    @endforeach
-                                </optgroup>
-                              </select>
-                            @error('tag_id')
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Brand</label>
+                            <select name="brand" class="form-control select-search">
+                                <option value="">Select Brand</option>
+                                @foreach ($brands as $brand)
+                                    <option value="{{ $brand->id }}">{{ $brand->brand }}</option>
+                                @endforeach
+                            </select>
+                            @error('brand')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
-                      </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Sub Category</label>
+                            <select name="subcategory" class="form-control select-search">
+                                <option value="">Select subcategory</option>
+                                @foreach ($subcategories as $subcategory)
+                                    <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('subcategory')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Made in</label>
+                            <input type="text" class="form-control" id="inputPassword4" placeholder="Made_in" name="made_in">
+
+                            @error('made_in')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        </div>
                     </div>
 
+        {{-- Row --}}
                     <div class="form-row">
                       <div class="form-group col-md-8">
                         <label for="inputCity">Short Description</label>

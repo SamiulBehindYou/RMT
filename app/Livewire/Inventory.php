@@ -5,7 +5,10 @@ namespace App\Livewire;
 use App\Models\color;
 use App\Models\inventory as ModelsInventory;
 use App\Models\Product;
+use App\Models\Purchase;
+use App\Models\Revenue;
 use App\Models\size;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Inventory extends Component
@@ -45,14 +48,28 @@ class Inventory extends Component
                 'quantity' => $this->quantity,
             ]);
         }
+
+        Purchase::insert([
+            'product_id' => $this->product_id,
+            'quantity' => $this->quantity,
+            'purchase' => Product::find($this->product_id)->purchase,
+            'created_at' => Carbon::now(),
+        ]);
+
         session()->flash('quantity_add', "New Quantity added!");
+        return back();
+    }
+
+    public function DeleteEntry($id){
+        ModelsInventory::find($id)->delete();
+        session()->flash('delete_entry', 'Entry Deleted!');
         return back();
     }
 
     public function render()
     {
         $this->reset();
-        
+
         $inventories = ModelsInventory::all();
         $products = Product::all();
         $colors = color::all();

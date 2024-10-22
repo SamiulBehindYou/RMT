@@ -6,6 +6,7 @@ use App\Models\Bill;
 use App\Models\inventory;
 use App\Models\Invoice as ModelsInvoice;
 use App\Models\Product;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -75,6 +76,7 @@ class Invoice extends Component
                 'quantity' => $this->quantity,
                 'discount' => $this->discount,
                 'total_price' => $this->total_price,
+                'created_at' => Carbon::now(),
             ]);
 
             $this->mountProductInfo = null;
@@ -96,6 +98,26 @@ class Invoice extends Component
         }
         session()->flash('checkout', 'Item Deleted!');
         return back();
+    }
+
+    public function dropInvoice($id){
+        ModelsInvoice::where('invoice_id', $id)->delete();
+        $this->showInvoice = null;
+        session()->flash('dropinvoice', 'Invoice move to trash!');
+        return back();
+        // $bills = Bill::where('invoice_id', $id)->get();
+
+        // foreach($bills as $bill){
+        //     if($bill->status == 1){
+        //         inventory::where('product_id', $bill->product_id)->where('color_id', $bill->color_id)->where('size_id', $bill->size_id)->increment('quantity', $bill->quantity);
+        //         $bill->delete();
+        //     }else{
+        //         $bill->delete();
+        //     }
+        // }
+
+        // session()->flash('dropinvoice', 'invoice deleted with all items in invoice!');
+        // return back();
     }
 
     public function CheckOut($invoice_id){

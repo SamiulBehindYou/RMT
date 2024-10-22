@@ -4,7 +4,7 @@ use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 // Index page
-Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/index', [FrontendController::class, 'index'])->name('index');
 
 
 require __DIR__.'/auth.php';
