@@ -32,6 +32,7 @@ class LiveWireRoutesController extends Controller
         foreach($bills as $bill){
             $total += $bill->total_price;
         }
+
         $pdf = Pdf::loadView('admin.PDF.pdf', [
             'bills' => $bills,
             'invoice' => $request->invoice,

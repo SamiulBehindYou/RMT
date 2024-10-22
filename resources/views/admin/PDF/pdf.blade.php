@@ -727,7 +727,7 @@
             <tr>
               <td class="w-full align-top">
                 <div>
-                  <img src="https://menkoff.com/assets/brand-sample.png" class="h-12" />
+                    <img src="{{ public_path("uploads/rmt.com.png") }}" width="200px">
                 </div>
               </td>
 

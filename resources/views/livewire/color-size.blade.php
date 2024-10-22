@@ -113,7 +113,7 @@
                     @endif
                     <form action="#" wire:submit='saveSize' method="post">
                         <div class="mb-3">
-                            <label for="" class="form-label">Color</label>
+                            <label for="" class="form-label">Size</label>
                             <input type="text" wire:model='size' class="form-control">
                             @error('size')
                                 <strong class="text-danger">{{ $message }}</strong>
