@@ -157,7 +157,7 @@
               </div>
               <div class="row">
                 <div class="col-6 col-md-12 col-xl-5">
-                  <h3 class="mb-2">{{ $daily_sale }}</h3>
+                  <h3 class="mb-2">{{ $daily_purchase }}</h3>
                   <div class="d-flex align-items-baseline">
                   </div>
                 </div>
@@ -188,7 +188,7 @@
               </div>
               <div class="row">
                 <div class="col-6 col-md-12 col-xl-5">
-                  <h3 class="mb-2">{{ $monthly_sale }}</h3>
+                  <h3 class="mb-2">{{ $monthly_purchase }}</h3>
                   <div class="d-flex align-items-baseline">
                   </div>
                 </div>
@@ -219,7 +219,7 @@
               </div>
               <div class="row">
                 <div class="col-6 col-md-12 col-xl-5">
-                  <h3 class="mb-2">{{ $yearly_sale }}</h3>
+                  <h3 class="mb-2">{{ $yearly_purchase }}</h3>
                   <div class="d-flex align-items-baseline">
                   </div>
                 </div>
@@ -493,54 +493,6 @@
   }
   // Dashbaord date end
 
-  // Flot chart1 start
-  if($('#flotChart1').length) {
-    $.plot('#flotChart1', [{
-      data: flotChart1Data,
-      color: '#727cf5'
-      }], {
-      series: {
-        shadowSize: 0,
-        lines: {
-          show: true,
-          lineWidth: 2,
-          fill: true,
-          fillColor: 'transparent'
-        }
-      },
-      grid: {
-        borderColor: 'transparent',
-        borderWidth: 1,
-        labelMargin: 0,
-        aboveData: false
-      },
-      yaxis: {
-        show: true,
-        color: 'rgba(0,0,0,0.06)',
-        ticks: [[0, ''], [15, '$8400k'], [30, '$8500k'], [45, '$8600k'], [60, '$8700k'], [75, '$8800k']],
-        tickColor: gridLineColor,
-        min: 0,
-        max: 80,
-        font: {
-          size: 11,
-          weight: '600',
-          color: colors.muted
-        }
-      },
-      xaxis: {
-        show: true,
-        color: 'rgba(0,0,0,0.1)',
-        ticks: [[0, 'Jan'], [20, 'Feb'], [40, 'Mar'], [60, 'Apr'], [80, 'May'], [100, 'June'], [120, 'July'], [140, 'Aug']],
-        tickColor: gridLineColor,
-        font: {
-          size: 13,
-          color: colors.muted
-        },
-        reserveSpace: false
-      }
-    });
-  }
-  // Flot chart1 end
 
   // Apex chart1 start
   if($('#apexChart1').length) {
@@ -843,7 +795,7 @@
       text: {
         autoStyleContainer: false
       },
-      from: { color: colors.primary, width: 1 },
+      from: { color: colors.danger, width: 1 },
       to: { color: colors.primary, width: 4 },
       // Set default step function for all animate calls
       step: function(state, circle) {
@@ -862,7 +814,7 @@
     bar.text.style.fontFamily = "'Overpass', sans-serif;";
     bar.text.style.fontSize = '3rem';
 
-    bar.animate(.78);
+    bar.animate(.68);
   }
   // Progressgar1 start
 
@@ -872,10 +824,10 @@
       new Chart(monthlySalesChart, {
         type: 'bar',
         data: {
-          labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+          labels: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','10','21','22','23','24','25','26','27','28','29','30'],
           datasets: [{
             label: 'Sales',
-            data: [150,110,90,115,125,160,190,140,100,110,120,120],
+            data: [150,110,90,115,125,160,190,140,100,110,120,120,150,0,90,115,125,160,190,140,100,110,120,120,190,140,100,110,120,120],
             backgroundColor: colors.primary
           }]
         },

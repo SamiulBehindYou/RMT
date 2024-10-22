@@ -66,6 +66,9 @@
                                             <option value="{{ $inventory->product_id }}">{{ $inventory->rel_to_product->name }} -->Quantity: {{ $inventory->quantity }} </option>
                                         @endforeach
                                     </select>
+                                    @error('selectedproduct')
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                                 <div class="col-3">
                                     <div class="">
@@ -114,6 +117,9 @@
                                             @endif
                                         @endforeach
                                     </select>
+                                    @error('color_size_id')
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                                 @break
                                 @endif
@@ -128,8 +134,11 @@
                         <div class="form-group col-md-3">
                             <input type="text" wire:model='quantity' value="" class="form-control" onchange="calculate()" id="quantity">
                             @if(session()->has('q_error'))
-                            <strong class="text-danger">{{ session('q_error') }}</strong>
+                                <strong class="text-danger">{{ session('q_error') }}</strong>
                             @endif
+                            @error('quantity')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">
@@ -139,6 +148,11 @@
                         </div>
                         <div class="form-group col-md-3">
                             <input type="text" wire:model='discount' value="" class="form-control" onchange="calculate()" id="discount" placeholder="%">
+                            @if(session()->has('discount_error'))
+                                <strong class="text-danger">
+                                    {{ session('discount_error') }}
+                                </strong>
+                            @endif
                         </div>
                     </div>
                     <div class="form-row">
@@ -148,6 +162,9 @@
                         </div>
                         <div class="form-group col-md-3">
                             <input type="text" wire:model='total_price' value="" class="form-control" id="total">
+                            @error('total_price')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-row">

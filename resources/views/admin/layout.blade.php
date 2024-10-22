@@ -61,13 +61,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/apps/calendar.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="link-icon" data-feather="users"></i>
               <span class="link-title">Salers</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/apps/calendar.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="link-icon" data-feather="users"></i>
               <span class="link-title">Users</span>
             </a>

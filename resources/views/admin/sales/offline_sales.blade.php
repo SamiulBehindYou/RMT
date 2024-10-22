@@ -20,6 +20,7 @@
         }else{
             let total = (((100 - discount)/100) * price) * quantity;
             document.getElementById('total').value = total;
+            document.getElementById("total").dispatchEvent(new Event('input'));
         }
 
     }

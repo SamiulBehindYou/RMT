@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bill;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class LiveWireRoutesController extends Controller
 {
@@ -39,7 +40,7 @@ class LiveWireRoutesController extends Controller
             'total' => $total,
         ]);
 
-        return $pdf->stream($request->invoice . '.pdf');
+        return $pdf->stream($request->invoice . '.pdf', array("Attachment" => false));
 
         // return view('admin.PDF.pdf', [
         //     'bills' => $bills,

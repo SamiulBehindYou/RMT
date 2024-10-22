@@ -62,28 +62,49 @@ class Invoice extends Component
     public $discount;
     public $total_price;
     public function AddBill(){
-        $inquiry = inventory::find($this->color_size_id);
-        if($inquiry->quantity < $this->quantity){
-            session()->flash('q_error', 'Over Quantity or not available!');
-            return back();
-        }else{
-            Bill::insert([
-                'invoice_id' => $this->showInvoice,
-                'product_id' => $this->selectedproduct,
-                'color_id' => $inquiry->color_id,
-                'size_id' => $inquiry->size_id,
-                'price' => $this->price,
-                'quantity' => $this->quantity,
-                'discount' => $this->discount,
-                'total_price' => $this->total_price,
-                'created_at' => Carbon::now(),
-            ]);
+        $this->validate([
+            'selectedproduct' => 'required',
+            'color_size_id' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'discount' => 'required',
+            'total_price' => 'required',
+        ]);
+        // Discount checkup
+        if($this->discount != null){
+            $after_discount = ((100 - $this->discount) / 100) * $this->price;
+            if($this->mountProductInfo->purchase < $after_discount){
+                $inquiry = inventory::find($this->color_size_id);
+                if($inquiry->quantity < $this->quantity){
+                    session()->flash('q_error', 'Over Quantity or not available!');
+                    return back();
+                }else{
+                    Bill::insert([
+                        'invoice_id' => $this->showInvoice,
+                        'product_id' => $this->selectedproduct,
+                        'color_id' => $inquiry->color_id,
+                        'size_id' => $inquiry->size_id,
+                        'price' => $this->price,
+                        'quantity' => $this->quantity,
+                        'discount' => $this->discount,
+                        'total_price' => $this->total_price,
+                        'created_at' => Carbon::now(),
+                    ]);
 
-            $this->mountProductInfo = null;
-            $this->reset('selectedproduct', 'color_size_id', 'price', 'quantity', 'discount', 'total_price');
+                    $this->mountProductInfo = null;
+                    $this->reset('selectedproduct', 'color_size_id', 'price', 'quantity', 'discount', 'total_price');
+                    return back();
+                }
+            }
+            else{
+                session()->flash('discount_error', 'This ammount of discount not possible!');
+                return back();
+            }
+        }
+        else{
+            session()->flash('discount_error', 'Discount field can not be blank!');
             return back();
         }
-
     }
 
 
