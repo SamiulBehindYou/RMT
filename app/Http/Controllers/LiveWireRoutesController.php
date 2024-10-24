@@ -26,6 +26,14 @@ class LiveWireRoutesController extends Controller
     public function online_sales(){
         return view('admin.sales.online_sales');
     }
+
+    public function view_invoice(){
+        return view('admin.sales.invoice.viewInvoice');
+    }
+    public function invoice_trash(){
+        return view('admin.sales.invoice.InvoiceTrash');
+    }
+
     public function pdf(Request $request){
 
         $bills = Bill::where('invoice_id', $request->invoice)->where('status', 1)->get();
@@ -48,4 +56,6 @@ class LiveWireRoutesController extends Controller
         //     'total' => $total,
         // ]);
     }
+
+
 }

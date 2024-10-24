@@ -69,7 +69,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="link-icon" data-feather="users"></i>
-              <span class="link-title">Users</span>
+              <span class="link-title">Customers</span>
             </a>
           </li>
           <li class="nav-item nav-category">web controls</li>
@@ -189,10 +189,10 @@
             <div class="collapse" id="invoice">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">View invoice</a>
+                  <a href="{{ route('viewInvoice') }}" class="nav-link">View invoice</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">Trash</a>
+                  <a href="{{ route('invoice.trash') }}" class="nav-link">Trash</a>
                 </li>
               </ul>
             </div>

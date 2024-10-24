@@ -28,6 +28,7 @@ class Invoice extends Component
             'invoice_id' => $invoice_id,
             'customer' => $this->customer,
             'reference' => $this->reference,
+            'updated_at' => null,
         ]);
         session()->flash('new_invoice', 'Invoice Created!');
         $this->reset('customer', 'reference');
@@ -126,19 +127,6 @@ class Invoice extends Component
         $this->showInvoice = null;
         session()->flash('dropinvoice', 'Invoice move to trash!');
         return back();
-        // $bills = Bill::where('invoice_id', $id)->get();
-
-        // foreach($bills as $bill){
-        //     if($bill->status == 1){
-        //         inventory::where('product_id', $bill->product_id)->where('color_id', $bill->color_id)->where('size_id', $bill->size_id)->increment('quantity', $bill->quantity);
-        //         $bill->delete();
-        //     }else{
-        //         $bill->delete();
-        //     }
-        // }
-
-        // session()->flash('dropinvoice', 'invoice deleted with all items in invoice!');
-        // return back();
     }
 
     public function CheckOut($invoice_id){

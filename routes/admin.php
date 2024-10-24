@@ -66,9 +66,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Inventory
         Route::get('inventory', [LiveWireRoutesController::class, 'inventory'])->name('inventory');
 
-        // Sales
+        // Sales & invoice
         Route::get('sales/offline', [LiveWireRoutesController::class, 'offline_sales'])->name('sales.offline');
         Route::get('sales/online', [LiveWireRoutesController::class, 'online_sales'])->name('sales.online');
+        Route::get('viewInvoice', [LiveWireRoutesController::class, 'view_invoice'])->name('viewInvoice');
+        Route::get('invoiceTrash', [LiveWireRoutesController::class, 'invoice_trash'])->name('invoice.trash');
+
 
         // PDF
         Route::post('pdf/', [LiveWireRoutesController::class, 'pdf'])->name('pdf');

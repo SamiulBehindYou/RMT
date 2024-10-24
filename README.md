@@ -15,9 +15,10 @@ About Website:
 <br>->Online Sales                                      
 <br>->Offline Sales
 <br>->Sales panel
+<br>->Invoice view/Trash
  
 
-Working On: Fixing invoice Billing bugs!
+Working On: finding issue and debuging
 
 
 
