@@ -76,5 +76,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // PDF
         Route::post('pdf/', [LiveWireRoutesController::class, 'pdf'])->name('pdf');
 
+        Route::get('test', function(){
+            return view('admin.test');
+        });
+
 
 });

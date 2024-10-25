@@ -179,54 +179,55 @@
                 <h3 class="text-white text-center">Products</h3>
             </div>
             <div class="card-body">
-                <table id="datatable" style="width:100%" class="display table table-bordered text-center">
-                    <thead>
-                        <tr>
-                            <th>SL</th>
-                            <th>Name</th>
-                            <th>Product_id</th>
-                            <th>Price</th>
-                            <th>Discount %</th>
-                            <th>After Discount</th>
-                            <th>Brand</th>
-                            <th>Category</th>
-                            <th>SubCategory</th>
-                            <th>Made In</th>
-                            <th>Image</th>
-                            <th>Tax</th>
-                            <th>Created_at</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($products as $index=>$product)
-                        <tr>
-                            <td>{{ $index+1 }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->product_id }}</td>
-                            <td>{{ $product->price }}</td>
-                            <td>{{ $product->discount }}</td>
-                            <td>{{ $product->after_discount }}</td>
-                            <td>{{ $product->rel_to_brand != null ? $product->rel_to_brand->brand:'Brand Deleted!' }}</td>
-                            <td>{{ $product->rel_to_subcategory != null ? ($product->rel_to_subcategory->rel_to_category != null ? $product->rel_to_subcategory->rel_to_category->category_name:'Category deleted!'):'Category Not Available' }}</td>
-                            <td>{{ $product->rel_to_subcategory != null ? $product->rel_to_subcategory->subcategory_name:'SubCategory deleted!' }}</td>
-                            <td>{{ $product->made_in }}</td>
-                            <td><img src="{{ asset('uploads/products/tumbnail/'.$product->image) }}"></td>
-                            <td>{{ $product->tax != null ? $product->tax:'' }}<span class="text-danger">{{ $product->tax != null ? '':'Not Difined!' }}</span></td>
-                            <td>{{ $product->created_at->diffForHumans() }}</td>
-                            <td>
-                                <a href="#" class="btn btn-facebook">Edit</a>
-                                <a href="{{ route('product.delete', $product->id) }}" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="14"><h3>No Products</h3></td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-
+                <div class="table-responsive">
+                    <table id="datatable" style="width:100%" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Name</th>
+                                <th>Product_id</th>
+                                <th>Price</th>
+                                <th>Discount %</th>
+                                <th>After Discount</th>
+                                <th>Brand</th>
+                                <th>Category</th>
+                                <th>SubCategory</th>
+                                <th>Made In</th>
+                                <th>Image</th>
+                                <th>Tax</th>
+                                <th>Created_at</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($products as $index=>$product)
+                            <tr>
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->product_id }}</td>
+                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->discount }}</td>
+                                <td>{{ $product->after_discount }}</td>
+                                <td>{{ $product->rel_to_brand != null ? $product->rel_to_brand->brand:'Brand Deleted!' }}</td>
+                                <td>{{ $product->rel_to_subcategory != null ? ($product->rel_to_subcategory->rel_to_category != null ? $product->rel_to_subcategory->rel_to_category->category_name:'Category deleted!'):'Category Not Available' }}</td>
+                                <td>{{ $product->rel_to_subcategory != null ? $product->rel_to_subcategory->subcategory_name:'SubCategory deleted!' }}</td>
+                                <td>{{ $product->made_in }}</td>
+                                <td><img src="{{ asset('uploads/products/tumbnail/'.$product->image) }}"></td>
+                                <td>{{ $product->tax != null ? $product->tax:'' }}<span class="text-danger">{{ $product->tax != null ? '':'Not Difined!' }}</span></td>
+                                <td>{{ $product->created_at->diffForHumans() }}</td>
+                                <td>
+                                    <a href="#" class="btn btn-facebook">Edit</a>
+                                    <a href="{{ route('product.delete', $product->id) }}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="14"><h3>No Products</h3></td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -249,7 +250,33 @@ function dis(){
 </script>
 
 <script>
-    let table = new DataTable('#datatable');
+    $(function() {
+  'use strict';
+
+  $(function() {
+    $('#datatable').DataTable({
+      "aLengthMenu": [
+        [10, 30, 50, -1],
+        [10, 30, 50, "All"]
+      ],
+      "iDisplayLength": 10,
+      "language": {
+        search: ""
+      }
+    });
+    $('#dataTableExample').each(function() {
+      var datatable = $(this);
+      // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+      var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+      search_input.attr('placeholder', 'Search');
+      search_input.removeClass('form-control-sm');
+      // LENGTH - Inline-Form control
+      var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+      length_sel.removeClass('form-control-sm');
+    });
+  });
+
+});
 </script>
 
 

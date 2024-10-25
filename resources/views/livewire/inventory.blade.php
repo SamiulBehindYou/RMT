@@ -93,7 +93,7 @@
                             {{ session('delete_entry') }}
                         </div>
                     @endif
-                    <table class="table text-center" id="datatableX">
+                    <table class="table text-center" id="inventroytable">
                         <thead>
                             <tr>
                                 <th>SL</th>

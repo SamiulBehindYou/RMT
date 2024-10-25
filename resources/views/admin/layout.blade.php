@@ -27,7 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"/>
 
     {{-- DataTable --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"> --}}
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
 
     {{-- Selector with Search --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -532,7 +533,9 @@
     </script>
 
     {{-- DataTable --}}
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script> --}}
+    <script src="{{ asset('admin') }}/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="{{ asset('admin') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 
     {{-- Selector with Search --}}
     <script>
