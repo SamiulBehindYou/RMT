@@ -21,8 +21,8 @@ class Subscriber extends Component
             'name' => $this->name,
             'email' => $this->email,
         ]);
-
-        return back()->withSuccess('Successfully Subscribed!');
+        session()->flash('subscribed', 'Email successfully subscribed!');
+        return back();
     }
     public function render()
     {

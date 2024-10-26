@@ -19,39 +19,59 @@
 
 	<body>
 
-		<!-- Start Header/Navigation -->
-		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
-			<div class="container">
-				<a class="navbar-brand" href="{{ route('index') }}">RMT<span>.com</span></a>
+        <!-- Start Hero Section -->
+			<div class="hero">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-lg-6">
+							<div class="intro-excerpt">
+								<h1>Register Now!</h1>
+								<p class="mb-4">Register to be our customers!</p>
+                                <p><a href="{{ route('index') }}" class="btn btn-white-outline">Back to home</a></p>
+							</div>
+						</div>
+						<div class="col-lg-6 mt-3">
+							<div class="hero-img-wrap text-white">
+                                <form action="{{ route('register.store') }}" method="post">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Enter your name</label>
+                                        <input type="text" class="form-control bg-transparent text-white" value="{{ old('name') }}" name="name">
+                                        @error('name')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Enter your email</label>
+                                        <input type="text" class="form-control bg-transparent text-white" value="{{ old('email') }}" name="email">
+                                        @error('email')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Enter your password</label>
+                                        <input type="password" class="form-control bg-transparent text-white" name="password">
+                                        @error('password')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Enter your confirm password</label>
+                                        <input type="password" class="form-control bg-transparent text-white" name="password_confirmation">
 
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarsFurni">
-					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-						<li class="nav-item {{ Route::is('index') ? 'active' : '' }}">
-							<a class="nav-link" href="{{ route('index') }}">Home</a>
-						</li>
-						<li class="nav-item {{ Route::is('shop') ? 'active' : '' }}"><a class="nav-link" href="{{ route('shop') }}">Shop</a></li>
-						<li class="nav-item {{ Route::is('aboutus') ? 'active' : '' }}"><a class="nav-link" href="{{ route('aboutus') }}">About us</a></li>
-						<li class="nav-item {{ Route::is('services') ? 'active' : '' }}"><a class="nav-link" href="{{ route('services') }}">Services</a></li>
-						<li class="nav-item {{ Route::is('contact') ? 'active' : '' }}"><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
-					</ul>
-
-					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="{{ route('customer.login') }}"><img src="{{ asset('frontend') }}/images/user.svg"></a></li>
-						<li><a class="nav-link" href="#"><img src="{{ asset('frontend') }}/images/cart.svg"></a></li>
-					</ul>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button class="btn btn-secondary me-2" type="submit">Register</button>
+                                    </div>
+                                </form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
+		<!-- End Hero Section -->
 
-		</nav>
-		<!-- End Header/Navigation -->
-
-
-@yield('main')
 
 
 		<!-- Start Footer Section -->

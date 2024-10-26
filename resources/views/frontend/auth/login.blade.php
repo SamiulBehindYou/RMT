@@ -19,39 +19,42 @@
 
 	<body>
 
-		<!-- Start Header/Navigation -->
-		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
-			<div class="container">
-				<a class="navbar-brand" href="{{ route('index') }}">RMT<span>.com</span></a>
-
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarsFurni">
-					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-						<li class="nav-item {{ Route::is('index') ? 'active' : '' }}">
-							<a class="nav-link" href="{{ route('index') }}">Home</a>
-						</li>
-						<li class="nav-item {{ Route::is('shop') ? 'active' : '' }}"><a class="nav-link" href="{{ route('shop') }}">Shop</a></li>
-						<li class="nav-item {{ Route::is('aboutus') ? 'active' : '' }}"><a class="nav-link" href="{{ route('aboutus') }}">About us</a></li>
-						<li class="nav-item {{ Route::is('services') ? 'active' : '' }}"><a class="nav-link" href="{{ route('services') }}">Services</a></li>
-						<li class="nav-item {{ Route::is('contact') ? 'active' : '' }}"><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
-					</ul>
-
-					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="{{ route('customer.login') }}"><img src="{{ asset('frontend') }}/images/user.svg"></a></li>
-						<li><a class="nav-link" href="#"><img src="{{ asset('frontend') }}/images/cart.svg"></a></li>
-					</ul>
+        <!-- Start Hero Section -->
+			<div class="hero">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-lg-6">
+							<div class="intro-excerpt">
+								<h1>Login <span clsas="d-block">Now!</span></h1>
+								<p class="mb-4">Login to buy products from our shop!</p>
+                                <p><a href="{{ route('index') }}" class="btn btn-white-outline">Back to home</a></p>
+								<p class="mb-4 text-white">Not register yet? </p>
+                                <p><a href="{{ route('customer.register') }}" class="btn btn-white-outline">Register here!</a></p>
+							</div>
+						</div>
+						<div class="col-lg-6 mt-3 text-white">
+							<div class="hero-img-wrap">
+                                <form action="" method="post">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Enter your email</label>
+                                        <input type="text" class="form-control bg-transparent text-white" placeholder="Enter Your Email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Enter your password</label>
+                                        <input type="password" class="form-control bg-transparent text-white" placeholder="Enter Your password">
+                                    </div>
+                                    <div class="mb-3">
+                                        <button class="btn btn-secondary me-2">Login</button>
+                                    </div>
+                                </form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
+		<!-- End Hero Section -->
 
-		</nav>
-		<!-- End Header/Navigation -->
-
-
-@yield('main')
 
 
 		<!-- Start Footer Section -->

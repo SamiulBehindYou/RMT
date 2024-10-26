@@ -2,9 +2,9 @@
     <div class="col-lg-8">
         <div class="subscription-form">
             <h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('frontend') }}/images/envelope-outline.svg" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
-            @if(session()->has('success'))
+            @if(session()->has('subscribed'))
                 <div class="alert alert-success">
-                    {{ session('success') }}
+                    {{ session('subscribed') }}
                 </div>
             @endif
             <form wire:submit='add' class="row g-3">
