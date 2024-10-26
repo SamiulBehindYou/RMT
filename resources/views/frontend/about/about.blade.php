@@ -14,7 +14,7 @@
             </div>
             <div class="col-lg-7">
                 <div class="hero-img-wrap">
-                    <img src="{{ asset('uploads/products/original/670e0a6a6f825.webp') }}" width="95%" class="">
+                    {{-- <img src="{{ asset('uploads/products/original/670e0a6a6f825.webp') }}" width="95%" class=""> --}}
                 </div>
             </div>
         </div>

@@ -42,4 +42,9 @@ class FrontendController extends Controller
         $products = Product::where('brand', $id)->inRandomOrder()->paginate(20);
         return view('frontend.dashboard.by_brand', compact('products'));
     }
+
+    public function single_product($id){
+        $product = Product::find($id);
+        return view('frontend.dashboard.single_product', compact('product'));
+    }
 }
