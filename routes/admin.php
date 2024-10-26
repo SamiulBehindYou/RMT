@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // Admin Dashbaord
-    Route::get('/', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
 
     //Profile
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update'); //imp

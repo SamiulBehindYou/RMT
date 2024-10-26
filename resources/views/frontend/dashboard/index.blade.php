@@ -62,7 +62,7 @@
                                 <div class="row text-center">
                                     @foreach ($brands as $brand)
                                     <div class="col-2">
-                                        <a href="{{ route('by_brand') }}" class="btn btn-primary">{{ $brand->brand }}</a>
+                                        <a href="{{ route('by_brand', $brand->id) }}" class="btn btn-primary">{{ $brand->brand }}</a>
                                     </div>
                                     @endforeach
                                 </div>
