@@ -31,13 +31,13 @@
 
 				<div class="collapse navbar-collapse" id="navbarsFurni">
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-						<li class="nav-item active">
-							<a class="nav-link" href="index.html">Home</a>
+						<li class="nav-item {{ Route::is('index') ? 'active' : '' }}">
+							<a class="nav-link" href="{{ route('index') }}">Home</a>
 						</li>
-						<li><a class="nav-link" href="shop.html">Shop</a></li>
-						<li><a class="nav-link" href="about.html">About us</a></li>
-						<li><a class="nav-link" href="services.html">Services</a></li>
-						<li><a class="nav-link" href="contact.html">Contact us</a></li>
+						<li class="nav-item {{ Route::is('shop') ? 'active' : '' }}"><a class="nav-link" href="{{ route('shop') }}">Shop</a></li>
+						<li class="nav-item {{ Route::is('aboutus') ? 'active' : '' }}"><a class="nav-link" href="{{ route('aboutus') }}">About us</a></li>
+						<li class="nav-item {{ Route::is('services') ? 'active' : '' }}"><a class="nav-link" href="{{ route('services') }}">Services</a></li>
+						<li class="nav-item {{ Route::is('contact') ? 'active' : '' }}"><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
