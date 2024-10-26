@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $image = $manager->read($request->category_image);
 
         // resize image proportionally to 300px width
-        $image->resize(300, 200);
+        $image->resize(300, 300);
 
         // save modified image in new format
         $image->save(public_path('uploads/categories/'.$file_name));
