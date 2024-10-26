@@ -17,3 +17,14 @@ Route::get('/single_product/{id}', [FrontendController::class, 'single_product']
 Route::get('customer/login', [FrontAuthController::class, 'login'])->name('customer.login');
 Route::get('customer/register', [FrontAuthController::class, 'register'])->name('customer.register');
 Route::post('customer/register', [FrontAuthController::class, 'register_store'])->name('register.store');
+Route::post('customer/login', [FrontAuthController::class, 'customer_login'])->name('login.store');
+
+
+Route::middleware('customer')->group(function(){
+    
+    Route::get('cart', function(){
+        return back()->withSuccess('working');
+    })->name('cart');
+    Route::get('customer/logout', [FrontAuthController::class, 'logout'])->name('customer.logout');
+});
+

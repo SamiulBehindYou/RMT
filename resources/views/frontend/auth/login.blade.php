@@ -35,14 +35,21 @@
 						</div>
 						<div class="col-lg-6 mt-3 text-white">
 							<div class="hero-img-wrap">
-                                <form action="" method="post">
+                                <form action="{{ route('login.store') }}" method="post">
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="" class="form-label">Enter your email</label>
-                                        <input type="text" class="form-control bg-transparent text-white" placeholder="Enter Your Email">
+                                        <input type="text" name="email" class="form-control bg-transparent text-white" placeholder="Enter Your Email">
+                                        @error('email')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">Enter your password</label>
-                                        <input type="password" class="form-control bg-transparent text-white" placeholder="Enter Your password">
+                                        <input type="password" name="password" class="form-control bg-transparent text-white" placeholder="Enter Your password">
+                                        @error('password')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <button class="btn btn-secondary me-2">Login</button>
@@ -159,6 +166,20 @@
             });
         </script>
         @endif
+
+        @if (session('error'))
+        <script>
+            Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "{{ session('error') }}",
+            showConfirmButton: false,
+            timer: 2500
+            });
+        </script>
+        @endif
+
+
 	</body>
 
 </html>

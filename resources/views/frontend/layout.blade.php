@@ -41,7 +41,13 @@
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                        @auth('customer')
+						{{-- <li><a class="nav-link" href="">{{ Auth::guard('customer')->user()->name }}</a></li> --}}
+						<li><a class="nav-link" href="{{ route('customer.logout') }}">Logout</a></li>
+
+                        @else
 						<li><a class="nav-link" href="{{ route('customer.login') }}"><img src="{{ asset('frontend') }}/images/user.svg"></a></li>
+                        @endauth
 						<li><a class="nav-link" href="#"><img src="{{ asset('frontend') }}/images/cart.svg"></a></li>
 					</ul>
 				</div>
@@ -151,6 +157,18 @@
             position: "center",
             icon: "success",
             title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 1500
+            });
+        </script>
+        @endif
+
+        @if (session('error'))
+        <script>
+            Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "{{ session('error') }}",
             showConfirmButton: false,
             timer: 1500
             });
