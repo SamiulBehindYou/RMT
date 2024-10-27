@@ -17,8 +17,17 @@ About Website:
 <br>->Sales panel
 <br>->Invoice view/Trash
  
+ 3. FrontEnd Section
+<br>->Landing Page
+<br>->Shop Page
+<br>->Category wise product
+<br>->brand wise product
+<br>->About Page
+<br>->Contact us Page
+<br>->Subscriber
+<br>->Cart
 
-Working On: finding issue and debuging
+Working On: Cart
 
 
 

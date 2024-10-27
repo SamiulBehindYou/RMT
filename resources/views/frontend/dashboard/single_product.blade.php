@@ -15,7 +15,7 @@
                 <h2 class="section-title mb-4">{{ $product->name }}</h2>
                 <p>{{ $product->short_description }}</p>
 
-                <a href="{{ route('shop') }}" class="btn">Add to cart</a>
+                <a href="{{ route('add.cart', $product->id) }}" class="btn">Add to cart</a>
                 <a href="{{ route('shop') }}" class="btn">Explore more</a>
             </div>
         </div>

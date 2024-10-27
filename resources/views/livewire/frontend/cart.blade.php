@@ -23,6 +23,9 @@
             <div class="row mb-5">
             <form class="col-md-12" method="post">
                 <div class="site-blocks-table">
+                    @if(session()->has('delete_info'))
+                    <div class="alert alert-info">{{ session('delete_info') }}</div>
+                    @endif
                 <table class="table">
                     <thead>
                     <tr>
@@ -36,30 +39,36 @@
                     </thead>
                     <tbody>
 
-
+                    @forelse ($carts as $cart)
                     <tr>
                         <td class="product-thumbnail">
-                        <img src="images/product-1.png" alt="Image" class="img-fluid">
+                        <img src="{{ asset('uploads/products/tumbnail/').'/'.$cart->rel_to_product->image }}" alt="Image" width="100" class="img-fluid">
                         </td>
                         <td class="product-name">
-                        <h2 class="h5 text-black">Product 1</h2>
+                        <h2 class="h5 text-black">{{ $cart->rel_to_product->name }}</h2>
                         </td>
-                        <td>$49.00</td>
+                        <td>{{ $cart->price }}</td>
                         <td>
                         <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                             <div class="input-group-prepend">
-                            <button class="btn btn-outline-black decrease" type="button">&minus;</button>
+                            <button wire:click='Decrement({{ $cart->id }})' class="btn btn-outline-black decrease" type="button">&minus;</button>
                             </div>
-                            <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            <input readonly type="text" class="form-control text-center quantity-amount" value="{{ $cart->quantity }}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                             <div class="input-group-append">
-                            <button class="btn btn-outline-black increase" type="button">&plus;</button>
+                            <button wire:click='Increment({{ $cart->id }})' class="btn btn-outline-black increase" type="button">&plus;</button>
                             </div>
                         </div>
 
                         </td>
-                        <td>$48.00</td>
-                        <td><a href="#" class="btn btn-black btn-sm">X</a></td>
+                        <td>{{ $cart->total_price }}</td>
+                        <td><a wire:click='cartDelete({{ $cart->id }})' class="btn btn-black btn-sm">X</a></td>
                     </tr>
+                    @empty
+                    <tr>
+                        <td colspan="6"><h4 class="text-center">No Product added yet!</h4></td>
+                    </tr>
+                    @endforelse
+
 
 
                     </tbody>
@@ -75,7 +84,7 @@
                     <button class="btn btn-black btn-sm btn-block">Update Cart</button>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
+                    <a href="{{ route('shop') }}" class="btn btn-outline-black btn-sm btn-block">Continue Shopping</a>
                 </div>
                 </div>
                 <div class="row">

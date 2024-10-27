@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontAuthController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\FrontLivewireController;
@@ -23,6 +24,7 @@ Route::post('customer/login', [FrontAuthController::class, 'customer_login'])->n
 
 Route::middleware('customer')->group(function(){
     Route::get('customer/logout', [FrontAuthController::class, 'logout'])->name('customer.logout');
+    Route::get('add/cart/{id}', [CartController::class, 'add_cart'])->name('add.cart');
 
 
     // Front Livewire Routes
