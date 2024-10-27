@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FrontAuthController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\FrontLivewireController;
 use Illuminate\Support\Facades\Route;
 
 // Index page
@@ -21,10 +22,12 @@ Route::post('customer/login', [FrontAuthController::class, 'customer_login'])->n
 
 
 Route::middleware('customer')->group(function(){
-    
-    Route::get('cart', function(){
-        return back()->withSuccess('working');
-    })->name('cart');
     Route::get('customer/logout', [FrontAuthController::class, 'logout'])->name('customer.logout');
+
+
+    // Front Livewire Routes
+    Route::get('cart', [FrontLivewireController::class, 'cart'])->name('cart');
+
+
 });
 

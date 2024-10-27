@@ -48,7 +48,7 @@
                         @else
 						<li><a class="nav-link" href="{{ route('customer.login') }}"><img src="{{ asset('frontend') }}/images/user.svg"></a></li>
                         @endauth
-						<li><a class="nav-link" href="#"><img src="{{ asset('frontend') }}/images/cart.svg"></a></li>
+						<li><a class="nav-link" href="{{ route('cart') }}"><img src="{{ asset('frontend') }}/images/cart.svg"></a></li>
 					</ul>
 				</div>
 			</div>
