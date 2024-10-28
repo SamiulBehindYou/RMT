@@ -81,10 +81,9 @@
             <div class="col-md-6">
                 <div class="row mb-5">
                 <div class="col-md-6 mb-3 mb-md-0">
-                    <button class="btn btn-black btn-sm btn-block">Update Cart</button>
+                    <a href="{{ route('shop') }}" class="btn btn-outline-black btn-sm btn-block">Continue Shopping</a>
                 </div>
                 <div class="col-md-6">
-                    <a href="{{ route('shop') }}" class="btn btn-outline-black btn-sm btn-block">Continue Shopping</a>
                 </div>
                 </div>
                 <div class="row">
@@ -111,6 +110,14 @@
                     <div class="row mb-3">
                     <div class="col-md-6">
                         <span class="text-black">Subtotal</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <strong class="text-black">$230.00</strong>
+                    </div>
+                    </div>
+                    <div class="row mb-3">
+                    <div class="col-md-6">
+                        <span class="text-black">Coupon Discount</span>
                     </div>
                     <div class="col-md-6 text-right">
                         <strong class="text-black">$230.00</strong>

@@ -198,6 +198,13 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('coupon.index') }}" class="nav-link">
+              <i class="link-icon" data-feather="percent"></i>
+              <span class="link-title">Coupon</span>
+            </a>
+          </li>
+
 
         </ul>
       </div>

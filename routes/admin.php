@@ -80,5 +80,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             return view('admin.test');
         });
 
+        // Coupon
+        Route::get('coupon', [LiveWireRoutesController::class, 'coupon_index'])->name('coupon.index');
 
 });

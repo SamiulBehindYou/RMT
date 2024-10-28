@@ -13,6 +13,10 @@ class LiveWireRoutesController extends Controller
         return view('admin.tag.tags');
     }
 
+    public function coupon_index(){
+        return view('admin.coupon.coupon');
+    }
+
     public function color_size(){
         return view('admin.color&size.color&size');
     }
