@@ -68,7 +68,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('customers') }}" class="nav-link">
               <i class="link-icon" data-feather="users"></i>
               <span class="link-title">Customers</span>
             </a>

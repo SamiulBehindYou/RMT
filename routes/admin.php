@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LiveWireRoutesController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('ptrashed', [ProductController::class, 'view_trash'])->name('product.trash');
     Route::get('permanant/product/restore/{id}', [ProductController::class, 'restore_product'])->name('restore.product');
     Route::get('permanant/product/delete/{id}', [ProductController::class, 'per_delete_product'])->name('product.per.delete');
+
+    // Customers
+    Route::get('customers', [CustomerController::class, 'customers'])->name('customers');
+    Route::get('suspend/{id}', [CustomerController::class, 'suspend'])->name('suspend');
 
 
     // LiveWire

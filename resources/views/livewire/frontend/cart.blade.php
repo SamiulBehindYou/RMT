@@ -42,10 +42,10 @@
                     @forelse ($carts as $cart)
                     <tr>
                         <td class="product-thumbnail">
-                        <img src="{{ asset('uploads/products/tumbnail/').'/'.$cart->rel_to_product->image }}" alt="Image" width="100" class="img-fluid">
+                        <a href="{{ route('single_product', $cart->product_id) }}"><img src="{{ asset('uploads/products/tumbnail/').'/'.$cart->rel_to_product->image }}" alt="Image" width="100" class="img-fluid"></a>
                         </td>
                         <td class="product-name">
-                        <h2 class="h5 text-black">{{ $cart->rel_to_product->name }}</h2>
+                        <a href="{{ route('single_product', $cart->product_id) }}" style="text-decoration: none;"><h2 class="h5 text-black">{{ $cart->rel_to_product->name }}</h2></a>
                         </td>
                         <td>{{ $cart->price }}</td>
                         <td>
