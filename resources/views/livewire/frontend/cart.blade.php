@@ -86,18 +86,32 @@
                 <div class="col-md-6">
                 </div>
                 </div>
-                <div class="row">
-                <div class="col-md-12">
-                    <label class="text-black h4" for="coupon">Coupon</label>
-                    <p>Enter your coupon code if you have one.</p>
-                </div>
-                <div class="col-md-8 mb-3 mb-md-0">
-                    <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-black">Apply Coupon</button>
-                </div>
-                </div>
+
+                {{-- Coupon Apply Form --}}
+                <form wire:submit='CouponApply' class="row">
+                    <div class="col-md-12">
+                        <label class="text-black h4" for="coupon">Coupon</label>
+                        <p>Enter your coupon code if you have one.</p>
+                    </div>
+                    @if(session()->has('coupon_success'))
+                        <div class="alert alert-success">
+                            {{ session('coupon_success') }}
+                        </div>
+                    @endif
+                    <div class="col-md-8 mb-3 mb-md-0">
+                        <input type="text" wire:model='coupon_code' class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                        @if(session()->has('coupon_error'))
+                            <strong class="text-danger">{{ session('coupon_error') }}</strong>
+                        @endif
+                        @error('coupon_code')
+                            <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-black">Apply Coupon</button>
+                    </div>
+                </form>
+
             </div>
             <div class="col-md-6 pl-5">
                 <div class="row justify-content-end">
@@ -112,23 +126,25 @@
                         <span class="text-black">Subtotal</span>
                     </div>
                     <div class="col-md-6 text-right">
-                        <strong class="text-black">$230.00</strong>
+                        <strong class="text-black">{{ $sub_total }}</strong>
                     </div>
                     </div>
+                @if($coupon_discount != null)
                     <div class="row mb-3">
                     <div class="col-md-6">
                         <span class="text-black">Coupon Discount</span>
                     </div>
                     <div class="col-md-6 text-right">
-                        <strong class="text-black">$230.00</strong>
+                        <strong class="text-black">{{ $coupon_discount }}</strong>
                     </div>
                     </div>
+                @endif
                     <div class="row mb-5">
                     <div class="col-md-6">
                         <span class="text-black">Total</span>
                     </div>
                     <div class="col-md-6 text-right">
-                        <strong class="text-black">$230.00</strong>
+                        <strong class="text-black">{{ $total }}</strong>
                     </div>
                     </div>
 
