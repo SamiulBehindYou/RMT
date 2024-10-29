@@ -28,10 +28,6 @@ class FrontendController extends Controller
         return view('frontend.services.services');
     }
 
-    public function contact(){
-        return view('frontend.contact.contact');
-    }
-
     public function by_category($id){
         $category_id = $id;
         $products = Product::inRandomOrder()->paginate(20);

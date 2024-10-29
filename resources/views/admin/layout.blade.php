@@ -309,7 +309,7 @@
 									<a href="javascript:;" class="text-muted">Clear all</a>
 								</div>
 								<div class="dropdown-body">
-									<a href="javascript:;" class="dropdown-item">
+									<a data-toggle="modal" data-target="#message" class="dropdown-item">
 										<div class="figure">
 											<img src="https://via.placeholder.com/30x30" alt="userr">
 										</div>

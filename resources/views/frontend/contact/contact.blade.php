@@ -9,13 +9,13 @@
                     <div class="col-lg-5">
                         <div class="intro-excerpt">
                             <h1>Contact</h1>
-                            <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
+                            <p class="mb-4">We are always for you. Just Send a message about your queries!</p>
                             <p><a href="{{ route('shop') }}" class="btn btn-secondary me-2">Shop Now</a><a href="{{ route('shop') }}" class="btn btn-white-outline">Explore</a></p>
                         </div>
                     </div>
                     <div class="col-lg-7">
                         <div class="hero-img-wrap">
-                            <img src="images/couch.png" class="img-fluid">
+                            
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                   </svg>
                 </div> <!-- /.icon -->
                 <div class="service-contents">
-                  <p>43 Raymouth Rd. Baltemoer, London 3910</p>
+                  <p>Damkura hat, Paba, Rajshahi.</p>
                 </div> <!-- /.service-contents-->
               </div> <!-- /.service -->
             </div>
@@ -57,7 +57,7 @@
                   </svg>
                 </div> <!-- /.icon -->
                 <div class="service-contents">
-                  <p>info@yourdomain.com</p>
+                  <p>rmt@gmail.com</p>
                 </div> <!-- /.service-contents-->
               </div> <!-- /.service -->
             </div>
@@ -76,29 +76,42 @@
             </div>
           </div>
 
-          <form>
+          <form action="{{ route('message.store') }}" method="post">
+            @csrf
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <label class="text-black" for="fname">First name</label>
-                  <input type="text" class="form-control" id="fname">
+                    <label class="text-black" for="fname">Name</label>
+                    <input name="name" type="text" class="form-control" value="{{ old('name') }}" id="fname">
+                    @error('name')
+                        <strong class="text-danger">{{ $message }}</strong>
+                    @enderror
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label class="text-black" for="lname">Last name</label>
-                  <input type="text" class="form-control" id="lname">
+                    <label class="text-black" for="lname">Phone number</label>
+                    <input name="number" type="number" class="form-control" value="{{ old('number') }}" id="lname">
+                    @error('number')
+                        <strong class="text-danger">{{ $message }}</strong>
+                    @enderror
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label class="text-black" for="email">Email address</label>
-              <input type="email" class="form-control" id="email">
+                <label class="text-black" for="email">Email address</label>
+                <input name="email" type="email" class="form-control" value="{{ old('email') }}" id="email">
+                @error('email')
+                    <strong class="text-danger">{{ $message }}</strong>
+                @enderror
             </div>
 
             <div class="form-group mb-5">
-              <label class="text-black" for="message">Message</label>
-              <textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+                <label class="text-black" for="message">Message</label>
+                <textarea name="message" name="" class="form-control" id="message" cols="30" rows="5">{{ old('message') }}</textarea>
+                @error('message')
+                    <strong class="text-danger">{{ $message }}</strong>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary-hover-outline">Send Message</button>

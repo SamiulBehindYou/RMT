@@ -18,7 +18,7 @@ class Cart extends Component
     public function Decrement($id){
         $cart = ModelsCart::find($id);
         if($cart->quantity == 1){
-            session()->flash('error', 'Product removed from cart!');
+            session()->flash('error', 'Minumum quantity reached!');
             return back();
         }else{
             $cart->quantity -= 1;

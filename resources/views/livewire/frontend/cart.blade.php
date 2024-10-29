@@ -26,6 +26,9 @@
                     @if(session()->has('delete_info'))
                     <div class="alert alert-info">{{ session('delete_info') }}</div>
                     @endif
+                    @if(session()->has('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
                 <table class="table">
                     <thead>
                     <tr>
@@ -51,11 +54,11 @@
                         <td>
                         <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                             <div class="input-group-prepend">
-                            <button wire:click='Decrement({{ $cart->id }})' class="btn btn-outline-black decrease" type="button">&minus;</button>
+                            <button wire:click='Decrement({{ $cart->id }})' class="btn btn-outline-black" type="button">&minus;</button>
                             </div>
                             <input readonly type="text" class="form-control text-center quantity-amount" value="{{ $cart->quantity }}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                             <div class="input-group-append">
-                            <button wire:click='Increment({{ $cart->id }})' class="btn btn-outline-black increase" type="button">&plus;</button>
+                            <button wire:click='Increment({{ $cart->id }})' class="btn btn-outline-black" type="button">&plus;</button>
                             </div>
                         </div>
 
