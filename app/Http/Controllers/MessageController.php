@@ -28,4 +28,21 @@ class MessageController extends Controller
 
         return back()->withSuccess('Message sent successfully!');
     }
+
+
+    // Admin's Route
+
+    public function view_message(){
+        $messages = Message::orderBy('id', 'DESC')->get();
+        return view('admin.message.message_list', compact('messages'));
+    }
+
+    public function single_message($id){
+        $message = Message::findOrFail($id);
+        if($message->status == 0){
+            $message->status = 1;
+            $message->save();
+        }
+        return view('admin.message.single_message', compact('message'));
+    }
 }

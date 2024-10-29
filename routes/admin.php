@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LiveWireRoutesController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Customers
     Route::get('customers', [CustomerController::class, 'customers'])->name('customers');
     Route::get('suspend/{id}', [CustomerController::class, 'suspend'])->name('suspend');
+
+    // Message
+    Route::get('view/message', [MessageController::class, 'view_message'])->name('view.message');
+    Route::get('single_message/{id}', [MessageController::class, 'single_message'])->name('single.message');
 
 
     // LiveWire
