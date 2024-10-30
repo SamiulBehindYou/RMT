@@ -217,7 +217,7 @@
         <h6 class="text-muted">Settings</h6>
         <div class="form-group border-bottom">
           <div class="form-check form-check-inline">
-              <a href="#" class="btn btn-primary">Customizable</a>
+              <a href="{{ route('testimonial') }}" class="btn btn-primary">Testimonial</a>
           </div>
           <div class="form-check form-check-inline">
               <a href="#" class="btn btn-primary">Customizable</a>
@@ -302,14 +302,11 @@
 							<div class="dropdown-menu" aria-labelledby="messageDropdown">
 								<div class="dropdown-header d-flex align-items-center justify-content-between">
 									<p class="mb-0 font-weight-medium">{{ $new_messages }} New Messages</p>
-									<a href="javascript:;" class="text-muted">Delete all</a>
+									<a href="{{ route('delete.all') }}" class="text-muted ml-3">Delete all</a>
 								</div>
 								<div class="dropdown-body">
                                     @forelse ($g_messages as $message)
 									<a data-toggle="modal" data-target="#message" class="dropdown-item">
-										{{-- <div class="figure">
-											<img src="https://via.placeholder.com/30x30" alt="userr">
-										</div> --}}
 										<div class="content">
 											<div class="d-flex justify-content-between align-items-center">
 												<p>{{ $message->name }}</p>
@@ -319,7 +316,11 @@
 										</div>
 									</a>
                                     @empty
-
+                                        <div class="content">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="ml-5">No Messages!</p>
+                                            </div>
+                                        </div>
                                     @endforelse
 
 								</div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LiveWireRoutesController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -63,7 +64,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Message
     Route::get('view/message', [MessageController::class, 'view_message'])->name('view.message');
+    Route::get('message/delete/all', [MessageController::class, 'delete_all'])->name('delete.all');
     Route::get('single_message/{id}', [MessageController::class, 'single_message'])->name('single.message');
+
+    // Testimonial
+    Route::get('testimonials', [TestimonialController::class, 'testimonial'])->name('testimonial');
+    Route::post('testimonials', [TestimonialController::class, 'testimonial_store'])->name('testimonial.store');
+    Route::get('testimonials/status/{id}', [TestimonialController::class, 'testimonial_status'])->name('testimonial.status');
+    Route::get('testimonials/delete/{id}', [TestimonialController::class, 'testimonial_delete'])->name('testimonial.delete');
 
 
     // LiveWire

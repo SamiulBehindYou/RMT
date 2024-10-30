@@ -203,7 +203,7 @@
                             @forelse ($products as $index=>$product)
                             <tr>
                                 <td>{{ $index+1 }}</td>
-                                <td>{{ $product->name }}</td>
+                                <td class="text-wrap">{{ $product->name }}</td>
                                 <td>{{ $product->product_id }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->discount }}</td>

@@ -16,6 +16,8 @@ About Website:
 <br>->Offline Sales
 <br>->Sales panel
 <br>->Invoice view/Trash
+<br>->Admin Message View
+<br>->Admin Message Notification with alert
  
  3. FrontEnd Section
 <br>->Landing Page
@@ -26,6 +28,7 @@ About Website:
 <br>->Contact us Page
 <br>->Subscriber
 <br>->Cart
+<br>->Message admin
 
 Working On: Cart
 

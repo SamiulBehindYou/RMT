@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -13,7 +14,8 @@ class FrontendController extends Controller
         $products = Product::inRandomOrder()->  paginate(20);
         $categories = Category::all();
         $brands = Brand::all();
-        return view('frontend.dashboard.index', compact('products', 'categories', 'brands'));
+        $testimonials = Testimonial::all();
+        return view('frontend.dashboard.index', compact('products', 'categories', 'brands', 'testimonials'));
     }
     public function shop(){
         $products = Product::inRandomOrder()->  paginate(20);

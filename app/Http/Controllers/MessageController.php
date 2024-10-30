@@ -45,4 +45,9 @@ class MessageController extends Controller
         }
         return view('admin.message.single_message', compact('message'));
     }
+
+    public function delete_all(){
+        Message::truncate();
+        return back()->withSuccess('All messages deleted successfully!');
+    }
 }
