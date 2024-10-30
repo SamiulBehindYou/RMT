@@ -84,8 +84,10 @@
 						<a class="product-item" href="{{ route('single_product',$product->id) }}">
 							<img src="{{ asset('uploads/products/tumbnail').'/'.$product->image }}" class="img-fluid product-thumbnail">
 							<h3 class="product-title">{{ $product->name }}</h3>
-							<strong class="product-price">{{ $product->price }} BDT</strong>
-
+							@if($product->discount > 0)
+                                <div><small><del>{{ $product->price }} BDT</del> <small class="text-danger">{{ $product->discount }} % OFF</small></small></div>
+                            @endif
+							<strong class="product-price">{{ $product->after_discount }} BDT</strong>
 							<span class="icon-cross">
 								<img src="{{ asset('frontend') }}/images/cross.svg" class="img-fluid">
 							</span>

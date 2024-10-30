@@ -35,8 +35,8 @@
 							<a class="nav-link" href="{{ route('index') }}">Home</a>
 						</li>
 						<li class="nav-item {{ Route::is('shop') ? 'active' : '' }}"><a class="nav-link" href="{{ route('shop') }}">Shop</a></li>
-						<li class="nav-item {{ Route::is('aboutus') ? 'active' : '' }}"><a class="nav-link" href="{{ route('aboutus') }}">About us</a></li>
 						<li class="nav-item {{ Route::is('services') ? 'active' : '' }}"><a class="nav-link" href="{{ route('services') }}">Services</a></li>
+						<li class="nav-item {{ Route::is('aboutus') ? 'active' : '' }}"><a class="nav-link" href="{{ route('aboutus') }}">About us</a></li>
 						<li class="nav-item {{ Route::is('contact') ? 'active' : '' }}"><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
 					</ul>
 
@@ -87,9 +87,9 @@
 						<div class="row links-wrap">
 							<div class="col-6 col-sm-6 col-md-3">
 								<ul class="list-unstyled">
-									<li><a href="#">About us</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Contact us</a></li>
+									<li><a href="{{ route('aboutus') }}">About us</a></li>
+									<li><a href="{{ route('services') }}">Services</a></li>
+									<li><a href="{{ route('contact') }}">Contact us</a></li>
 								</ul>
 							</div>
 

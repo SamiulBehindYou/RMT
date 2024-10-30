@@ -204,44 +204,42 @@
               <span class="link-title">Coupon</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="link-icon" data-feather="crosshair"></i>
+              <span class="link-title">Set Target</span>
+            </a>
+          </li>
 
 
         </ul>
       </div>
     </nav>
+
+
+    {{---------------------- Settings --------------------}}
     <nav class="settings-sidebar">
       <div class="sidebar-body">
         <a href="#" class="settings-sidebar-toggler">
           <i data-feather="settings"></i>
         </a>
         <h6 class="text-muted">Settings</h6>
-        <div class="form-group border-bottom">
+        <div class="form-group">
+
           <div class="form-check form-check-inline">
-              <a href="{{ route('testimonial') }}" class="btn btn-primary">Testimonial</a>
+            <a href="{{ route('testimonial') }}" class="text-black">
+                <i class="link-icon" data-feather="thumbs-up"></i>
+                <span class="link-title ml-2">Testimonial</span>
+            </a>
           </div>
           <div class="form-check form-check-inline">
-              <a href="#" class="btn btn-primary">Customizable</a>
-          </div>
-          <div class="form-check form-check-inline">
-              <a href="#" class="btn btn-primary">Customizable</a>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="sidebarThemeSettings" id="sidebarDark" value="sidebar-dark">
-              Dark
-            </label>
+            <a href="{{ route('basic.settings') }}" class="text-black">
+                <i class="link-icon" data-feather="tool"></i>
+                <span class="link-title ml-2 ">Basic Settings</span>
+            </a>
           </div>
         </div>
-        <div class="theme-wrapper">
-          <h6 class="text-muted mb-2">Light Theme:</h6>
-          <a class="theme-item active" href="../demo_1/dashboard-one.html">
-            <img src="{{ asset('admin') }}/images/screenshots/light.jpg" alt="light theme">
-          </a>
-          <h6 class="text-muted mb-2">Dark Theme:</h6>
-          <a class="theme-item" href="../demo_2/dashboard-one.html">
-            <img src="{{ asset('admin') }}/images/screenshots/dark.jpg" alt="light theme">
-          </a>
-        </div>
+
       </div>
     </nav>
 		<!-- partial -->
@@ -275,12 +273,11 @@
 							<div class="dropdown-menu" aria-labelledby="appsDropdown">
 								<div class="dropdown-header d-flex align-items-center justify-content-between">
 									<p class="mb-0 font-weight-medium">Web Apps</p>
-									<a href="javascript:;" class="text-muted">Edit</a>
 								</div>
 								<div class="dropdown-body">
 									<div class="d-flex align-items-center apps">
 										<a href="{{ route('view.message') }}"><i data-feather="message-square" class="icon-lg"></i><p>Messages</p></a>
-										<a href="pages/apps/calendar.html"><i data-feather="calendar" class="icon-lg"></i><p>Calendar</p></a>
+										<a href="{{ route('basic.settings') }}"><i data-feather="tool" class="icon-lg"></i><p>Basic</p></a>
 										<a href="pages/email/inbox.html"><i data-feather="mail" class="icon-lg"></i><p>Email</p></a>
 										<a href="pages/general/profile.html"><i data-feather="instagram" class="icon-lg"></i><p>Profile</p></a>
 									</div>

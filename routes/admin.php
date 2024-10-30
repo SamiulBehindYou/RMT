@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\BasicSettingsController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
@@ -72,6 +73,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('testimonials', [TestimonialController::class, 'testimonial_store'])->name('testimonial.store');
     Route::get('testimonials/status/{id}', [TestimonialController::class, 'testimonial_status'])->name('testimonial.status');
     Route::get('testimonials/delete/{id}', [TestimonialController::class, 'testimonial_delete'])->name('testimonial.delete');
+
+    // Basic Settings
+    Route::get('settings/basic', [BasicSettingsController::class, 'basic_settings'])->name('basic.settings');
+    Route::post('settings/title', [BasicSettingsController::class, 'title'])->name('title');
+    Route::post('settings/tag_line', [BasicSettingsController::class, 'tag_line'])->name('tag.line');
+    Route::post('settings/icon', [BasicSettingsController::class, 'icon'])->name('icon');
+    Route::post('settings/logo', [BasicSettingsController::class, 'logo'])->name('logo');
+    Route::post('settings/facebook', [BasicSettingsController::class, 'facebook'])->name('settings.facebook');
+    Route::get('settings/facebook_status', [BasicSettingsController::class, 'facebook_status'])->name('settings.facebook_status');
+    Route::post('settings/twiter', [BasicSettingsController::class, 'twiter'])->name('settings.twiter');
+    Route::get('settings/twiter_status', [BasicSettingsController::class, 'twiter_status'])->name('settings.twiter_status');
+    Route::post('settings/instagram', [BasicSettingsController::class, 'instagram'])->name('settings.instagram');
+    Route::get('settings/instagram_status', [BasicSettingsController::class, 'instagram_status'])->name('settings.instagram_status');
+    Route::post('settings/youtube', [BasicSettingsController::class, 'youtube'])->name('settings.youtube');
+    Route::get('settings/youtube_status', [BasicSettingsController::class, 'youtube_status'])->name('settings.youtube_status');
+    Route::post('settings/about', [BasicSettingsController::class, 'about'])->name('settings.about');
+
 
 
     // LiveWire
