@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
             'youtube' => 'youtube',
             'about_title' => 'about_title',
             'about_description' => 'about_description',
+            'address' => 'Damkura, Paba, Rajshahi',
+            'email' => 'rmt@gmail.com',
+            'phone' => '01740080009',
         ]);
     }
 }

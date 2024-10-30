@@ -35,20 +35,21 @@
 							<a class="nav-link" href="{{ route('index') }}">Home</a>
 						</li>
 						<li class="nav-item {{ Route::is('shop') ? 'active' : '' }}"><a class="nav-link" href="{{ route('shop') }}">Shop</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Repair</a></li>
 						<li class="nav-item {{ Route::is('services') ? 'active' : '' }}"><a class="nav-link" href="{{ route('services') }}">Services</a></li>
 						<li class="nav-item {{ Route::is('aboutus') ? 'active' : '' }}"><a class="nav-link" href="{{ route('aboutus') }}">About us</a></li>
 						<li class="nav-item {{ Route::is('contact') ? 'active' : '' }}"><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                        @auth('customer')
-						{{-- <li><a class="nav-link" href="">{{ Auth::guard('customer')->user()->name }}</a></li> --}}
-						<li><a class="nav-link" href="{{ route('customer.logout') }}">Logout</a></li>
+						<li><a class="nav-link" href="{{ route('cart') }}"><img src="{{ asset('frontend') }}/images/cart.svg"></a></li>
 
+                        @auth('customer')
+						{{-- <li><a class="nav-link" href="#"><img title="Wish List" class=" text-danger" src="{{ asset('frontend') }}/images/heart.svg"></a></li> --}}
+						<li><a class="nav-link" href="{{ route('customer.logout') }}"><img title="Logout" src="{{ asset('frontend') }}/images/log-out.svg"></a></li>
                         @else
 						<li><a class="nav-link" href="{{ route('customer.login') }}"><img src="{{ asset('frontend') }}/images/user.svg"></a></li>
                         @endauth
-						<li><a class="nav-link" href="{{ route('cart') }}"><img src="{{ asset('frontend') }}/images/cart.svg"></a></li>
 					</ul>
 				</div>
 			</div>
@@ -76,15 +77,31 @@
 						{{-- <p class="mb-4"></p> --}}
 
 						<ul class="list-unstyled custom-social">
-							<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+                            @if ($settings->facebook && $settings->facebook_status == 0)
+							    <li><a target="blank" href="{{ $settings->facebook }}"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+                            @endif
+                            @if ($settings->twiter && $settings->twiter_status == 0)
+							    <li><a target="blank" href="{{ $settings->twiter }}"><span class="fa fa-brands fa-twitter"></span></a></li>
+                            @endif
+                            @if ($settings->instagram && $settings->instagram_status == 0)
+							    <li><a target="blank" href="{{ $settings->instagram }}"><span class="fa fa-brands fa-instagram"></span></a></li>
+                            @endif
+                            @if ($settings->youtube && $settings->youtube_status == 0)
+							    <li><a target="blank" href="{{ $settings->youtube }}"><span class="fa fa-brands fa-linkedin"></span></a></li>
+                            @endif
 						</ul>
 					</div>
 
 					<div class="col-lg-8">
 						<div class="row links-wrap">
+							<div class="col-6 col-sm-6 col-md-3">
+								<ul class="list-unstyled">
+									<li><a href="{{ route('index') }}">Home</a></li>
+									<li><a href="{{ route('shop') }}">Shop</a></li>
+									<li><a href="{{ route('contact') }}">Repair</a></li>
+								</ul>
+							</div>
+
 							<div class="col-6 col-sm-6 col-md-3">
 								<ul class="list-unstyled">
 									<li><a href="{{ route('aboutus') }}">About us</a></li>
@@ -95,15 +112,7 @@
 
 							<div class="col-6 col-sm-6 col-md-3">
 								<ul class="list-unstyled">
-									<li><a href="#">Support</a></li>
-									<li><a href="#">Knowledge base</a></li>
-									<li><a href="#">Live chat</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Our team</a></li>
+									<li><a href="{{ route('contact') }}">Live chat</a></li>
 									<li><a href="#">Leadership</a></li>
 									<li><a href="#">Privacy Policy</a></li>
 								</ul>
@@ -111,9 +120,18 @@
 
 							<div class="col-6 col-sm-6 col-md-3">
 								<ul class="list-unstyled">
-									<li><a href="#">Mobile</a></li>
-									<li><a href="#">Earphone</a></li>
-									<li><a href="#">Servicing</a></li>
+									@if ($settings->facebook && $settings->facebook_status == 0)
+                                        <li><a target="blank" href="{{ $settings->facebook }}">Faecbook</a></li>
+                                    @endif
+                                    @if ($settings->twiter && $settings->twiter_status == 0)
+                                        <li><a target="blank" href="{{ $settings->twiter }}">Twiter</a></li>
+                                    @endif
+                                    @if ($settings->instagram && $settings->instagram_status == 0)
+                                        <li><a target="blank" href="{{ $settings->instagram }}">Instagram</a></li>
+                                    @endif
+                                    @if ($settings->youtube && $settings->youtube_status == 0)
+                                        <li><a target="blank" href="{{ $settings->youtube }}">YouTube</a></li>
+                                    @endif
 								</ul>
 							</div>
 						</div>

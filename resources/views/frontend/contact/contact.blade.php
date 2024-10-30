@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="hero-img-wrap">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                   </svg>
                 </div> <!-- /.icon -->
                 <div class="service-contents">
-                  <p>Damkura hat, Paba, Rajshahi.</p>
+                  <p> {{ $settings->address }}</p>
                 </div> <!-- /.service-contents-->
               </div> <!-- /.service -->
             </div>
@@ -57,7 +57,7 @@
                   </svg>
                 </div> <!-- /.icon -->
                 <div class="service-contents">
-                  <p>rmt@gmail.com</p>
+                  <p>{{ $settings->email }}</p>
                 </div> <!-- /.service-contents-->
               </div> <!-- /.service -->
             </div>
@@ -70,7 +70,7 @@
                   </svg>
                 </div> <!-- /.icon -->
                 <div class="service-contents">
-                  <p>+1 294 3925 3939</p>
+                  <p> {{ $settings->phone }}</p>
                 </div> <!-- /.service-contents-->
               </div> <!-- /.service -->
             </div>

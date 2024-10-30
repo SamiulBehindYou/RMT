@@ -26,13 +26,13 @@
 
 				<div class="row mb-5">
 					<div class="col-lg-5 mx-auto text-center">
-						<h2 class="section-title">Know About us</h2>
+						<h2 class="section-title">{{ $settings->about_title }}</h2>
 					</div>
 				</div>
 
 				<div class="row">
                     <div class="col-md-12">
-                        {{-- <p></p> --}}
+                        {!! $settings->about_description !!}
                     </div>
 				</div>
 			</div>

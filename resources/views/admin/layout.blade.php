@@ -238,6 +238,12 @@
                 <span class="link-title ml-2 ">Basic Settings</span>
             </a>
           </div>
+          <div class="form-check form-check-inline">
+            <a href="{{ route('settings.contact') }}" class="text-black">
+                <i class="link-icon" data-feather="map-pin"></i>
+                <span class="link-title ml-2 ">Contact Info</span>
+            </a>
+          </div>
         </div>
 
       </div>

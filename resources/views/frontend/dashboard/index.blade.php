@@ -10,8 +10,8 @@
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
-								<h1>Gaming Phone <span clsas="d-block">Play game</span></h1>
-								<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
+								<h1>{{ $settings->web_title }}</h1>
+								<p class="mb-4">{{ $settings->web_tag_line }}</p>
 								<p><a href="#shopnow" class="btn btn-secondary me-2">Shop Now</a><a href="{{ route('shop') }}" class="btn btn-white-outline">Explore</a></p>
 							</div>
 						</div>

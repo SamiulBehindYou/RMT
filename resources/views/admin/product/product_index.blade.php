@@ -18,14 +18,14 @@
                     <div class="form-row">
                       <div class="form-group col-md-8">
                         <label for="inputEmail4">Product Name</label>
-                        <input type="text" class="form-control" placeholder="Product name" name="name">
+                        <input type="text" value="{{ old('name') }}" class="form-control" placeholder="Product name" name="name">
                         @error('name')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputPassword4">Product ID</label>
-                        <input type="text" class="form-control" placeholder="product_id" name="product_id">
+                        <input type="text" value="{{ old('product_id') }}" class="form-control" placeholder="product_id" name="product_id">
                         @error('product_id')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
@@ -36,7 +36,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputEmail4">Purchase Price</label>
-                            <input type="number" class="form-control" placeholder="Purchase Price" name="purchase">
+                            <input type="number" value="{{ old('purchase') }}" class="form-control" placeholder="Purchase Price" name="purchase">
                             @error('purchase')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputPassword4">Tax <small class="text-info">(If eligible)</small></label>
-                            <input type="number" class="form-control" placeholder="tax" name="tax">
+                            <input type="number" value="{{ old('tax') }}" class="form-control" placeholder="tax" name="tax">
                             @error('tax')
                                 <strong class="text-danger">{{ $message }}</strong>
                             @enderror
@@ -68,21 +68,21 @@
                     <div class="form-row">
                       <div class="form-group col-md-4">
                         <label for="inputEmail4">Price</label>
-                        <input type="number" class="form-control"  placeholder="Price" id="price" name="price">
+                        <input type="number" value="{{ old('price') }}" class="form-control"  placeholder="Price" id="price" name="price">
                         @error('price')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputPassword4">Discount (%)</label>
-                        <input type="number" class="form-control" placeholder="Discount" id="discount" onblur="dis()" name="discount">
+                        <input type="number" value="{{ old('discount') }}" class="form-control" placeholder="Discount" id="discount" onblur="dis()" name="discount">
                         @error('discount')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputPassword4">After Discount</label>
-                        <input type="number" readonly class="form-control bg-white" placeholder="After_discount" id="after_discount" name="after_discount">
+                        <input type="number" value="{{ old('after_discount') }}" readonly class="form-control bg-white" placeholder="After_discount" id="after_discount" name="after_discount">
                         @error('after_discount')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
@@ -97,7 +97,7 @@
                             <select name="brand" class="form-control select-search">
                                 <option value="">Select Brand</option>
                                 @foreach ($brands as $brand)
-                                    <option value="{{ $brand->id }}">{{ $brand->brand }}</option>
+                                    <option {{ old('brand') == $brand->id ? 'selected':'' }} value="{{ $brand->id }}">{{ $brand->brand }}</option>
                                 @endforeach
                             </select>
                             @error('brand')
@@ -110,7 +110,7 @@
                             <select name="subcategory" class="form-control select-search">
                                 <option value="">Select subcategory</option>
                                 @foreach ($subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                                    <option {{ old('brand') == $subcategory->id ? 'selected':'' }} value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
                                 @endforeach
                             </select>
                             @error('subcategory')
@@ -120,7 +120,7 @@
 
                         <div class="form-group col-md-4">
                             <label for="inputPassword4">Made in</label>
-                            <input type="text" class="form-control" id="inputPassword4" placeholder="Made_in" name="made_in">
+                            <input value="{{ old('made_in') }}" type="text" class="form-control" id="inputPassword4" placeholder="Made_in" name="made_in">
 
                             @error('made_in')
                                 <strong class="text-danger">{{ $message }}</strong>
@@ -132,7 +132,7 @@
                     <div class="form-row">
                       <div class="form-group col-md-8">
                         <label for="inputCity">Short Description</label>
-                        <textarea name="short_description" rows="12" class="form-control"></textarea>
+                        <textarea name="short_description" rows="12" class="form-control">{{ old('short_description') }}</textarea>
                         @error('short_description')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
@@ -150,7 +150,7 @@
 
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        <textarea name="description" id="summernote" rows="5" class="form-control"></textarea>
+                        <textarea name="description" id="summernote" rows="5" class="form-control">{{ old('description') }}</textarea>
                         @error('description')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror

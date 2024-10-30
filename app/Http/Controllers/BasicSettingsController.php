@@ -28,7 +28,7 @@ class BasicSettingsController extends Controller
     }
     public function tag_line(Request $request){
         $request->validate([
-            'tag_line' => 'required|max:150'
+            'tag_line' => 'required|max:250'
         ]);
 
         BasicSettings::first()->update([
@@ -207,6 +207,44 @@ class BasicSettingsController extends Controller
             'about_description' => $request->description,
         ]);
         return back()->withSuccess('About updated successfully!');
+    }
+
+    // Contact info
+    public function contact(Request $request){
+        return view('admin.basic_settings.contact_info');
+    }
+
+    public function address(Request $request){
+        $request->validate([
+            'address' => 'required'
+        ]);
+
+        BasicSettings::first()->update([
+            'address' => $request->address,
+        ]);
+        return back()->withSuccess('Address updated successfully!');
+    }
+
+    public function email(Request $request){
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        BasicSettings::first()->update([
+            'email' => $request->email,
+        ]);
+        return back()->withSuccess('Email updated successfully!');
+    }
+
+    public function phone(Request $request){
+        $request->validate([
+            'phone' => 'required|min_digits:11|max_digits:11'
+        ]);
+
+        BasicSettings::first()->update([
+            'phone' => $request->phone,
+        ]);
+        return back()->withSuccess('Phone updated successfully!');
     }
 
 }

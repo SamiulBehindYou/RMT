@@ -27,6 +27,9 @@ return new class extends Migration
             $table->integer('youtube_status')->default(0);
             $table->string('about_title');
             $table->longText('about_description');
+            $table->string('address');
+            $table->string('email');
+            $table->string('phone');
             $table->longText('PrivacyPolicy')->nullable();
             $table->longText('Terms&Conditions')->nullable();
             $table->timestamps();

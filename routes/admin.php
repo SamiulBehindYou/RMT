@@ -89,7 +89,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('settings/youtube', [BasicSettingsController::class, 'youtube'])->name('settings.youtube');
     Route::get('settings/youtube_status', [BasicSettingsController::class, 'youtube_status'])->name('settings.youtube_status');
     Route::post('settings/about', [BasicSettingsController::class, 'about'])->name('settings.about');
-
+    // Contact Info
+    Route::get('settings/contact', [BasicSettingsController::class, 'contact'])->name('settings.contact');
+    Route::post('settings/about', [BasicSettingsController::class, 'about'])->name('settings.about');
+    Route::post('settings/address', [BasicSettingsController::class, 'address'])->name('address');
+    Route::post('settings/email', [BasicSettingsController::class, 'email'])->name('email');
+    Route::post('settings/phone', [BasicSettingsController::class, 'phone'])->name('phone');
 
 
     // LiveWire
