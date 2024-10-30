@@ -1,39 +1,39 @@
 # E-Commerce Website (RMT)
 
 About Website:
-1. Authentication system                                -->Ready👍!
+1. Authentication system---------------------------------->Ready👍!
 
 2. Admin Panel
-<br>->Admin profile Edit                                -->Ready👍!
-<br>->Admin profile delete(require password)            -->Ready👍!
-<br>->Brand Add/View/Delete/Trash                       -->Ready👍!
-<br>->Category Add/View/Delete/Trash                    -->Ready👍!
-<br>->Sub category Add/View/Delete/Trash                -->Ready👍!
-<br>->Product Add/View/Delete/Trash                     -->Ready👍!
-<br>->Product dataTable                                 -->Ready👍!
-<br>->Color & Size                                      -->Ready👍!
-<br>->Online Sales                                      -->Ready👍!
-<br>->Coupon Create                                     -->Ready👍!
-<br>->Offline Sales                                     -->Ready👍!
-<br>->Sales panel                                       -->Ready👍!
-<br>->Invoice view/Trash                                -->Ready👍!
-<br>->Admin Message View                                -->Ready👍!
-<br>->Admin Message Notification with alert             -->Ready👍!
-<br>->Contact info update                               -->Ready👍!
+<br>->Admin profile Edit---------------------------------->Ready👍!
+<br>->Admin profile delete(require password)-------------->Ready👍!
+<br>->Brand Add/View/Delete/Trash------------------------->Ready👍!
+<br>->Category Add/View/Delete/Trash---------------------->Ready👍!
+<br>->Sub category Add/View/Delete/Trash------------------>Ready👍!
+<br>->Product Add/View/Delete/Trash----------------------->Ready👍!
+<br>->Product dataTable----------------------------------->Ready👍!
+<br>->Color & Size---------------------------------------->Ready👍!
+<br>->Online Sales---------------------------------------->Ready👍!
+<br>->Coupon Create--------------------------------------->Ready👍!
+<br>->Offline Sales--------------------------------------->Ready👍!
+<br>->Sales panel----------------------------------------->Ready👍!
+<br>->Invoice view/Trash---------------------------------->Ready👍!
+<br>->Admin Message View---------------------------------->Ready👍!
+<br>->Admin Message Notification with alert--------------->Ready👍!
+<br>->Contact info update--------------------------------->Ready👍!
  
  3. FrontEnd Section
-<br>->Landing Page                                      -->Ready👍!
-<br>->Shop Page                                         -->Ready👍!
-<br>->Category wise product                             -->Ready👍!
-<br>->brand wise product                                -->Ready👍!
-<br>->About Page                                        -->Ready👍!
-<br>->Contact us Page with (location, email, phone)     -->Ready👍!
-<br>->Subscriber                                        -->Ready👍!
-<br>->Cart                                              -->Ready👍!
-<br>->Coupon Apply                                      -->Ready👍!
-<br>->Message admin                                     -->Ready👍!
-<br>->Testimonial                                       -->Ready👍!
-<br>->Settings (title, tag, social links, about)        -->Ready👍!
+<br>->Landing Page---------------------------------------->Ready👍!
+<br>->Shop Page------------------------------------------->Ready👍!
+<br>->Category wise product------------------------------->Ready👍!
+<br>->brand wise product---------------------------------->Ready👍!
+<br>->About Page------------------------------------------>Ready👍!
+<br>->Contact us Page with (location, email, phone)------->Ready👍!
+<br>->Subscriber------------------------------------------>Ready👍!
+<br>->Cart------------------------------------------------>Ready👍!
+<br>->Coupon Apply---------------------------------------->Ready👍!
+<br>->Message admin--------------------------------------->Ready👍!
+<br>->Testimonial----------------------------------------->Ready👍!
+<br>->Settings (title, tag, social links, about)---------->Ready👍!
 
 Working On: Checking
 
