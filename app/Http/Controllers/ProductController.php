@@ -65,11 +65,11 @@ class ProductController extends Controller
             // Tumbnail
         $manager = new ImageManager(Driver::class);
         $image = $manager->read($request->image);
-        $image->resize(300, 250);
+        $image->resize(600, 600);
         $image->save(public_path('uploads/products/tumbnail/'.$file_name));
             // Big Image
         $image = $manager->read($request->image);
-        $image->cover(2000, 1500);
+        $image->cover(2000, 2000);
         $image->save(public_path('uploads/products/original/'.$file_name));
 
         // Convert tag array to String

@@ -24,7 +24,7 @@
                             <td>{{ $message->email }}</td>
                             <td>{{ $message->number }}</td>
                             <td>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('delete.message', $message->id) }}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                         <tr>

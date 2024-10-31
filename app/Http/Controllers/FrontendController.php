@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Repair;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -44,5 +45,10 @@ class FrontendController extends Controller
     public function single_product($id){
         $product = Product::find($id);
         return view('frontend.dashboard.single_product', compact('product'));
+    }
+
+    public function view_repair(){
+        $repairs = Repair::where('status', 0)->paginate(20);
+        return view('frontend.repair.repair', compact('repairs'));
     }
 }

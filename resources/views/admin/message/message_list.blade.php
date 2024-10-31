@@ -11,7 +11,7 @@
             <div class="card-body">
                 <table class="table text-center">
                     <thead>
-                        <tr>
+                        <tr class="">
                             <th>SL</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -30,7 +30,7 @@
                                 <td>{{ $message->created_at->diffForHumans() }}</td>
                                 <td>
                                     <a href="{{ route('single.message', $message->id) }}" class="btn btn-facebook">View</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="{{ route('delete.message', $message->id) }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         @empty

@@ -198,12 +198,34 @@
               </ul>
             </div>
           </li>
+
           <li class="nav-item">
             <a href="{{ route('coupon.index') }}" class="nav-link">
               <i class="link-icon" data-feather="percent"></i>
               <span class="link-title">Coupon</span>
             </a>
           </li>
+
+
+          <li class="nav-item nav-category">Fundamentals</li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#repair" role="button" aria-expanded="false" aria-controls="repair">
+              <i class="link-icon" data-feather="cpu"></i>
+              <span class="link-title">Repairing</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="repair">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <a href="{{ route('repair') }}" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('repair.trash') }}" class="nav-link">Trash</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="link-icon" data-feather="crosshair"></i>

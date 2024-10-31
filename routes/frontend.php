@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 // Index page
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
+Route::get('/repair/view', [FrontendController::class, 'view_repair'])->name('view.repair');
 Route::get('/aboutus', [FrontendController::class, 'aboutus'])->name('aboutus');
 Route::get('/services', [FrontendController::class, 'services'])->name('services');
 // Message

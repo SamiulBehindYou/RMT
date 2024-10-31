@@ -46,6 +46,11 @@ class MessageController extends Controller
         return view('admin.message.single_message', compact('message'));
     }
 
+    public function delete($id){
+        Message::findOrFail($id)->delete();
+        return redirect()->route('view.message')->withSuccess('All messages deleted successfully!');
+    }
+
     public function delete_all(){
         Message::truncate();
         return back()->withSuccess('All messages deleted successfully!');

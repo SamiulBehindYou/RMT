@@ -35,7 +35,7 @@
 							<a class="nav-link" href="{{ route('index') }}">Home</a>
 						</li>
 						<li class="nav-item {{ Route::is('shop') ? 'active' : '' }}"><a class="nav-link" href="{{ route('shop') }}">Shop</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Repair</a></li>
+						<li class="nav-item {{ Route::is('view.repair') ? 'active' : '' }}"><a class="nav-link" href="{{ route('view.repair') }}">Repair</a></li>
 						<li class="nav-item {{ Route::is('services') ? 'active' : '' }}"><a class="nav-link" href="{{ route('services') }}">Services</a></li>
 						<li class="nav-item {{ Route::is('aboutus') ? 'active' : '' }}"><a class="nav-link" href="{{ route('aboutus') }}">About us</a></li>
 						<li class="nav-item {{ Route::is('contact') ? 'active' : '' }}"><a class="nav-link" href="{{ route('contact') }}">Contact us</a></li>
@@ -94,15 +94,15 @@
 
 					<div class="col-lg-8">
 						<div class="row links-wrap">
-							<div class="col-6 col-sm-6 col-md-3">
+							<div class="col-6 col-sm-6 col-md-4">
 								<ul class="list-unstyled">
 									<li><a href="{{ route('index') }}">Home</a></li>
 									<li><a href="{{ route('shop') }}">Shop</a></li>
-									<li><a href="{{ route('contact') }}">Repair</a></li>
+									<li><a href="{{ route('view.repair') }}">Repair</a></li>
 								</ul>
 							</div>
 
-							<div class="col-6 col-sm-6 col-md-3">
+							<div class="col-6 col-sm-6 col-md-4">
 								<ul class="list-unstyled">
 									<li><a href="{{ route('aboutus') }}">About us</a></li>
 									<li><a href="{{ route('services') }}">Services</a></li>
@@ -110,15 +110,7 @@
 								</ul>
 							</div>
 
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="{{ route('contact') }}">Live chat</a></li>
-									<li><a href="#">Leadership</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
+							<div class="col-6 col-sm-6 col-md-4">
 								<ul class="list-unstyled">
 									@if ($settings->facebook && $settings->facebook_status == 0)
                                         <li><a target="blank" href="{{ $settings->facebook }}">Faecbook</a></li>

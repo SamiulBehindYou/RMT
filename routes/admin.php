@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LiveWireRoutesController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RepairController;
 use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +67,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Message
     Route::get('view/message', [MessageController::class, 'view_message'])->name('view.message');
     Route::get('message/delete/all', [MessageController::class, 'delete_all'])->name('delete.all');
+    Route::get('message/delete/{id}', [MessageController::class, 'delete'])->name('delete.message');
     Route::get('single_message/{id}', [MessageController::class, 'single_message'])->name('single.message');
 
     // Testimonial
@@ -95,6 +97,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('settings/address', [BasicSettingsController::class, 'address'])->name('address');
     Route::post('settings/email', [BasicSettingsController::class, 'email'])->name('email');
     Route::post('settings/phone', [BasicSettingsController::class, 'phone'])->name('phone');
+
+    // Repair Services
+    Route::get('repairing', [RepairController::class, 'repair'])->name('repair');
+    Route::get('repair/r_trash', [RepairController::class, 'repair_trash'])->name('repair.trash');
+    Route::post('repairing', [RepairController::class, 'repair_store'])->name('repair.store');
+    Route::get('repair/status/{id}', [RepairController::class, 'repair_status'])->name('repair.status');
+    Route::get('repair/delete/{id}', [RepairController::class, 'repair_delete'])->name('repair.delete');
+    Route::get('repair/restore/{id}', [RepairController::class, 'repair_restore'])->name('repair.restore');
+    Route::get('repair/per_delete/{id}', [RepairController::class, 'repair_per_delete'])->name('repair.per_delete');
 
 
     // LiveWire

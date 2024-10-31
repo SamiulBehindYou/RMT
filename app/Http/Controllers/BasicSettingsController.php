@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\BasicSettings;
 use Illuminate\Http\Request;
-use Intervention\Image\Colors\Rgb\Channels\Red;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
