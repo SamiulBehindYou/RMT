@@ -80,6 +80,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('settings/basic', [BasicSettingsController::class, 'basic_settings'])->name('basic.settings');
     Route::post('settings/title', [BasicSettingsController::class, 'title'])->name('title');
     Route::post('settings/tag_line', [BasicSettingsController::class, 'tag_line'])->name('tag.line');
+    Route::post('settings/landing', [BasicSettingsController::class, 'landing_image'])->name('landing.image');
     Route::post('settings/icon', [BasicSettingsController::class, 'icon'])->name('icon');
     Route::post('settings/logo', [BasicSettingsController::class, 'logo'])->name('logo');
     Route::post('settings/facebook', [BasicSettingsController::class, 'facebook'])->name('settings.facebook');

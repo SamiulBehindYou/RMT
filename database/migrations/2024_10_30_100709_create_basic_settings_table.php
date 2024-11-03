@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('web_title');
             $table->text('web_tag_line');
+            $table->string('landing_image')->nullable();
             $table->string('icon')->nullable();
             $table->string('logo')->nullable();
             $table->string('facebook');

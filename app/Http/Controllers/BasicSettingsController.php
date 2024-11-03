@@ -27,7 +27,7 @@ class BasicSettingsController extends Controller
     }
     public function tag_line(Request $request){
         $request->validate([
-            'tag_line' => 'required|max:250'
+            'tag_line' => 'required|max:450'
         ]);
 
         BasicSettings::first()->update([
@@ -60,6 +60,32 @@ class BasicSettingsController extends Controller
             'icon' => $file_name,
         ]);
         return back()->withSuccess('Icon updated successfully!');
+    }
+
+    public function landing_image(Request $request){
+        $request->validate([
+            'landing_image' => 'required|max:4096|mimes:png'
+        ],[
+            'landing_image.max' => 'Maximum 4MB!',
+        ]);
+
+        $landing_image = BasicSettings::first();
+        if($landing_image->landing_image != null){
+            unlink(public_path('uploads/settings/landing_image/'.$landing_image->landing_image));
+        }
+
+
+        $extension = $request->landing_image->extension();
+        $file_name = uniqid().'.'.$extension;
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($request->landing_image);
+        $image->resize(900, 900);
+        $image->save(public_path('uploads/settings/landing_image/'.$file_name));
+
+        BasicSettings::first()->update([
+            'landing_image' => $file_name,
+        ]);
+        return back()->withSuccess('Landing image updated successfully!');
     }
 
     public function logo(Request $request){
