@@ -112,7 +112,7 @@
                                         @foreach ($i_info as $inventory)
                                             @if ($inventory->color_id != null)
                                                 @if ($inventory->quantity > 0)
-                                                    <option value="{{ $inventory->id }}">{{ $inventory->rel_to_color->color_name }} -> {{ $inventory->rel_to_size->size }} -> Q:{{ $inventory->quantity }}</option>
+                                                    <option value="{{ $inventory->id }}">{{ $inventory->rel_to_color != null ? $inventory->rel_to_color->color_name:'No color' }} -> {{ $inventory->rel_to_size != null ? $inventory->rel_to_size->size:'No size' }} -> Q:{{ $inventory->quantity }}</option>
                                                 @endif
                                             @endif
                                         @endforeach

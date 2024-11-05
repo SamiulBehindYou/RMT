@@ -547,6 +547,18 @@
     </script>
     @endif
 
+    @if (session('error'))
+    <script>
+        Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "{{ session('success') }}",
+        showConfirmButton: false,
+        timer: 1500
+        });
+    </script>
+    @endif
+
     @if (session('info'))
     <script>
         Swal.fire({

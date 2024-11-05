@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\inventory;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\Tag;
@@ -130,8 +131,13 @@ class ProductController extends Controller
     }
 
     public function delete_product($id){
-        Product::find($id)->delete();
-        return back()->withInfo('Product move to trash!');
+        $inventory = inventory::where('product_id', $id)->count();
+        if($inventory == 0){
+            Product::find($id)->delete();
+            return back()->withSuccess('Product move to trash!');
+        }
+
+        return back()->withInfo('Clear inventory first!');
     }
 
     public function view_trash(){
