@@ -85,7 +85,7 @@
                 <div class="col-6 col-md-12 col-xl-5">
                   <h3 class="mb-2">{{ $monthly_sale }}</h3>
                   <div class="d-flex align-items-baseline">
-                    
+
                   </div>
                 </div>
                 <div class="col-6 col-md-12 col-xl-7">
@@ -293,7 +293,7 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary btn-block">Set New Target</button>
+          <button class="btn btn-primary btn-block">Set New Aim</button>
         </div>
       </div>
     </div>
