@@ -14,8 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'RMT'),
-
-    'asset_url' => env('ASSET_URL', route('index').'/public/'),
+    
 
     /*
     |--------------------------------------------------------------------------
