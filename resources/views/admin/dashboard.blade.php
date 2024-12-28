@@ -293,7 +293,7 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary btn-block">Set New Target</button>
+          <button class="btn btn-primary btn-block">Set New Aim</button>
         </div>
       </div>
     </div>
