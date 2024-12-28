@@ -43,10 +43,16 @@
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" name="password" class="form-control" id="exampleInputPassword1" autocomplete="current-password" placeholder="Password">
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
                       <div class="form-check form-check-flat form-check-primary">
                         <label class="form-check-label">
