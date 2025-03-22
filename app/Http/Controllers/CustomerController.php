@@ -24,4 +24,8 @@ class CustomerController extends Controller
 
         return back()->withSuccess('Status changed!');
     }
+
+    public function profile(){
+        return view('frontend.customer.profile');
+    }
 }

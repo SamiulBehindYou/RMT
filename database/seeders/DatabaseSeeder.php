@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('Pa$$w0rd!'),
         ]);
 
-        BasicSettings::factory()->create([
+        BasicSettings::create([
             'web_title' => 'web_title',
             'web_tag_line' => 'web_tag_line',
             'facebook' => 'facebook',

@@ -29,4 +29,8 @@ class CartController extends Controller
         }
         return back()->withSuccess('Product added to cart!');
     }
+
+    public function checkout(){
+        return abort(404);
+    }
 }

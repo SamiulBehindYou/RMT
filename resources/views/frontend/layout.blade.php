@@ -12,9 +12,12 @@
 		<!-- Bootstrap CSS -->
 		<link href="{{ asset('frontend') }}/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 		<link href="{{ asset('frontend') }}/css/tiny-slider.css" rel="stylesheet">
 		<link href="{{ asset('frontend') }}/css/style.css" rel="stylesheet">
 		<title>RMT.com</title>
+
+        @yield('css')
 	</head>
 
 	<body>
@@ -42,13 +45,13 @@
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="{{ route('cart') }}"><img src="{{ asset('frontend') }}/images/cart.svg"></a></li>
+						<li><a class="nav-link" href="{{ route('cart') }}"><i class="bi bi-cart4 h4"></i></a></li>
 
                         @auth('customer')
-						{{-- <li><a class="nav-link" href="#"><img title="Wish List" class=" text-danger" src="{{ asset('frontend') }}/images/heart.svg"></a></li> --}}
-						<li><a class="nav-link" href="{{ route('customer.logout') }}"><img title="Logout" src="{{ asset('frontend') }}/images/log-out.svg"></a></li>
+						<li><a class="nav-link mx-1" href="{{ route('customer.profile') }}"><i class="bi bi-person-circle h4"></i></a></li>
+						<li><a class="nav-link mx-1" href="{{ route('customer.logout') }}"><i class="bi bi-box-arrow-right h4"></i></a></li>
                         @else
-						<li><a class="nav-link" href="{{ route('customer.login') }}"><img src="{{ asset('frontend') }}/images/user.svg"></a></li>
+						<li><a class="nav-link mx-1" href="{{ route('customer.login') }}"><i class="bi bi-box-arrow-in-right h4"></i></a></li>
                         @endauth
 					</ul>
 				</div>

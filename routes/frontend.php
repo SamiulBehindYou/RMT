@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontAuthController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\FrontLivewireController;
@@ -27,9 +28,12 @@ Route::post('customer/login', [FrontAuthController::class, 'customer_login'])->n
 
 
 Route::middleware('customer')->group(function(){
+    // customer profile
+    Route::get('customer/profile', [CustomerController::class, 'profile'])->name('customer.profile');
     Route::get('customer/logout', [FrontAuthController::class, 'logout'])->name('customer.logout');
     Route::get('add/cart/{id}', [CartController::class, 'add_cart'])->name('add.cart');
 
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
 
     // Front Livewire Routes
     Route::get('cart', [FrontLivewireController::class, 'cart'])->name('cart');
