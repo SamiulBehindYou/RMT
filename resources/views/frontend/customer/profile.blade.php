@@ -51,7 +51,7 @@
                               Name:
                           </div>
                           <div class="col-10">
-                              {{ Auth::user()->name }}
+                              {{ Auth::guard('customer')->user()->name }}
                           </div>
                       </div>
                       <div class="d-flex inline py-1">
@@ -59,7 +59,7 @@
                               Email:
                           </div>
                           <div class="col-10">
-                              {{ Auth::user()->email }}
+                              {{ Auth::guard('customer')->user()->email }}
                           </div>
                       </div>
                       <div class="d-flex inline py-1">
@@ -67,7 +67,7 @@
                               Created at:
                           </div>
                           <div class="col-10">
-                              {{ Auth::user()->created_at }}
+                              {{ Auth::guard('customer')->user()->created_at }}
                           </div>
                       </div>
 
