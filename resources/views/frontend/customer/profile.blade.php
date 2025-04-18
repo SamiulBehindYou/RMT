@@ -6,15 +6,18 @@
             width: 150px;
         }
         .profile-img{
-            position: absolute;
-            z-index: 5;
+            /* z-index: 5; */
         }
         .profile-list {
-            position: relative;
             height: 450px;
             background: #3b5d50;
-            margin-top: 20px;
-            border-radius: 35% 11% 0% 0%;
+            border-radius: 4%;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .bg-layer{
+            background:#3b5d50;
+            border-radius: 4%;
         }
         .list{
             /* margin: auto; */
@@ -36,15 +39,36 @@
           <div class="col-md-8 col-lg-8 pb-0 mb-0">
 
 
-            <div class="row">
-              <div class="col-lg-4 mt-5">
-                  <div class="profile-img">
-                    <img src="{{ asset('frontend/images/person_4.jpg') }}" class="rounded-circle profile-pic">
+            <div class="row my-2">
+              <div class="col-lg-6 m-auto ">
+                  <div class="bg-layer p-2">
+                    <div class="profile-list d-flex justify-content-center align-items-center flex-column p-2">
+                        <div class="profile-img my-2">
+                          <img src="{{ asset('frontend/images/person_4.jpg') }}" class="rounded-circle profile-pic">
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-white m-0">
+                                {{ Auth::guard('customer')->user()->name }}
+                            </h3>
+                            <p class="text-white m-0">
+                                {{ Auth::guard('customer')->user()->email }}
+                            </p>
+                            <p class="text-white m-0">
+                                {{ Auth::guard('customer')->user()->phone }}
+                            </p>
+                            <p class="text-white m-0">
+                                {{ Auth::guard('customer')->user()->address }}
+                            </p>
+                            <div class="mt-2">
+                                <a href="#" class="btn btn-sm btn-facebook">Update</a>
+                            </div>
+                        </div>
+
+                    </div>
                   </div>
-                  <div class="profile-list"></div>
               </div>
 
-              <div class="col-lg-8 m-auto">
+              {{-- <div class="col-lg-8 m-auto">
                   <div class="mt-4 fs-4 list">
                       <div class="d-flex inline py-1">
                           <div class="col-3">
@@ -75,7 +99,7 @@
                             <a href="" class="btn btn-primary btn-sm">Update</a>
                         </div>
                   </div>
-              </div>
+              </div> --}}
             </div>
 
             {{-- <div class="row">

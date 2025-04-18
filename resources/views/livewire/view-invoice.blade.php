@@ -3,7 +3,7 @@
         <div class="col-md-10 m-auto">
             <div class="card">
                 <div class="card-header bg-primary">
-                    <h3 class="text-center text-white">Invoice</h3>
+                    <h3 class="text-center text-white">Invoice          </h3>
                 </div>
                 <div class="card-body">
                     @if(session()->has('invoice_delete'))
