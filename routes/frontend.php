@@ -32,6 +32,7 @@ Route::post('customer/login', [FrontAuthController::class, 'customer_login'])->n
 Route::middleware('customer')->group(function(){
     // customer profile
     Route::get('customer/profile', [CustomerController::class, 'profile'])->name('customer.profile');
+    Route::post('customer/update', [FrontAuthController::class, 'update'])->name('customer.profile.update');
     Route::get('customer/logout', [FrontAuthController::class, 'logout'])->name('customer.logout');
     Route::get('add/cart/{id}', [CartController::class, 'add_cart'])->name('add.cart');
 

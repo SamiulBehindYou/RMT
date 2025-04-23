@@ -56,6 +56,29 @@ class FrontAuthController extends Controller
         }
     }
 
+    public function update(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'nullable|confirmed|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+        ]);
+
+        $customer = Auth::guard('customer')->user();
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        // if($request->password){
+        //     $customer->password = bcrypt($request->password);
+        // }
+        $customer->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Profile updated successfully',
+        ]);
+    }
+
     public function logout(Request $request): RedirectResponse
     {
         Auth::guard('customer')->logout();

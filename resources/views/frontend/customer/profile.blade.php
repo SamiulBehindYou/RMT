@@ -81,60 +81,90 @@
 <!-- End Contact Form -->
 
 <!-- Modal Start -->
-<!-- Button trigger modal -->
-{{-- <button type="button" class="btn btn-primary modal-show">
-    Launch demo modal
-  </button> --}}
 
-  <!-- Modal -->
   <div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Update profile</h5>
-          <button type="button" class="close modal-hide btn btn-sm btn-danger">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update profile</h5>
+                <button type="button" class="close modal-hide btn btn-sm btn-danger">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="updateProfile">
+                @csrf
+                <div class="modal-body">
+                    <div class="my-2">
+                        <lebel class="form-label">Name</lebel>
+                        <input type="text" class="form-control" name="name" value="{{ Auth::guard('customer')->user()->name }}">
+                    </div>
+                    <div class="my-2">
+                        <lebel class="form-label">Eamil</lebel>
+                        <input type="text" class="form-control" name="email" value="{{ Auth::guard('customer')->user()->email }}">
+                    </div>
+                    <div class="my-2">
+                        <lebel class="form-label">Phone</lebel>
+                        <input type="text" class="form-control" name="phone" value="{{ Auth::guard('customer')->user()->phone }}">
+                    </div>
+                    <div class="my-2">
+                        <lebel class="form-label">Address</lebel>
+                        <input type="text" class="form-control" name="address" value="{{ Auth::guard('customer')->user()->address }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn modal-hide">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-          <div class="my-2">
-            <lebel class="form-label">Name</lebel>
-            <input type="text" class="form-control" name="name" value="{{ Auth::guard('customer')->user()->name }}">
-          </div>
-          <div class="my-2">
-            <lebel class="form-label">Eamil</lebel>
-            <input type="text" class="form-control" name="email" value="{{ Auth::guard('customer')->user()->email }}">
-          </div>
-          <div class="my-2">
-            <lebel class="form-label">Phone</lebel>
-            <input type="text" class="form-control" name="phone" value="{{ Auth::guard('customer')->user()->phone }}">
-          </div>
-          <div class="my-2">
-            <lebel class="form-label">Address</lebel>
-            <input type="text" class="form-control" name="address" value="{{ Auth::guard('customer')->user()->address }}">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn modal-hide">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
   </div>
 <!-- Modal End -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
 
-<script>
-    $(document).ready(function() {
-        $('.modal-show').click(function() {
-            $('#EditProfile').modal('show');
+
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.modal-show').click(function() {
+                $('#EditProfile').modal('show');
+            });
+            $('.modal-hide').click(function() {
+                $('#EditProfile').modal('hide');
+            });
+
+            $('#updateProfile').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('customer.profile.update') }}",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            $('#EditProfile').modal('hide');
+                            location.reload();
+                        } else {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: response.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    }
+                });
+            });
         });
-        $('.modal-hide').click(function() {
-            $('#EditProfile').modal('hide');
-        });
-    });
-</script>
-
-
+    </script>
 
 @endsection
