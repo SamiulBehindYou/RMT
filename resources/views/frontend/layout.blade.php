@@ -51,7 +51,7 @@
 						<li><a class="nav-link mx-1" href="{{ route('customer.profile') }}"><i class="bi bi-person-circle h4"></i></a></li>
 						<li><a class="nav-link mx-1" href="{{ route('customer.logout') }}"><i class="bi bi-box-arrow-right h4"></i></a></li>
                         @else
-						<li><a class="nav-link mx-1" href="{{ route('customer.login') }}"><i class="bi bi-box-arrow-in-right h4"></i></a></li>
+						<li><a class="nav-link mx-1" href="{{ route('customer.login') }}"><i class="bi bi-shield-lock h4"></i></a></li>
                         @endauth
 					</ul>
 				</div>
@@ -137,7 +137,7 @@
 				<div class="border-top copyright">
 					<div class="row pt-4">
 						<div class="col-lg-6">
-							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="#">Samiul</a>
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a target="_blank" href="http://portfolio.samiulbd.xyz/">Samiul</a>
             </p>
 						</div>
 
