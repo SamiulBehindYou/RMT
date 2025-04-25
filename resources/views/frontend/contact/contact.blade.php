@@ -81,7 +81,7 @@
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                    <label class="text-black" for="fname">Name</label>
+                    <label class="text-black" for="fname">Name <span class="text-danger">*</span></label>
                     <input name="name" type="text" class="form-control" value="{{ old('name') }}" id="fname">
                     @error('name')
                         <strong class="text-danger">{{ $message }}</strong>
@@ -90,7 +90,7 @@
               </div>
               <div class="col-6">
                 <div class="form-group">
-                    <label class="text-black" for="lname">Phone number</label>
+                    <label class="text-black" for="lname">Phone number <span class="text-danger">*</span></label>
                     <input name="number" type="number" class="form-control" value="{{ old('number') }}" id="lname">
                     @error('number')
                         <strong class="text-danger">{{ $message }}</strong>
@@ -99,7 +99,7 @@
               </div>
             </div>
             <div class="form-group">
-                <label class="text-black" for="email">Email address</label>
+                <label class="text-black" for="email">Email address <span class="text-danger">*</span></label>
                 <input name="email" type="email" class="form-control" value="{{ old('email') }}" id="email">
                 @error('email')
                     <strong class="text-danger">{{ $message }}</strong>
@@ -107,7 +107,7 @@
             </div>
 
             <div class="form-group mb-5">
-                <label class="text-black" for="message">Message</label>
+                <label class="text-black" for="message">Message <span class="text-danger">*</span></label>
                 <textarea name="message" name="" class="form-control" id="message" cols="30" rows="5">{{ old('message') }}</textarea>
                 @error('message')
                     <strong class="text-danger">{{ $message }}</strong>
