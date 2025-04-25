@@ -142,13 +142,25 @@
                     </div>
                     </div>
                 @endif
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <span class="text-black">Total</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <strong class="text-black">{{ $total }}</strong>
+                        </div>
+                    </div>
                     <div class="row mb-5">
-                    <div class="col-md-6">
-                        <span class="text-black">Total</span>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <strong class="text-black">{{ $total }}</strong>
-                    </div>
+                        <div class="col-md-6 mt-2">
+                            <span class="text-black">Payment method</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <select name="" class="form-control">
+                                <option value="">SSL Commerz</option>
+                                <option value="">IBBL Bank</option>
+                                <option value="">Stripe (International)</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row">
