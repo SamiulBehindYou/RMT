@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'customer' => CustomerLoginCheck::class
         ]);
+        $middleware->validateCsrfTokens(except: [
+            '/sslcommerz/*',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
