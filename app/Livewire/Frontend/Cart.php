@@ -71,9 +71,9 @@ class Cart extends Component
         $coupon_discount = $this->coupon;
 
         if($this->coupon != null){
-            $total = $sub_total - $this->coupon;
+            $total = $sub_total - $coupon_discount;
         }else{
-            $total = $sub_total - $this->coupon;
+            $total = $sub_total;
         }
 
 
