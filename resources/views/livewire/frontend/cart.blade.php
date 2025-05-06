@@ -200,6 +200,11 @@
     // obj.cus_phone = $('#mobile').val();
     // obj.cus_email = $('#email').val();
     // obj.cus_addr1 = $('#address').val();
+    obj.coupon = null;
+    $('#coupon').change(function () {
+        obj.coupon = $(this).val();
+    });
+
 
     $('#sslczPayBtn').prop('postdata', obj);
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 // use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Cart;
+use App\Models\Coupon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SslCommerzPaymentController extends Controller
@@ -95,26 +98,38 @@ class SslCommerzPaymentController extends Controller
         # Here you have to receive all the order data to initate the payment.
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
+        $customer = Auth::guard('customer')->user();
+
+        $total = Cart::where('user_id', Auth::guard('customer')->user()->id)->where('checkout', 0)->sum('total_price');
+        $coupon_code = json_decode($request->cart_json)->coupon;
+        if($coupon_code){
+            $coupon = Coupon::where('coupon_id', $coupon_code)->status(0)->first();
+            if($coupon){
+                $total = $total - $coupon->discount;
+                $coupon->status = 1;
+                $coupon->save();
+            }
+        }
 
         $post_data = array();
-        $post_data['total_amount'] = '10'; # You cant not pay less than 10
+        $post_data['total_amount'] = $total; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
-        $post_data['cus_name'] = 'Customer Name';
-        $post_data['cus_email'] = 'customer@mail.com';
-        $post_data['cus_add1'] = 'Customer Address';
+        $post_data['cus_name'] = $customer->name;
+        $post_data['cus_email'] = $customer->email;
+        $post_data['cus_add1'] = $customer->address;
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
         $post_data['cus_postcode'] = "";
         $post_data['cus_country'] = "Bangladesh";
-        $post_data['cus_phone'] = '8801XXXXXXXXX';
+        $post_data['cus_phone'] = $customer->phone;
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION
-        $post_data['ship_name'] = "Store Test";
+        $post_data['ship_name'] = env('APP_NAME');
         $post_data['ship_add1'] = "Dhaka";
         $post_data['ship_add2'] = "Dhaka";
         $post_data['ship_city'] = "Dhaka";
