@@ -175,9 +175,14 @@ class SslCommerzPaymentController extends Controller
 
     }
 
+
+
     public function success(Request $request)
     {
-        echo "Transaction is Successful";
+        // dd($request->all());
+        // echo "Transaction is Successful";
+
+        return redirect()->route('index')->withSuccess('Transaction is successfully Completed');
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -203,16 +208,19 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
-                echo "<br >Transaction is successfully Completed";
+                // echo "<br >Transaction is successfully Completed";
+                return redirect()->route('cart')->withSuccess('Transaction is successfully Completed');
             }
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo "Transaction is successfully Completed";
+            // echo "Transaction is successfully Completed";
+            return redirect()->route('cart')->withSuccess('Transaction is successfully Completed');
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
+            return redirect()->route('cart')->withError('Invalid Transaction');
         }
 
 

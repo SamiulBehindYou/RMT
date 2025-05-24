@@ -50,12 +50,12 @@ Route::middleware('customer')->group(function(){
         Route::post('/sslcommerz/pay', [SslCommerzPaymentController::class, 'index']);
         Route::post('/sslcommerz/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
 
-        Route::post('/sslcommerz/success', [SslCommerzPaymentController::class, 'success']);
         Route::post('/sslcommerz/fail', [SslCommerzPaymentController::class, 'fail']);
         Route::post('/sslcommerz/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
         Route::post('/sslcommerz/ipn', [SslCommerzPaymentController::class, 'ipn']);
     });
+    Route::post('/success', [SslCommerzPaymentController::class, 'success'])->name('sslcommerz.success');
     //SSLCOMMERZ END
 
 

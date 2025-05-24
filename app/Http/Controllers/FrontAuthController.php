@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class FrontAuthController extends Controller
 {
     public function login(){
+        if(Auth::guard('customer')->check()){
+            return redirect()->route('index');
+        }
         return view('frontend.auth.login');
     }
     public function register(){
