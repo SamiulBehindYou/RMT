@@ -50,7 +50,7 @@
                         <td class="product-name">
                         <a href="{{ route('single_product', $cart->product_id) }}" style="text-decoration: none;"><h2 class="h5 text-black">{{ $cart->rel_to_product->name }}</h2></a>
                         </td>
-                        <td>{{ $cart->price }}</td>
+                        <td>{{ $cart->rel_to_product->price }}</td>
                         <td>
                         <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                             <div class="input-group-prepend">
@@ -63,7 +63,7 @@
                         </div>
 
                         </td>
-                        <td>{{ $cart->total_price }}</td>
+                        <td>{{ $cart->rel_to_product->price * $cart->quantity }}</td>
                         <td><a wire:click='cartDelete({{ $cart->id }})' class="btn btn-black btn-sm">X</a></td>
                     </tr>
                     @empty
@@ -167,11 +167,11 @@
                     <div class="col-md-12">
                         {{-- <button class="btn btn-black btn-lg py-3 btn-block" >Proceed To Checkout</button> --}}
                         <button class="btn btn-black btn-lg py-3 btn-block" id="sslczPayBtn"
-                        token="if you have any token validation"
-                        postdata="your javascript arrays or objects which requires in backend"
-                        order="If you already have the transaction generated for current order"
-                        endpoint="{{ url('/sslcommerz/pay-via-ajax') }}"> Proceed To Checkout
-                </button>
+                            token="if you have any token validation"
+                            postdata="your javascript arrays or objects which requires in backend"
+                            order="If you already have the transaction generated for current order"
+                            endpoint="{{ url('/sslcommerz/pay-via-ajax') }}"> Proceed To Checkout
+                        </button>
                     </div>
                     </div>
                 </div>

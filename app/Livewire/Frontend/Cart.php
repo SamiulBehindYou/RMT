@@ -61,11 +61,11 @@ class Cart extends Component
 
     public function render()
     {
-        $carts = ModelsCart::where('user_id', Auth::guard('customer')->user()->id)->where('checkout', 0)->get();
+        $carts = ModelsCart::where('user_id', Auth::guard('customer')->user()->id)->with('rel_to_product')->where('checkout', 0)->get();
         //Sub Total and Total
         $sub_total = 0;
         foreach($carts as $cart){
-            $sub_total += $cart->total_price;
+            $sub_total += $cart->rel_to_product->price * $cart->quantity;
         }
 
         $coupon_discount = $this->coupon;
