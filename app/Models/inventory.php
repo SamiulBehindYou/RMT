@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class inventory extends Model
+class Inventory extends Model
 {
     use HasFactory;
 
@@ -14,10 +14,10 @@ class inventory extends Model
     }
 
     public function rel_to_color(){
-        return $this->belongsTo(color::class, 'color_id');
+        return $this->belongsTo(Color::class, 'color_id');
     }
 
     public function rel_to_size(){
-        return $this->belongsTo(size::class, 'size_id');
+        return $this->belongsTo(Size::class, 'size_id');
     }
 }
