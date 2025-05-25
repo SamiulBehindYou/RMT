@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('status',20)->default('Pending');
             $table->string('transaction_id',191);
+            $table->string('coupon_code',191)->nullable();
             $table->string('currency',20)->nullable()->default('BDT');
             $table->timestamps();
         });

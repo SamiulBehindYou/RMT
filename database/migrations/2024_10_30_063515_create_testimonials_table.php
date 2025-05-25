@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('role');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->text('message');
             $table->integer('status')->default(0);
             $table->timestamps();
