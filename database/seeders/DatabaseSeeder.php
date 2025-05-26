@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\BasicSettings;
+
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,18 +23,20 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('Pa$$w0rd!'),
         ]);
 
-        BasicSettings::create([
-            'web_title' => 'web_title',
-            'web_tag_line' => 'web_tag_line',
-            'facebook' => 'facebook',
-            'instagram' => 'instagram',
-            'twiter' => 'twiter',
-            'youtube' => 'youtube',
-            'about_title' => 'about_title',
-            'about_description' => 'about_description',
-            'address' => 'Damkura, Paba, Rajshahi',
-            'email' => 'rmt@gmail.com',
-            'phone' => '01740080009',
+
+
+        $this->call([
+            BasicSettingSeeder::class,
+            CategorySeeder::class,
+            SubCategorySeeder::class,
+            BrandSeeder::class,
+            CustomerSeeder::class,
+            TestimonialSeeder::class,
+            TagSeeder::class,
+            ColorSeeder::class,
+            SizeSeeder::class,
         ]);
+
+
     }
 }
