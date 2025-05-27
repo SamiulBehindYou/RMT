@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Models\color;
-use App\Models\size;
+use App\Models\Color;
+use App\Models\Size;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -41,7 +41,7 @@ class ColorSize extends Component
         $this->validate([
             'size' => 'required|unique:sizes',
         ]);
-        size::insert([
+        Size::insert([
             'size' => $this->size,
             'created_at' => Carbon::now(),
         ]);
@@ -51,7 +51,7 @@ class ColorSize extends Component
     }
 
     public function deleteSize($id){
-        size::findOrFail($id)->delete();
+        Size::findOrFail($id)->delete();
         session()->flash('size_deleted', 'Size deleted!');
         return back();
     }
@@ -62,8 +62,8 @@ class ColorSize extends Component
     {;
 
         return view('livewire.color-size', [
-            'colors' => color::orderBy('id', 'DESC')->paginate(5,['*'], 'colorsPage'),
-            'sizes' => size::orderBy('id', 'DESC')->paginate(5,['*'], 'sizesPage'),
+            'colors' => Color::orderBy('id', 'DESC')->paginate(5,['*'], 'colorsPage'),
+            'sizes' => Size::orderBy('id', 'DESC')->paginate(5,['*'], 'sizesPage'),
         ]);
     }
 }

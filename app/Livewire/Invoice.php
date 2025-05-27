@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Bill;
-use App\Models\inventory;
+use App\Models\Inventory;
 use App\Models\Invoice as ModelsInvoice;
 use App\Models\Product;
 use Carbon\Carbon;
@@ -53,7 +53,7 @@ class Invoice extends Component
     public $mountInventoryInfo;
     public function SelectProduct(){
         $this->mountProductInfo = Product::find($this->selectedproduct);
-        $this->mountInventoryInfo = inventory::where('product_id', $this->selectedproduct)->get();
+        $this->mountInventoryInfo = Inventory::where('product_id', $this->selectedproduct)->get();
     }
 
 // Add Bill
@@ -75,7 +75,7 @@ class Invoice extends Component
         if($this->discount != null){
             $after_discount = ((100 - $this->discount) / 100) * $this->price;
             if($this->mountProductInfo->purchase < $after_discount){
-                $inquiry = inventory::find($this->color_size_id);
+                $inquiry = Inventory::find($this->color_size_id);
                 if($inquiry->quantity < $this->quantity){
                     session()->flash('q_error', 'Over Quantity or not available!');
                     return back();
@@ -113,7 +113,7 @@ class Invoice extends Component
         $bill = Bill::find($id);
 
         if($bill->status == 1){
-            inventory::where('product_id', $bill->product_id)->where('color_id', $bill->color_id)->where('size_id', $bill->size_id)->increment('quantity', $bill->quantity);
+            Inventory::where('product_id', $bill->product_id)->where('color_id', $bill->color_id)->where('size_id', $bill->size_id)->increment('quantity', $bill->quantity);
             $bill->delete();
         }else{
             $bill->delete();
@@ -133,7 +133,7 @@ class Invoice extends Component
         $bills = Bill::where('invoice_id', $invoice_id)->get();
         foreach($bills as $bill){
             if($bill->status == 0){
-                inventory::where('product_id', $bill->product_id)->where('color_id', $bill->color_id)->where('size_id', $bill->size_id)->decrement('quantity', $bill->quantity);
+                Inventory::where('product_id', $bill->product_id)->where('color_id', $bill->color_id)->where('size_id', $bill->size_id)->decrement('quantity', $bill->quantity);
                 $bill->status = 1;
                 $bill->save();
             }
@@ -152,7 +152,7 @@ class Invoice extends Component
 
         $invoices = ModelsInvoice::orderBy('id', 'DESC')->SimplePaginate(10);
 
-        $inventories = inventory::groupBy(['product_id'])->selectRaw('sum(quantity) as quantity, product_id')->whereNot('quantity', 0)->get();
+        $inventories = Inventory::groupBy(['product_id'])->selectRaw('sum(quantity) as quantity, product_id')->whereNot('quantity', 0)->get();
 
         $current_invoice = $this->showInvoice;
 

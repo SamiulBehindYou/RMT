@@ -2,12 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\color;
-use App\Models\inventory as ModelsInventory;
+use App\Models\Color;
+use App\Models\Inventory as ModelsInventory;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Revenue;
-use App\Models\size;
+use App\Models\Size;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -72,8 +72,8 @@ class Inventory extends Component
 
         $inventories = ModelsInventory::all();
         $products = Product::all();
-        $colors = color::all();
-        $sizes = size::all();
+        $colors = Color::all();
+        $sizes = Size::all();
         return view('livewire.inventory', [
             'inventories' => $inventories,
             'products' => $products,
