@@ -65,7 +65,7 @@ class Cart extends Component
         //Sub Total and Total
         $sub_total = 0;
         foreach($carts as $cart){
-            $sub_total += $cart->rel_to_product->price * $cart->quantity;
+            $sub_total += $cart->rel_to_product->after_discount * $cart->quantity;
         }
 
         $coupon_discount = $this->coupon;

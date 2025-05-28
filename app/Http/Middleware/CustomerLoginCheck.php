@@ -16,8 +16,8 @@ class CustomerLoginCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
         if(Auth::guard('customer')->check()){
+            return $next($request);
         }else{
             return redirect()->route('customer.login')->withError('Unauthorize access! Please login!');
         }
