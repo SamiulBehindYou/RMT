@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -100,14 +102,18 @@ class SslCommerzPaymentController extends Controller
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
         $customer = Auth::guard('customer')->user();
 
-        $total = Cart::where('user_id', Auth::guard('customer')->user()->id)->where('checkout', 0)->sum('total_price');
+        // $total = Cart::where('user_id', Auth::guard('customer')->user()->id)->where('checkout', 0)->sum('total_price');
+        $total = Cart::where('user_id', Auth::guard('customer')->user()->id)->with('rel_to_product')->where('checkout', 0)->get()->sum(function($cart) {
+            return $cart->rel_to_product->after_discount * $cart->quantity;
+        });
+
+        // dd($total);
         $coupon_code = json_decode($request->cart_json)->coupon;
         if($coupon_code){
-            $coupon = Coupon::where('coupon_id', $coupon_code)->status(0)->first();
+            $coupon = Coupon::where('coupon_id', $coupon_code)->whereStatus(0)->first();
+            // Log::info('Coupon Code: ' . $coupon_code);
             if($coupon){
                 $total = $total - $coupon->discount;
-                $coupon->status = 1;
-                $coupon->save();
             }
         }
 
@@ -161,7 +167,9 @@ class SslCommerzPaymentController extends Controller
                 'status' => 'Pending',
                 'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
-                'currency' => $post_data['currency']
+                'currency' => $post_data['currency'],
+                'coupon_code' => $coupon_code,
+                'user_id' => Auth::guard('customer')->user()->id
             ]);
 
         $sslc = new SslCommerzNotification();
@@ -182,7 +190,7 @@ class SslCommerzPaymentController extends Controller
         // dd($request->all());
         // echo "Transaction is Successful";
 
-        return redirect()->route('index')->withSuccess('Transaction is successfully Completed');
+        // return redirect()->route('index')->withSuccess('Transaction is successfully Completed');
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -193,7 +201,7 @@ class SslCommerzPaymentController extends Controller
         #Check order status in order tabel against the transaction id or order id.
         $order_details = DB::table('orders')
             ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+            ->select('id', 'transaction_id', 'status', 'currency', 'amount')->first();
 
         if ($order_details->status == 'Pending') {
             $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
@@ -207,6 +215,25 @@ class SslCommerzPaymentController extends Controller
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
+
+                // update cart checkout status
+                $carts = Cart::where('user_id', Auth::guard('customer')->user()->id)
+                    ->where('checkout', 0)
+                    ->get();
+                foreach ($carts as $cart) {
+                    OrderItem::create([
+                        'order_id' => $order_details->id,
+                        'product_id' => $cart->product_id,
+                        'product_name' => $cart->rel_to_product->name,
+                        'quantity' => $cart->quantity,
+                        'price' => $cart->rel_to_product->after_discount,
+                    ]);
+
+                    // Update cart status
+                    $cart->checkout = 1;
+                    $cart->save();
+                }
+
 
                 // echo "<br >Transaction is successfully Completed";
                 return redirect()->route('cart')->withSuccess('Transaction is successfully Completed');
