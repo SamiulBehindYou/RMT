@@ -17,7 +17,7 @@
 						</div>
 						<div class="col-lg-7">
 							<div class="hero-img-wrap">
-								<img src="{{ asset('uploads/settings/landing_image').'/'.$settings->landing_image }}" width="80%" class="">
+								<img src="{{ $settings->landing_image ? asset('uploads/settings/landing_image').'/'.$settings->landing_image : asset('uploads/settings/landing_image/hero_image.png') }}" width="80%" class="">
 							</div>
 						</div>
 					</div>
@@ -36,8 +36,9 @@
                             <div class="card-body">
                                 <div class="row text-center">
                                     @foreach ($categories as $category)
-                                    <div class="col-1">
-                                        <a href="{{ route('by_category',$category->id) }}"><img src="{{ asset('uploads/categories').'/'.$category->category_image }}" width="100"></a>
+                                    <div class="col-2">
+                                        {{-- <a href="{{ route('by_category',$category->id) }}"><img src="{{ asset('uploads/categories').'/'.$category->category_image }}" width="100"></a> --}}
+                                        <a href="{{ route('by_category', $category->id) }}" class="btn btn-primary">{{ $category->category_name }}</a>
                                     </div>
                                     @endforeach
 
@@ -173,7 +174,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-7 mx-auto text-center">
-						<h2 class="section-title">Users Review</h2>
+						<h2 class="section-title">Testimonials</h2>
 					</div>
 				</div>
 
@@ -201,7 +202,7 @@
 
                                                     <div class="author-info">
                                                         <div class="author-pic">
-                                                            <img src="{{ asset('uploads/testimonials'.'/'.$testimonial->image) }}" alt="Maria Jones" class="img-fluid">
+                                                            <img src="{{ $testimonial->image ? asset('uploads/testimonials'.'/'.$testimonial->image) : asset('uploads/testimonials/demo.jpg') }}" alt="Maria Jones" class="img-fluid">
                                                         </div>
                                                         <h3 class="font-weight-bold">{{ $testimonial->name }}</h3>
                                                         <span class="position d-block mb-3">{{ $testimonial->role }}</span>

@@ -23,7 +23,7 @@
                     <div class="mb-2 text-center">
                         <a wire:click='CreateInvoice()' class="btn btn-primary">Create new</a>
                     </div>
-                    <table class="table text-center">
+                    <table class="table text-center table-responsive">
                         <tr>
                             <th>SL</th>
                             <th>Invoice</th>

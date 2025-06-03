@@ -35,6 +35,7 @@
                         <th class="product-thumbnail">Image</th>
                         <th class="product-name">Product</th>
                         <th class="product-price">Price</th>
+                        <th class="product-price">Discount</th>
                         <th class="product-quantity">Quantity</th>
                         <th class="product-total">Total</th>
                         <th class="product-remove">Remove</th>
@@ -51,6 +52,7 @@
                         <a href="{{ route('single_product', $cart->product_id) }}" style="text-decoration: none;"><h2 class="h5 text-black">{{ $cart->rel_to_product->name }}</h2></a>
                         </td>
                         <td>{{ $cart->rel_to_product->price }}</td>
+                        <td>{{ $cart->rel_to_product->discount }}%</td>
                         <td>
                         <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
                             <div class="input-group-prepend">
@@ -63,12 +65,12 @@
                         </div>
 
                         </td>
-                        <td>{{ $cart->rel_to_product->price * $cart->quantity }}</td>
+                        <td>{{ $cart->rel_to_product->after_discount * $cart->quantity }}</td>
                         <td><a wire:click='cartDelete({{ $cart->id }})' class="btn btn-black btn-sm">X</a></td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6"><h4 class="text-center">No Product added yet!</h4></td>
+                        <td colspan="100"><h4 class="text-center">No Product added yet!</h4></td>
                     </tr>
                     @endforelse
 
@@ -83,10 +85,11 @@
             <div class="row">
             <div class="col-md-6">
                 <div class="row mb-5">
-                <div class="col-md-6 mb-3 mb-md-0">
+                <div class="col-md-8 mb-3 mb-md-0 d-flex inline">
                     <a href="{{ route('shop') }}" class="btn btn-outline-black btn-sm btn-block">Continue Shopping</a>
+                    <a href="{{ route('orders') }}" class="btn btn-outline-black btn-sm btn-block mx-2">View Orders</a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                 </div>
                 </div>
 
@@ -203,6 +206,8 @@
     obj.coupon = null;
     $('#coupon').change(function () {
         obj.coupon = $(this).val();
+        console.log($(this).val(), 'Cupon Assigned');
+
     });
 
 
