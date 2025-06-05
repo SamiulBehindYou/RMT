@@ -169,25 +169,29 @@
 
         @if (session('success'))
         <script>
-            Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "{{ session('success') }}",
-            showConfirmButton: false,
-            timer: 1500
-            });
+            toastr.success("{{ session('success') }}", 'success!');
+
+            // Swal.fire({
+            // position: "center",
+            // icon: "success",
+            // title: "{{ session('success') }}",
+            // showConfirmButton: false,
+            // timer: 1500
+            // });
         </script>
         @endif
 
         @if (session('error'))
         <script>
-            Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "{{ session('error') }}",
-            showConfirmButton: false,
-            timer: 1500
-            });
+            toastr.error("{{ session('error') }}", 'Error!');
+
+            // Swal.fire({
+            // position: "center",
+            // icon: "error",
+            // title: "{{ session('error') }}",
+            // showConfirmButton: false,
+            // timer: 1500
+            // });
         </script>
         @endif
 

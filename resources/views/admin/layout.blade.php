@@ -537,49 +537,57 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('success'))
     <script>
-        Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "{{ session('success') }}",
-        showConfirmButton: false,
-        timer: 1500
-        });
+        toastr.success('{{ session('success') }}', 'success!');
+
+        // Swal.fire({
+        // position: "center",
+        // icon: "success",
+        // title: "{{ session('success') }}",
+        // showConfirmButton: false,
+        // timer: 1500
+        // });
     </script>
     @endif
 
     @if (session('error'))
     <script>
-        Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "{{ session('success') }}",
-        showConfirmButton: false,
-        timer: 1500
-        });
+        toastr.error("{{ session('error') }}", 'Error!');
+
+        // Swal.fire({
+        // position: "center",
+        // icon: "error",
+        // title: "{{ session('success') }}",
+        // showConfirmButton: false,
+        // timer: 1500
+        // });
     </script>
     @endif
 
     @if (session('info'))
     <script>
-        Swal.fire({
-        position: "center",
-        icon: "info",
-        title: "{{ session('info') }}",
-        showConfirmButton: false,
-        timer: 1500
-        });
+        toastr.info("{{ session('info') }}", 'info!');
+
+        // Swal.fire({
+        // position: "center",
+        // icon: "info",
+        // title: "{{ session('info') }}",
+        // showConfirmButton: false,
+        // timer: 1500
+        // });
     </script>
     @endif
 
     @if (session('status'))
     <script>
-        Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "{{ session('status') }}",
-        showConfirmButton: false,
-        timer: 1500
-        });
+        toastr.success("{{ session('status') }}", 'status!');
+
+        // Swal.fire({
+        // position: "center",
+        // icon: "success",
+        // title: "{{ session('status') }}",
+        // showConfirmButton: false,
+        // timer: 1500
+        // });
     </script>
     @endif
 

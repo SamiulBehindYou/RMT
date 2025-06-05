@@ -143,23 +143,27 @@
                     data: $(this).serialize(),
                     success: function(response) {
                         if (response.status == 200) {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
+                            toastr.success("{{ session('success') }}", 'success!');
+
+                            // Swal.fire({
+                            //     position: 'center',
+                            //     icon: 'success',
+                            //     title: response.message,
+                            //     showConfirmButton: false,
+                            //     timer: 1500
+                            // });
                             $('#EditProfile').modal('hide');
                             location.reload();
                         } else {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
+                            toastr.error("{{ session('error') }}", 'Error!');
+
+                            // Swal.fire({
+                            //     position: 'center',
+                            //     icon: 'error',
+                            //     title: response.message,
+                            //     showConfirmButton: false,
+                            //     timer: 1500
+                            // });
                         }
                     }
                 });

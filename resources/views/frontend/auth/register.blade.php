@@ -167,13 +167,15 @@
 
         @if (session('success'))
         <script>
-            Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "{{ session('success') }}",
-            showConfirmButton: false,
-            timer: 1500
-            });
+            toastr.success("{{ session('success') }}", 'success!');
+
+            // Swal.fire({
+            // position: "center",
+            // icon: "success",
+            // title: "{{ session('success') }}",
+            // showConfirmButton: false,
+            // timer: 1500
+            // });
         </script>
         @endif
 	</body>
