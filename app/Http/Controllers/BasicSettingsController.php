@@ -17,21 +17,21 @@ class BasicSettingsController extends Controller
 
     public function title(Request $request){
         $request->validate([
-            'title' => 'required|max:50'
+            'web_title' => 'required|max:50'
         ]);
 
         BasicSettings::first()->update([
-            'web_title' => $request->title,
+            'web_title' => $request->web_title,
         ]);
         return back()->withSuccess('Title updated successfully!');
     }
     public function tag_line(Request $request){
         $request->validate([
-            'tag_line' => 'required|max:450'
+            'web_tag_line' => 'required|max:450'
         ]);
 
         BasicSettings::first()->update([
-            'web_tag_line' => $request->tag_line,
+            'web_tag_line' => $request->web_tag_line,
         ]);
         return back()->withSuccess('Tag Line updated successfully!');
     }
@@ -122,7 +122,7 @@ class BasicSettingsController extends Controller
         BasicSettings::first()->update([
             'facebook' => $request->facebook,
         ]);
-        return back()->withSuccess('Facebook updated successfully!');
+        return back()->withSuccess('Facebook link updated successfully!');
     }
 
     public function facebook_status(){
@@ -149,7 +149,7 @@ class BasicSettingsController extends Controller
         BasicSettings::first()->update([
             'twiter' => $request->twiter,
         ]);
-        return back()->withSuccess('Twiter updated successfully!');
+        return back()->withSuccess('Twiter link updated successfully!');
     }
 
     public function twiter_status(){
@@ -176,7 +176,7 @@ class BasicSettingsController extends Controller
         BasicSettings::first()->update([
             'instagram' => $request->instagram,
         ]);
-        return back()->withSuccess('Instagram updated successfully!');
+        return back()->withSuccess('Instagram link updated successfully!');
     }
 
     public function instagram_status(){
@@ -203,7 +203,7 @@ class BasicSettingsController extends Controller
         BasicSettings::first()->update([
             'youtube' => $request->youtube,
         ]);
-        return back()->withSuccess('Youtube updated successfully!');
+        return back()->withSuccess('Youtube link updated successfully!');
     }
 
     public function youtube_status(){

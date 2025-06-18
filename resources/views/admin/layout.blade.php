@@ -35,6 +35,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 
+    <style>
+        .fl-flasher{
+            z-index: 99999 !important;
+        }
+    </style>
 
 </head>
 <body>
@@ -537,7 +542,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('success'))
     <script>
-        toastr.success('{{ session('success') }}', 'success!');
+        // toastr.success('{{ session('success') }}', 'success!');
 
         // Swal.fire({
         // position: "center",
@@ -551,7 +556,7 @@
 
     @if (session('error'))
     <script>
-        toastr.error("{{ session('error') }}", 'Error!');
+        // toastr.error("{{ session('error') }}", 'Error!');
 
         // Swal.fire({
         // position: "center",
@@ -565,7 +570,7 @@
 
     @if (session('info'))
     <script>
-        toastr.info("{{ session('info') }}", 'info!');
+        // toastr.info("{{ session('info') }}", 'info!');
 
         // Swal.fire({
         // position: "center",
@@ -579,7 +584,7 @@
 
     @if (session('status'))
     <script>
-        toastr.success("{{ session('status') }}", 'status!');
+        // toastr.success("{{ session('status') }}", 'status!');
 
         // Swal.fire({
         // position: "center",

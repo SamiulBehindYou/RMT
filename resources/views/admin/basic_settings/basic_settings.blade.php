@@ -5,15 +5,15 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-header bg-primary">
-                <h3 class="text-center text-white">Title</h3>
+                <h3 class="text-center text-white">Web Title</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('title') }}" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Title</label>
-                        <input type="text" name="title" class="form-control">
-                        @error('title')
+                        <input type="text" name="web_title" value="{{ $settings->web_title }}" class="form-control">
+                        @error('web_title')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>
@@ -34,8 +34,8 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Tag Line</label>
-                        <input type="text" name="tag_line" class="form-control">
-                        @error('tag_line')
+                        <input type="text" name="web_tag_line" value="{{ $settings->web_tag_line }}" class="form-control">
+                        @error('web_tag_line')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>
@@ -84,7 +84,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Facebook</label>
-                        <input type="text" name="facebook" class="form-control">
+                        <input type="text" name="facebook" value="{{ $settings->facebook }}" class="form-control">
                         @error('facebook')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
@@ -155,7 +155,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Twiter</label>
-                        <input type="text" name="twiter" class="form-control">
+                        <input type="text" name="twiter" value="{{ $settings->twiter }}" class="form-control">
                         @error('twiter')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
@@ -177,7 +177,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Instragram</label>
-                        <input type="text" name="instagram" class="form-control">
+                        <input type="text" name="instagram" value="{{ $settings->instagram }}" class="form-control">
                         @error('instagram')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
@@ -199,7 +199,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">YouTube</label>
-                        <input type="text" name="youtube" class="form-control">
+                        <input type="text" name="youtube" value="{{ $settings->youtube }}" class="form-control">
                         @error('youtube')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
