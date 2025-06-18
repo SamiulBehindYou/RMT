@@ -30,6 +30,13 @@ class BasicSettingSeeder extends Seeder
             'address' => 'Damkura, Paba, Rajshahi',
             'email' => 'rmt@gmail.com',
             'phone' => '01740080009',
+            'service_page_title' => 'Our Services',
+            'service_page_meta_title' => 'Rahat Multimedia and Telecom Services',
+            'contact_us_page_title' => 'Contact Us',
+            'contact_us_page_meta_title' => 'We are always for you. Just Send a message about your queries!',
+            'about_us_page_title' => 'About Us',
+            'about_us_page_meta_title' => 'Get in Touch with Rahat Multimedia and Telecom',
+            'subscribe_form_title' => 'Subscribe to Our Newsletter',
         ]);
     }
 }
