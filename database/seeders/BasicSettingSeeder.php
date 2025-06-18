@@ -14,6 +14,10 @@ class BasicSettingSeeder extends Seeder
     public function run(): void
     {
         BasicSettings::truncate(); // Clear existing settings to avoid duplicates
+        $dd = <<<HTML
+        <p style="text-align: left;">Welcome to Rahat Multimedia and Telecom, your one-stop destination for the latest smartphones, accessories, and expert mobile solutions.&nbsp;<span style="font-size: 0.875rem;">With a passion for technology and a commitment to customer satisfaction, we offer genuine products, competitive prices, and personalized service you can count on.&nbsp;</span><span style="font-size: 0.875rem;">Whether you're upgrading your phone or looking for tech support, we’re here to help you stay connected.</span></p><p><br></p><h6>Services:</h6><ul><li>Phone sells.</li><li>Accessories.</li><li>Repair services.</li><li>Phone cosmatics design.</li></ul><p><span style="font-size: 15px; font-weight: 600;">Location: Damkura hat, Damkura, Rajshahi.</span></p>
+        HTML;
+
         BasicSettings::create([
             'web_title' => 'Apple Iphone 16 Pro Max, Buy Now!',
             'web_tag_line' => 'Buy the latest Apple iPhone 16 Pro Max at the best price.',
@@ -21,8 +25,8 @@ class BasicSettingSeeder extends Seeder
             'instagram' => 'instagram',
             'twiter' => 'twiter',
             'youtube' => 'youtube',
-            'about_title' => 'We are the best in the business',
-            'about_description' => 'about_description',
+            'about_title' => 'Your Trusted Mobile Partner',
+            'about_description' => $dd,
             'address' => 'Damkura, Paba, Rajshahi',
             'email' => 'rmt@gmail.com',
             'phone' => '01740080009',

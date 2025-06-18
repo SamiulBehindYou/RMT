@@ -218,12 +218,12 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header bg-primary">
-                <h3 class="text-center text-white">About us</h3>
+                <h3 class="text-center text-white">About us (Demo View)</h3>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 m-auto">
-                        <h3 class="text-center text-muted"><u>{{ $settings->about_title }}</u></h3>
+                        <h3 class="text-center">{{ $settings->about_title }}</h3>
                     </div>
                 </div>
                 <div>
@@ -242,14 +242,14 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">About Tile</label>
-                        <input type="text" name="about_title" class="form-control">
+                        <input type="text" name="about_title" value="{{ $settings->about_title }}" class="form-control">
                         @error('about_title')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Description</label>
-                        <textarea name="description" id="summernote" rows="5" class="form-control"></textarea>
+                        <textarea name="description" id="summernote" rows="5" class="form-control">{{ $settings->about_description }}</textarea>
                         @error('description')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
