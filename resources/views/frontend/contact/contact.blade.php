@@ -8,8 +8,8 @@
                 <div class="row justify-content-between">
                     <div class="col-lg-5">
                         <div class="intro-excerpt">
-                            <h1>Contact</h1>
-                            <p class="mb-4">We are always for you. Just Send a message about your queries!</p>
+                            <h1>{{ getBasicSettings()->contact_us_page_title }}</h1>
+                            <p class="mb-4">{{ getBasicSettings()->contact_us_page_meta_title }}</p>
                             <p><a href="{{ route('shop') }}" class="btn btn-secondary me-2">Shop Now</a><a href="{{ route('shop') }}" class="btn btn-white-outline">Explore</a></p>
                         </div>
                     </div>

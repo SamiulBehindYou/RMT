@@ -7,7 +7,8 @@
         <div class="row justify-content-between">
             <div class="col-lg-5">
                 <div class="intro-excerpt">
-                    <h1>About <span clsas="d-block">US</span></h1>
+                    <h1>{{ getBasicSettings()->about_us_page_title }}</h1>
+                    <p>{{ getBasicSettings()->about_us_page_meta_title }}</p>
                     <p><a href="{{ route('shop') }}" class="btn btn-secondary me-2">Shop Now</a><a href="{{ route('shop') }}" class="btn btn-white-outline">Explore</a></p>
                 </div>
             </div>
