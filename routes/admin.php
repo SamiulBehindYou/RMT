@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LiveWireRoutesController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OnlineOrdersController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RepairController;
 use App\Http\Controllers\TestimonialController;
@@ -121,10 +122,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Sales & invoice
         Route::get('sales/offline', [LiveWireRoutesController::class, 'offline_sales'])->name('sales.offline');
-        Route::get('sales/online', [LiveWireRoutesController::class, 'online_sales'])->name('sales.online');
+        // Route::get('sales/online', [LiveWireRoutesController::class, 'online_sales'])->name('sales.online');
         Route::get('viewInvoice', [LiveWireRoutesController::class, 'view_invoice'])->name('viewInvoice');
         Route::get('invoiceTrash', [LiveWireRoutesController::class, 'invoice_trash'])->name('invoice.trash');
 
+        // Online orders
+        Route::controller(OnlineOrdersController::class)->group(function(){
+            Route::get('sales/online', 'online_sales')->name('sales.online');
+        });
 
         // PDF
         Route::post('pdf/', [LiveWireRoutesController::class, 'pdf'])->name('pdf');

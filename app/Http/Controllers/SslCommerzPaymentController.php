@@ -8,6 +8,7 @@ use App\Library\SslCommerz\SslCommerzNotification;
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -169,7 +170,8 @@ class SslCommerzPaymentController extends Controller
                 'transaction_id' => $post_data['tran_id'],
                 'currency' => $post_data['currency'],
                 'coupon_code' => $coupon_code,
-                'user_id' => Auth::guard('customer')->user()->id
+                'user_id' => Auth::guard('customer')->user()->id,
+                'created_at' => Carbon::now(),
             ]);
 
         $sslc = new SslCommerzNotification();
@@ -214,7 +216,7 @@ class SslCommerzPaymentController extends Controller
                 */
                 $update_product = DB::table('orders')
                     ->where('transaction_id', $tran_id)
-                    ->update(['status' => 'Processing']);
+                    ->update(['status' => 'Processing', 'created_at' => Carbon::now()]);
 
                 // update cart checkout status
                 $carts = Cart::where('user_id', Auth::guard('customer')->user()->id)
