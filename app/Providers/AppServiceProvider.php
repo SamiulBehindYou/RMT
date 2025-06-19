@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\BasicSettings;
 use App\Models\Message;
+use App\Observers\BasicSettingObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -28,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
         $new_messages = Message::where('status', 0)->count();
         $settings = BasicSettings::first();
         View::share(compact('new_messages', 'g_messages', 'settings'));
+
+
+        // Observers
+        BasicSettings::observe(BasicSettingObserver::class);
     }
 }
