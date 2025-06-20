@@ -47,8 +47,8 @@
                     <div class="icon">
                         <img src="{{ asset('uploads/icons/'.$service->icon) }}" class="imf-fluid">
                     </div>
-                    <h3>{{ $service->title }}</h3>
-                    <p>{{ $service->meta_title }}</p>
+                    <h3>{{ ucfirst($service->title) }}</h3>
+                    <p>{{ ucfirst($service->meta_title) }}</p>
                 </div>
             </div>
 

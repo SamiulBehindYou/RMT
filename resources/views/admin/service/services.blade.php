@@ -15,7 +15,7 @@
                             <th>SL</th>
                             <th>Title</th>
                             <th>Icon</th>
-                            <th>Description</th>
+                            <th>Meta title</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -24,9 +24,9 @@
                         @forelse ($services as $sl=>$service)
                             <tr>
                                 <td>{{ $sl + 1 }}</td>
-                                <td>{{ $service->title }}</td>
+                                <td>{{ ucfirst($service->title) }}</td>
                                 <td><img src="{{ asset('uploads/icons/'.$service->icon) }}" alt=""></td>
-                                <td class="text-wrap">{{ $service->description }}</td>
+                                <td class="text-wrap">{{ ucfirst($service->meta_title) }}</td>
                                 <td class="text-{{ $service->status == 0 ? 'success':'danger' }}">{{ $service->status == 0 ? 'Active':'Not active' }}</td>
                                 <td>
                                     <a href="{{ route('service.status', $service->id) }}" class="btn btn-facebook">Change status</a>
