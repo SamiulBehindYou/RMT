@@ -11,6 +11,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OnlineOrdersController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RepairController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
@@ -108,6 +109,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('repair/delete/{id}', [RepairController::class, 'repair_delete'])->name('repair.delete');
     Route::get('repair/restore/{id}', [RepairController::class, 'repair_restore'])->name('repair.restore');
     Route::get('repair/per_delete/{id}', [RepairController::class, 'repair_per_delete'])->name('repair.per_delete');
+
+    // Services
+    Route::controller(ServiceController::class)->prefix('service')->name('service.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('store', 'store')->name('store');
+        Route::get('/status/{id}', 'status')->name('status');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
 
 
     // LiveWire

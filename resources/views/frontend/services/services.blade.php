@@ -31,27 +31,30 @@
 
 
         <div class="row my-5">
-            <div class="col-6 col-md-6 col-lg-3 mb-4">
+            {{-- <div class="col-6 col-md-6 col-lg-3 mb-4">
                 <div class="feature">
                     <div class="icon">
-                        <img src="{{ asset('frontend') }}/images/truck.svg" alt="Image" class="imf-fluid">
+                        <img src="{{ asset('uploads') }}/icons/award.svg" alt="Image" class="imf-fluid">
                     </div>
                     <h3>Fast &amp; Free Shipping</h3>
                     <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
                 </div>
-            </div>
+            </div> --}}
 
+            @foreach ($services as $service)
             <div class="col-6 col-md-6 col-lg-3 mb-4">
                 <div class="feature">
                     <div class="icon">
-                        <img src="{{ asset('frontend') }}/images/bag.svg" alt="Image" class="imf-fluid">
+                        <img src="{{ asset('uploads/icons/'.$service->icon) }}" class="imf-fluid">
                     </div>
-                    <h3>Easy to Shop</h3>
-                    <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+                    <h3>{{ $service->title }}</h3>
+                    <p>{{ $service->meta_title }}</p>
                 </div>
             </div>
 
-            <div class="col-6 col-md-6 col-lg-3 mb-4">
+            @endforeach
+
+            {{-- <div class="col-6 col-md-6 col-lg-3 mb-4">
                 <div class="feature">
                     <div class="icon">
                         <img src="{{ asset('frontend') }}/images/support.svg" alt="Image" class="imf-fluid">
@@ -109,7 +112,7 @@
                     <h3>Hassle Free Returns</h3>
                     <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 

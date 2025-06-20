@@ -232,6 +232,13 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{ route('service.index') }}" class="nav-link">
+              <i class="link-icon" data-feather="globe"></i>
+              <span class="link-title">Services</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="link-icon" data-feather="crosshair"></i>
               <span class="link-title">Set Target</span>

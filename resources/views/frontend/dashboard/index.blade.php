@@ -106,7 +106,7 @@
 		<!-- End Product Section -->
 
 		<!-- Start Why Choose Us Section -->
-		<div class="why-choose-section">
+		{{-- <div class="why-choose-section">
 			<div class="container">
 				<div class="row justify-content-between">
 					<div class="col-lg-6">
@@ -165,7 +165,7 @@
 
 				</div>
 			</div>
-		</div>
+		</div> --}}
 		<!-- End Why Choose Us Section -->
 
 

@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Repair;
+use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class FrontendController extends Controller
     }
 
     public function services(){
-        return view('frontend.services.services');
+        $services = Service::all();
+        return view('frontend.services.services', compact('services'));
     }
 
     public function by_category($id){
